@@ -180,7 +180,7 @@ export default function Home() {
 
       <section className="hero">
         <div className="container">
-          <h1>We Build Websites & Apps That Grow Your Business</h1>
+          <h1>We Build Websites and Apps That Grow Your Business</h1>
           <p>From idea to launch in just 4 to 6 weeks. We create modern, fast, and scalable digital products that turn clicks into customers and ideas into income.</p>
           <p>We specialize in custom web development, mobile app development, and UI/UX design for startups, brands, and growing businesses. No templates. No delays. Just results.</p>
           <p>At POPE EAD LEGACY, we design, build, and launch digital products that users love and that actually make money.</p>
@@ -198,8 +198,8 @@ export default function Home() {
             <div className="service-card"><h3>Website Development</h3><p>We offer full website development including landing pages, business websites, and e-commerce stores. Every site from POPE EAD LEGACY is responsive, SEO-ready, and built to load fast.</p></div>
             <div className="service-card"><h3>Mobile App Development</h3><p>For mobile, we build iOS, Android, and cross-platform apps using Flutter and React Native. Smooth performance, native feel, and built to scale.</p></div>
             <div className="service-card"><h3>UI/UX Design</h3><p>We also deliver premium UI/UX design. From wireframe to pixel-perfect interfaces, we design experiences users enjoy and trust.</p></div>
-            <div className="service-card"><h3>Maintenance & Growth</h3><p>And after launch, we don't disappear. POPE EAD LEGACY provides maintenance, hosting, updates, bug fixes, and growth support so your product keeps getting better.</p></div>
-            <div className="service-card"><h3>Logo Design</h3><p>We craft memorable and impactful logo designs. From concept to final brand mark, we create logos that capture your identity and leave a lasting impression.</p></div> 
+            <div className="service-card"><h3>Maintenance and Growth</h3><p>And after launch, we do not disappear. POPE EAD LEGACY provides maintenance, hosting, updates, bug fixes, and growth support so your product keeps getting better.</p></div>
+            <div className="service-card"><h3>Logo Design</h3><p>We craft memorable and impactful logo designs. From concept to final brand mark, we create logos that capture your identity and leave a lasting impression.</p></div>
             <div className="service-card"><h3>Marketing and Advertisement Department</h3><p>We also run a full marketing and advertisement department. From digital campaigns to brand promotion, we help you reach the right audience, grow visibility, and drive sales.</p></div>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function Home() {
       <section style={{ background: '#f8f9fa' }}>
         <div className="container">
           <h2>Why Businesses Trust POPE EAD LEGACY</h2>
-          <p>POPE EAD LEGACY COMPANY is trusted by startups and growing brands. We've launched multiple projects with clients across Malawi. Our focus is simple: build products that convert.</p>
+          <p>POPE EAD LEGACY COMPANY is trusted by startups and growing brands. We have launched multiple projects with clients across Malawi. Our focus is simple: build products that convert.</p>
           <ul className="values-list">
             <li><strong>Speed:</strong> We ship in 4 to 6 weeks, not 4 to 6 months.</li>
             <li><strong>Craft:</strong> Clean code and beautiful, conversion-focused design.</li>
@@ -225,18 +225,18 @@ export default function Home() {
           <h2>Our Process</h2>
           <p>At POPE EAD LEGACY, our process is simple and proven.</p>
           <div className="process-steps">
-            <p><strong>1. Discover</strong> → We learn your goals and understand your audience</p>
-            <p><strong>2. Design</strong> → UI/UX that turns visitors into loyal customers</p>
-            <p><strong>3. Develop</strong> → Clean, scalable, and secure code</p>
-            <p><strong>4. Launch & Grow</strong> → Go live + ongoing support</p>
+            <p><strong>1. Discover</strong> - We learn your goals and understand your audience</p>
+            <p><strong>2. Design</strong> - UI/UX that turns visitors into loyal customers</p>
+            <p><strong>3. Develop</strong> - Clean, scalable, and secure code</p>
+            <p><strong>4. Launch and Grow</strong> - Go live plus ongoing support</p>
           </div>
         </div>
       </section>
 
       <section className="cta" id="contact">
         <div className="container">
-          <h2>Let's Build Your Legacy</h2>
-          <p>Ready to turn your idea into a product people will pay for? Let's build something great together.</p>
+          <h2>Build Your Legacy</h2>
+          <p>Ready to turn your idea into a product people will pay for? Build something great together.</p>
           <Link href="/consultation" className="btn btn-primary">Book Free Consultation</Link>
         </div>
       </section>
@@ -265,7 +265,7 @@ export default function Home() {
           <div className="footer-col"><h3>Our Services</h3><ul>
             <li><Link href="/wdd"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Website Development</Link></li>
             <li><Link href="/sdd"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Software Development</Link></li>
-            <li><Link href="/cpd"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Creative &amp; Publication</Link></li>
+            <li><Link href="/cpd"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Creative and Publication</Link></li>
             <li><Link href="/ud"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> UX/UI Design</Link></li>
             <li><Link href="/ad"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Advertisement</Link></li>
             <li><Link href="/md"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg> Marketing</Link></li>
