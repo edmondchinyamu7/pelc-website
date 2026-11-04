@@ -1,21 +1,21 @@
-/* Match the homepage contact drawer to the dark-and-gold sidebar used on Events and Services. */
+/* Keep homepage sidebar structure and behavior, matching the Events/Services dark-and-gold drawer. */
 .home-contact-overlay { z-index: 1998 !important; background: rgba(0, 0, 0, .6) !important; }
-aside.home-contact-sidebar { width: 350px !important; max-width: 100vw; right: 0 !important; color: #fff !important; background: #070d1f !important; box-shadow: -5px 0 15px rgba(0, 0, 0, .4) !important; }
+aside.home-contact-sidebar { width: 350px !important; max-width: 100vw; height: 100vh !important; right: 0 !important; padding: 0 !important; color: #fff !important; background: #070d1f !important; box-shadow: -5px 0 15px rgba(0, 0, 0, .4) !important; }
 aside.home-contact-sidebar.is-open { transform: translateX(0) !important; }
 .home-contact-header { min-height: 0 !important; padding: 20px !important; align-items: center !important; border-bottom: 1px solid rgba(229, 183, 64, .3); background: linear-gradient(135deg, #0b152c, #070d1f) !important; }
-.home-contact-header p { margin: 0 0 4px !important; color: #e5b740 !important; font-size: .75rem !important; }
-.home-contact-header h2 { color: #e5b740 !important; font-size: 1.2rem !important; font-weight: 700 !important; letter-spacing: 0 !important; }
-.home-contact-close { border: 0 !important; color: #fff !important; font-size: 2rem !important; }
+.home-contact-header > div > p { display: none; }
+.home-contact-header h2 { margin: 0 !important; color: #e5b740 !important; font-size: 1.2rem !important; font-weight: 700 !important; letter-spacing: 0 !important; }
+.home-contact-close { width: auto !important; height: auto !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; color: #fff !important; font-size: 2rem !important; line-height: 1 !important; }
 .home-contact-close:hover { color: #e5b740 !important; background: transparent !important; transform: rotate(90deg); }
-.home-contact-content { padding: 30px 20px !important; }
-.home-contact-content > p:first-child { margin: 0 0 10px !important; color: #b3b9c9 !important; font-size: .9rem !important; }
-.home-contact-item { min-height: 66px !important; padding: 10px !important; grid-template-columns: 45px 1fr 18px !important; gap: 15px !important; border: 0 !important; border-radius: 8px; color: #fff !important; transition: background-color .3s ease; }
+.home-contact-content { padding: 30px 20px !important; display: flex; flex-direction: column; gap: 14px; }
+.home-contact-content > p:first-child { margin: 0 0 10px !important; color: #b3b9c9 !important; font-size: .9rem !important; line-height: 1.6 !important; }
+.home-contact-item { min-height: 64px !important; padding: 10px !important; display: grid !important; grid-template-columns: 45px 1fr 18px !important; align-items: center !important; gap: 15px !important; border: 0 !important; border-radius: 8px; color: #fff !important; transition: background-color .3s ease; }
 .home-contact-item:hover { background: rgba(229, 183, 64, .1); }
 .home-contact-icon { width: 45px !important; height: 45px !important; color: #070d1f !important; background: #e5b740 !important; font-size: 20px !important; }
 .home-contact-item strong { color: #fff !important; font-size: .9rem !important; font-weight: 600 !important; }
-.home-contact-item small { color: #b3b9c9 !important; font-size: .8rem !important; }
+.home-contact-item small { color: #b3b9c9 !important; font-size: .8rem !important; overflow-wrap: anywhere; }
 .home-contact-arrow { color: #e5b740 !important; }
-.home-contact-more { margin-top: 20px !important; padding: 10px 15px !important; justify-content: center !important; gap: 8px; border: 1px solid #e5b740; color: #e5b740 !important; background: transparent !important; font-size: 14px !important; }
+.home-contact-more { min-height: 0 !important; margin-top: 6px !important; padding: 10px 15px !important; display: inline-flex !important; justify-content: center !important; gap: 8px; align-self: flex-start; border: 1px solid #e5b740; color: #e5b740 !important; background: transparent !important; font-size: 14px !important; }
 .home-contact-more:hover { color: #070d1f !important; background: #e5b740 !important; }
-.home-contact-note { margin-top: 20px !important; padding-top: 20px; border-top: 1px solid rgba(229, 183, 64, .3); color: #b3b9c9 !important; font-size: .8rem !important; }
+.home-contact-note { margin: 6px 0 0 !important; padding-top: 20px; border-top: 1px solid rgba(229, 183, 64, .3); color: #b3b9c9 !important; font-size: .8rem !important; }
 @media (max-width: 640px) { aside.home-contact-sidebar { width: 300px !important; }.home-contact-content { padding: 30px 20px !important; } }
