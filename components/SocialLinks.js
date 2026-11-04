@@ -16,9 +16,15 @@ export const SOCIAL_PROFILES = [
     handle: '@pelccompany',
     url: 'https://facebook.com',
     icon: FaFacebookF,
-    color: '#1877F2',
-    hoverBg: 'rgba(24, 119, 242, 0.15)',
-    hoverBorder: '#1877F2',
+    brandColor: '#1877F2',
+    bgDark: 'rgba(24, 119, 242, 0.12)',
+    borderDark: 'rgba(24, 119, 242, 0.38)',
+    hoverBg: '#1877F2',
+    hoverColor: '#FFFFFF',
+    glow: 'rgba(24, 119, 242, 0.45)',
+    bgLight: '#f0f5ff',
+    borderLight: '#c2dbff',
+    gradient: null,
   },
   {
     name: 'Instagram',
@@ -26,9 +32,15 @@ export const SOCIAL_PROFILES = [
     handle: '@pelc_official',
     url: 'https://instagram.com',
     icon: FaInstagram,
-    color: '#E4405F',
-    hoverBg: 'rgba(228, 64, 95, 0.15)',
-    hoverBorder: '#E4405F',
+    brandColor: '#E1306C',
+    bgDark: 'rgba(225, 48, 108, 0.14)',
+    borderDark: 'rgba(225, 48, 108, 0.42)',
+    hoverBg: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
+    hoverColor: '#FFFFFF',
+    glow: 'rgba(225, 48, 108, 0.5)',
+    bgLight: '#fff0f5',
+    borderLight: '#fbcfe8',
+    gradient: 'linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%)',
   },
   {
     name: 'X',
@@ -36,9 +48,15 @@ export const SOCIAL_PROFILES = [
     handle: '@PELC_tech',
     url: 'https://x.com',
     icon: FaXTwitter,
-    color: '#FFFFFF',
-    hoverBg: 'rgba(255, 255, 255, 0.15)',
-    hoverBorder: '#d7f36a',
+    brandColor: '#F3F4F6',
+    bgDark: 'rgba(255, 255, 255, 0.10)',
+    borderDark: 'rgba(255, 255, 255, 0.35)',
+    hoverBg: '#FFFFFF',
+    hoverColor: '#0c211b',
+    glow: 'rgba(255, 255, 255, 0.35)',
+    bgLight: '#f3f4f6',
+    borderLight: '#d1d5db',
+    gradient: null,
   },
   {
     name: 'LinkedIn',
@@ -46,9 +64,15 @@ export const SOCIAL_PROFILES = [
     handle: 'PELC Company',
     url: 'https://linkedin.com',
     icon: FaLinkedinIn,
-    color: '#0A66C2',
-    hoverBg: 'rgba(10, 102, 194, 0.15)',
-    hoverBorder: '#0A66C2',
+    brandColor: '#0A66C2',
+    bgDark: 'rgba(10, 102, 194, 0.14)',
+    borderDark: 'rgba(10, 102, 194, 0.42)',
+    hoverBg: '#0A66C2',
+    hoverColor: '#FFFFFF',
+    glow: 'rgba(10, 102, 194, 0.45)',
+    bgLight: '#eff6ff',
+    borderLight: '#bfdbfe',
+    gradient: null,
   },
   {
     name: 'YouTube',
@@ -56,9 +80,15 @@ export const SOCIAL_PROFILES = [
     handle: 'PELC Tech & Design',
     url: 'https://youtube.com',
     icon: FaYoutube,
-    color: '#FF0000',
-    hoverBg: 'rgba(255, 0, 0, 0.15)',
-    hoverBorder: '#FF0000',
+    brandColor: '#FF0000',
+    bgDark: 'rgba(255, 0, 0, 0.14)',
+    borderDark: 'rgba(255, 0, 0, 0.42)',
+    hoverBg: '#FF0000',
+    hoverColor: '#FFFFFF',
+    glow: 'rgba(255, 0, 0, 0.45)',
+    bgLight: '#fef2f2',
+    borderLight: '#fecaca',
+    gradient: null,
   },
   {
     name: 'WhatsApp',
@@ -66,9 +96,15 @@ export const SOCIAL_PROFILES = [
     handle: '+265 892 236 030',
     url: 'https://wa.me/265892236030',
     icon: FaWhatsapp,
-    color: '#25D366',
-    hoverBg: 'rgba(37, 211, 102, 0.15)',
-    hoverBorder: '#25D366',
+    brandColor: '#25D366',
+    bgDark: 'rgba(37, 211, 102, 0.14)',
+    borderDark: 'rgba(37, 211, 102, 0.42)',
+    hoverBg: '#25D366',
+    hoverColor: '#0a231b',
+    glow: 'rgba(37, 211, 102, 0.45)',
+    bgLight: '#f0fdf4',
+    borderLight: '#bbf7d0',
+    gradient: null,
   },
 ];
 
@@ -88,18 +124,32 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
             className="social-btn"
             aria-label={`Visit PELC on ${item.label}`}
             title={`${item.label} · ${item.handle}`}
+            style={{
+              '--brand-color': item.brandColor,
+              '--brand-bg-dark': item.bgDark,
+              '--brand-border-dark': item.borderDark,
+              '--brand-hover-bg': item.hoverBg,
+              '--brand-hover-color': item.hoverColor,
+              '--brand-glow': item.glow,
+              '--brand-bg-light': item.bgLight,
+              '--brand-border-light': item.borderLight,
+            }}
           >
             <span className="icon-wrapper">
               <IconComponent className="social-svg" aria-hidden="true" />
             </span>
             {showLabels && (
               <span className="social-label-text">
-                <strong>{item.name}</strong>
+                <span className="platform-name">
+                  <strong>{item.name}</strong>
+                  <span className="live-dot" />
+                </span>
                 <small>{item.handle}</small>
               </span>
             )}
             <span className="social-tooltip" aria-hidden="true">
-              {item.name}
+              <span className="tooltip-color-pip" />
+              <span>{item.name}</span>
             </span>
           </a>
         );
@@ -109,7 +159,7 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
         .pelc-socials-group {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
           flex-wrap: wrap;
         }
 
@@ -118,60 +168,60 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           text-decoration: none;
-          transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                      background 0.22s ease,
-                      border-color 0.22s ease,
-                      box-shadow 0.22s ease,
-                      color 0.22s ease;
+          transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+                      background 0.24s ease,
+                      border-color 0.24s ease,
+                      box-shadow 0.24s ease,
+                      color 0.24s ease;
           outline: none;
         }
 
         .size-sm .social-btn {
-          width: 34px;
-          height: 34px;
+          width: 36px;
+          height: 36px;
         }
 
         .size-lg .social-btn {
-          width: 44px;
-          height: 44px;
+          width: 46px;
+          height: 46px;
         }
 
-        /* Dark theme (for Footer and dark backgrounds) */
+        /* ---------------- DARK THEME (Footer & Dark Sections) ---------------- */
         .theme-dark .social-btn {
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(215, 243, 106, 0.28);
-          color: #d7f36a;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+          background: var(--brand-bg-dark);
+          border: 1px solid var(--brand-border-dark);
+          color: var(--brand-color);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
         }
 
         .theme-dark .social-btn:hover,
         .theme-dark .social-btn:focus-visible {
-          transform: translateY(-4px) scale(1.06);
-          background: var(--lime, #d7f36a);
-          border-color: var(--lime, #d7f36a);
-          color: #102b24;
-          box-shadow: 0 8px 20px rgba(215, 243, 106, 0.35);
+          transform: translateY(-4px) scale(1.08);
+          background: var(--brand-hover-bg);
+          border-color: var(--brand-color);
+          color: var(--brand-hover-color);
+          box-shadow: 0 10px 25px var(--brand-glow), 0 0 0 1px var(--brand-color);
         }
 
-        /* Light theme (for sidebars and white surfaces) */
+        /* ---------------- LIGHT THEME (Sidebar & Contact Page) ---------------- */
         .theme-light .social-btn {
-          background: #ffffff;
-          border: 1px solid #dfe1d7;
-          color: #15382e;
-          box-shadow: 0 2px 5px rgba(16, 43, 36, 0.05);
+          background: var(--brand-bg-light);
+          border: 1px solid var(--brand-border-light);
+          color: var(--brand-color);
+          box-shadow: 0 2px 6px rgba(16, 43, 36, 0.05);
         }
 
         .theme-light .social-btn:hover,
         .theme-light .social-btn:focus-visible {
-          transform: translateY(-3px) scale(1.06);
-          background: #102b24;
-          border-color: #102b24;
-          color: #d7f36a;
-          box-shadow: 0 6px 16px rgba(16, 43, 36, 0.18);
+          transform: translateY(-3px) scale(1.08);
+          background: var(--brand-hover-bg);
+          border-color: var(--brand-color);
+          color: var(--brand-hover-color);
+          box-shadow: 0 8px 22px var(--brand-glow), 0 0 0 1px var(--brand-color);
         }
 
         .icon-wrapper {
@@ -182,46 +232,57 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
         }
 
         :global(.social-svg) {
-          width: 15px;
-          height: 15px;
+          width: 17px;
+          height: 17px;
           transition: transform 0.2s ease;
         }
 
         .size-sm :global(.social-svg) {
-          width: 13px;
-          height: 13px;
+          width: 15px;
+          height: 15px;
         }
 
         .size-lg :global(.social-svg) {
-          width: 18px;
-          height: 18px;
+          width: 20px;
+          height: 20px;
         }
 
         .social-btn:hover :global(.social-svg) {
-          transform: scale(1.12);
+          transform: scale(1.14);
         }
 
-        /* Hover Tooltip */
+        /* ---------------- TOOLTIP ---------------- */
         .social-tooltip {
           position: absolute;
-          bottom: calc(100% + 7px);
+          bottom: calc(100% + 8px);
           left: 50%;
           transform: translateX(-50%) translateY(4px);
           background: #0c211b;
-          color: #d7f36a;
-          border: 1px solid rgba(215, 243, 106, 0.3);
-          font-size: 10px;
+          color: #ffffff;
+          border: 1px solid var(--brand-border-dark);
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.3px;
-          padding: 3px 8px;
+          padding: 4px 9px;
           border-radius: 4px;
           white-space: nowrap;
           pointer-events: none;
           opacity: 0;
           visibility: hidden;
           transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
           z-index: 50;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .tooltip-color-pip {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--brand-color);
+          flex-shrink: 0;
         }
 
         .social-tooltip::after {
@@ -242,21 +303,41 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
           transform: translateX(-50%) translateY(0);
         }
 
-        /* Extended layout with cards and handles */
+        /* ---------------- EXTENDED CARD LAYOUT (with-labels) ---------------- */
         .with-labels {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          gap: 12px;
+          gap: 14px;
           width: 100%;
         }
 
         .with-labels .social-btn {
           width: 100%;
           height: auto;
-          padding: 12px 16px;
-          border-radius: 6px;
+          min-height: 62px;
+          padding: 12px 18px;
+          border-radius: 8px;
           justify-content: flex-start;
           gap: 14px;
+        }
+
+        .with-labels .social-btn .icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: var(--brand-color);
+          color: #ffffff;
+          flex-shrink: 0;
+          box-shadow: 0 4px 10px var(--brand-glow);
+          transition: transform 0.22s ease;
+        }
+
+        .with-labels.theme-dark .social-btn .icon-wrapper {
+          color: var(--brand-hover-color);
+        }
+
+        .with-labels .social-btn:hover .icon-wrapper {
+          transform: scale(1.12) rotate(4deg);
         }
 
         .with-labels .social-tooltip {
@@ -267,18 +348,40 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
           display: flex;
           flex-direction: column;
           text-align: left;
-          line-height: 1.3;
+          line-height: 1.35;
+          flex: 1;
         }
 
-        .social-label-text strong {
-          font-size: 12px;
-          font-weight: 700;
+        .platform-name {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .platform-name strong {
+          font-size: 13px;
+          font-weight: 750;
+          color: var(--ink);
+          letter-spacing: -0.2px;
+        }
+
+        .live-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--brand-color);
         }
 
         .social-label-text small {
-          font-size: 10px;
-          opacity: 0.75;
+          font-size: 11px;
+          color: var(--muted);
           letter-spacing: 0.2px;
+          font-weight: 500;
+        }
+
+        .with-labels .social-btn:hover .platform-name strong,
+        .with-labels .social-btn:hover .social-label-text small {
+          color: var(--brand-hover-color);
         }
       `}</style>
     </div>
