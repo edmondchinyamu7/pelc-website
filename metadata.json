@@ -1,0 +1,7 @@
+{
+  "name": "PELC - Digital Studio",
+  "description": "PELC (Pope Ead Legacy Company) website - digital studio based in Malawi designing and building websites, apps, and brands.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
