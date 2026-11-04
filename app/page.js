@@ -7,10 +7,66 @@ import ContactDrawer from '@/components/ContactDrawer';
 import Footer from '@/components/Footer';
 
 const services = [
-  { number: '01', title: 'Websites that work harder', description: 'Fast, thoughtful websites that make it easy for the right people to understand what you do—and take the next step.', tags: ['Web development', 'E-commerce', 'SEO-ready'], href: '/wdd', icon: '↗' },
-  { number: '02', title: 'Software built around you', description: 'Useful digital tools, platforms, and mobile apps shaped around your team, your customers, and the way your business runs.', tags: ['Custom software', 'Mobile apps', 'Integrations'], href: '/sdd', icon: '⌘' },
-  { number: '03', title: 'Design with a point of view', description: 'Clear, consistent visual identities and intuitive interfaces that help your brand feel unmistakably yours.', tags: ['UI/UX design', 'Brand identity', 'Creative'], href: '/ud', icon: '✳' },
-  { number: '04', title: 'Get the word out', description: 'Bring the right people to your business with considered marketing, advertising, and ongoing creative support.', tags: ['Marketing', 'Advertising', 'Content'], href: '/md', icon: '◎' },
+  {
+    number: '01',
+    code: 'WDD',
+    title: 'Website Development',
+    tagline: 'Websites that work harder',
+    description: 'Fast, thoughtful websites that make it easy for the right people to understand what you do—and take the next step.',
+    tags: ['Web development', 'E-commerce', 'SEO-ready'],
+    href: '/wdd',
+    icon: '💻',
+  },
+  {
+    number: '02',
+    code: 'SDD',
+    title: 'Software Development',
+    tagline: 'Software built around you',
+    description: 'Useful digital tools, platforms, and mobile apps shaped around your team, your customers, and the way your business runs.',
+    tags: ['Custom software', 'Mobile apps', 'Integrations'],
+    href: '/sdd',
+    icon: '⚙️',
+  },
+  {
+    number: '03',
+    code: 'UD',
+    title: 'UX/UI Design',
+    tagline: 'Design with a point of view',
+    description: 'Clear, consistent visual identities and intuitive interfaces that help your brand feel unmistakably yours.',
+    tags: ['UI/UX design', 'Brand identity', 'Figma'],
+    href: '/ud',
+    icon: '🎨',
+  },
+  {
+    number: '04',
+    code: 'AD',
+    title: 'Advertisement',
+    tagline: 'Campaigns that command attention',
+    description: 'Targeted pay-per-click and multi-channel digital ad campaigns engineered to turn marketing budget into revenue.',
+    tags: ['Google Ads', 'Meta Ads', 'LinkedIn B2B'],
+    href: '/ad',
+    icon: '📣',
+  },
+  {
+    number: '05',
+    code: 'MD',
+    title: 'Marketing',
+    tagline: 'Get the word out',
+    description: 'Bring the right people to your business with considered organic search visibility, content strategy, and ongoing growth.',
+    tags: ['SEO', 'Content Strategy', 'Social Growth'],
+    href: '/md',
+    icon: '📈',
+  },
+  {
+    number: '06',
+    code: 'CPD',
+    title: 'Creative & Publication',
+    tagline: 'Crafted for lasting presence',
+    description: 'Logos, publications, bulletins, and corporate collateral that establish an unmistakable presence in print and digital.',
+    tags: ['Brand Identity', 'Publications', 'Bulletins'],
+    href: '/cpd',
+    icon: '🖌️',
+  },
 ];
 
 const steps = [
@@ -96,33 +152,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Hover Cards Grid */}
       <section className="services-section section-pad" id="services">
         <div className="page-width">
           <div className="section-heading">
             <div>
               <p className="eyebrow"><span className="eyebrow-mark">01</span> What we do</p>
-              <h2>One good partner.<br /><em>Many ways to grow.</em></h2>
+              <h2>One good partner.<br /><em>Hover cards to explore.</em></h2>
             </div>
             <div className="section-aside">
-              <p>From the first sketch to the next big milestone, we bring the right people and skills around your challenge.</p>
+              <p>From the first sketch to the next big milestone, we bring the right specialists around your challenge.</p>
               <Link className="text-link" href="/services">Discover all our services <Arrow /></Link>
             </div>
           </div>
-          <div className="service-grid">
+
+          <div className="home-hover-grid">
             {services.map((service) => (
-              <Link className="service-card" href={service.href} key={service.number}>
-                <div className="service-card-head">
-                  <span className="service-number">{service.number} / 04</span>
-                  <span className="service-icon">{service.icon}</span>
+              <Link className="home-hover-card" href={service.href} key={service.code}>
+                <div className="home-card-top-bar" />
+
+                <div className="home-card-head">
+                  <span className="home-badge">{service.code}</span>
+                  <span className="home-number">{service.number} / 06</span>
                 </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <div className="service-tags">
-                  {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
+
+                <div className="home-card-title-row">
+                  <span className="home-card-icon">{service.icon}</span>
+                  <div>
+                    <h3>{service.title}</h3>
+                    <p className="home-tagline">{service.tagline}</p>
+                  </div>
                 </div>
-                <span className="service-arrow" aria-label={`Learn about ${service.title}`}>
-                  <Arrow diagonal />
-                </span>
+
+                <p className="home-card-desc">{service.description}</p>
+
+                <div className="home-card-tags">
+                  {service.tags.map((tag) => (
+                    <span key={tag} className="home-tag">{tag}</span>
+                  ))}
+                </div>
+
+                <div className="home-card-foot">
+                  <span className="home-explore-action">
+                    Explore {service.code} <span className="home-explore-arrow">↗</span>
+                  </span>
+                  <span className="home-view-hint">View department</span>
+                </div>
               </Link>
             ))}
           </div>
@@ -261,6 +336,191 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      <style jsx>{`
+        .home-hover-grid {
+          margin-top: 50px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 26px;
+        }
+        .home-hover-card {
+          position: relative;
+          background: white;
+          border: 1px solid var(--line);
+          padding: 30px 32px 26px;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          color: inherit;
+          overflow: hidden;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.35s ease,
+                      background 0.35s ease;
+        }
+        .home-hover-card:hover {
+          transform: translateY(-8px);
+          border-color: #9db84d;
+          box-shadow: 0 22px 48px -12px rgba(16, 43, 36, 0.15),
+                      0 0 0 1px rgba(215, 243, 106, 0.6);
+          background: linear-gradient(180deg, #ffffff 0%, #fbfcf8 100%);
+        }
+        .home-card-top-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 3px;
+          width: 44px;
+          background: #dedfd5;
+          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+        }
+        .home-hover-card:hover .home-card-top-bar {
+          width: 100%;
+          background: linear-gradient(90deg, #d7f36a, #829b42, #15382e);
+        }
+        .home-card-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 18px;
+        }
+        .home-badge {
+          display: inline-block;
+          padding: 3px 9px;
+          background: var(--lime-soft);
+          color: var(--forest-deep);
+          font-size: 10px;
+          font-weight: 850;
+          letter-spacing: 1px;
+          border-radius: 2px;
+          transition: background 0.3s, color 0.3s;
+        }
+        .home-hover-card:hover .home-badge {
+          background: var(--forest-deep);
+          color: var(--lime);
+        }
+        .home-number {
+          color: #8c978f;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1px;
+        }
+        .home-card-title-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          margin-bottom: 12px;
+        }
+        .home-card-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: #f4f6eb;
+          display: grid;
+          place-items: center;
+          font-size: 22px;
+          flex-shrink: 0;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      background 0.35s ease,
+                      box-shadow 0.35s ease;
+        }
+        .home-hover-card:hover .home-card-icon {
+          transform: scale(1.1) rotate(-4deg);
+          background: var(--lime);
+          box-shadow: 0 0 0 5px rgba(215, 243, 106, 0.25);
+        }
+        .home-card-title-row h3 {
+          margin: 0;
+          font-size: 21px;
+          font-weight: 650;
+          letter-spacing: -0.6px;
+          color: var(--ink);
+        }
+        .home-tagline {
+          margin: 3px 0 0;
+          color: #71836b;
+          font-size: 11px;
+          font-style: italic;
+          font-family: Georgia, 'Times New Roman', serif;
+        }
+        .home-card-desc {
+          margin: 0 0 16px;
+          color: var(--muted);
+          font-size: 12px;
+          line-height: 1.75;
+          flex-grow: 1;
+        }
+        .home-card-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 18px;
+        }
+        .home-tag {
+          padding: 3px 9px;
+          background: #f0f2e8;
+          border-radius: 12px;
+          font-size: 10px;
+          color: #4b574f;
+          font-weight: 600;
+          transition: background 0.2s, color 0.2s;
+        }
+        .home-hover-card:hover .home-tag {
+          background: #e8ecd8;
+          color: var(--forest-deep);
+        }
+        .home-card-foot {
+          padding-top: 16px;
+          border-top: 1px solid #edf0e6;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .home-explore-action {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          background: #f0f2e8;
+          border-radius: 3px;
+          color: var(--forest);
+          font-size: 11px;
+          font-weight: 750;
+          transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+        .home-explore-arrow {
+          font-size: 13px;
+          transition: transform 0.25s ease;
+        }
+        .home-hover-card:hover .home-explore-action {
+          background: var(--forest-deep);
+          color: var(--lime);
+          transform: translateX(4px);
+        }
+        .home-hover-card:hover .home-explore-arrow {
+          transform: translate(2px, -2px);
+        }
+        .home-view-hint {
+          font-size: 10px;
+          color: #8c978f;
+          letter-spacing: 0.3px;
+        }
+        .home-hover-card:hover .home-view-hint {
+          color: var(--forest);
+        }
+        @media (max-width: 900px) {
+          .home-hover-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        @media (max-width: 640px) {
+          .home-hover-card {
+            padding: 22px 18px;
+          }
+        }
+      `}</style>
     </main>
   );
 }

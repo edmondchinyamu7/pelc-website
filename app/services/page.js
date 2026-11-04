@@ -20,6 +20,8 @@ const departments = [
       'Modern CMS & Headless Architecture',
       'Speed, SEO & Security Optimization',
     ],
+    tags: ['Next.js', 'E-Commerce', 'Full-Stack', 'SEO-Ready'],
+    stats: 'Fast 2-4 Week Sprints',
     href: '/wdd',
   },
   {
@@ -35,6 +37,8 @@ const departments = [
       'API Design & Cloud Integrations',
       'Scalable Database & Architecture',
     ],
+    tags: ['Mobile Apps', 'Custom SaaS', 'Cloud APIs', 'Databases'],
+    stats: 'Scalable Architecture',
     href: '/sdd',
   },
   {
@@ -50,6 +54,8 @@ const departments = [
       'Design Systems & UI Kits',
       'Usability Audits & Redesigns',
     ],
+    tags: ['Figma Prototypes', 'Design Systems', 'User Research', 'Mobile UI'],
+    stats: 'Clickable Prototypes',
     href: '/ud',
   },
   {
@@ -65,6 +71,8 @@ const departments = [
       'Creative Copywriting & Ad Design',
       'A/B Testing & Conversion Tracking',
     ],
+    tags: ['Google Ads', 'Meta Ads', 'LinkedIn B2B', 'Conversion Tracking'],
+    stats: 'Measurable ROAS',
     href: '/ad',
   },
   {
@@ -80,6 +88,8 @@ const departments = [
       'Social Media Management & Growth',
       'Brand Positioning & Analytics',
     ],
+    tags: ['Organic SEO', 'Content Strategy', 'Social Growth', 'Brand Authority'],
+    stats: 'Organic Equity',
     href: '/md',
   },
   {
@@ -95,12 +105,19 @@ const departments = [
       'Corporate Reports & Church Bulletins',
       'Event Banners, Posters & Flyers',
     ],
+    tags: ['Brand Identity', 'Editorial Print', 'Church Bulletins', 'Event Banners'],
+    stats: 'Print & Digital Output',
     href: '/cpd',
   },
 ];
 
 export default function Services() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filteredDepts = activeFilter === 'all'
+    ? departments
+    : departments.filter((d) => d.code === activeFilter);
 
   return (
     <main>
@@ -148,7 +165,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Department Cards Grid */}
+      {/* Department Hover Cards Grid */}
       <section className="section-pad" id="departments">
         <div className="page-width">
           <div className="section-heading">
@@ -158,12 +175,12 @@ export default function Services() {
               </p>
               <h2>
                 Choose your focus.<br />
-                <em>Or let us combine them.</em>
+                <em>Hover cards to explore.</em>
               </h2>
             </div>
             <div className="section-aside">
               <p>
-                Every department operates independently or in seamless synergy, giving you a full digital partner under one roof.
+                Hover over any department card to explore key deliverables, capabilities, and launch your project directly.
               </p>
               <Link className="text-link" href="/consultation">
                 Not sure which service you need? Ask us <span aria-hidden="true">→</span>
@@ -171,39 +188,88 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="dept-grid">
-            {departments.map((dept) => (
-              <article className="dept-card-new" key={dept.code}>
-                <div className="dept-card-top">
-                  <span className="dept-badge">{dept.code}</span>
+          {/* Quick Department Filter Bar */}
+          <div className="dept-filter-bar">
+            <span className="filter-label">Quick Jump:</span>
+            <button
+              type="button"
+              className={`filter-chip${activeFilter === 'all' ? ' is-active' : ''}`}
+              onClick={() => setActiveFilter('all')}
+            >
+              All Departments (06)
+            </button>
+            {departments.map((d) => (
+              <button
+                key={d.code}
+                type="button"
+                className={`filter-chip${activeFilter === d.code ? ' is-active' : ''}`}
+                onClick={() => setActiveFilter(d.code)}
+              >
+                {d.code} · {d.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Hover Cards Grid */}
+          <div className="dept-hover-grid">
+            {filteredDepts.map((dept) => (
+              <Link
+                href={dept.href}
+                className="hover-card"
+                key={dept.code}
+                aria-label={`Explore ${dept.title} (${dept.code})`}
+              >
+                {/* Glowing Top Indicator Bar */}
+                <div className="card-top-bar" />
+
+                {/* Card Header */}
+                <div className="card-head">
+                  <div className="badge-group">
+                    <span className="dept-badge">{dept.code}</span>
+                    <span className="dept-stats-pill">{dept.stats}</span>
+                  </div>
                   <span className="dept-number">{dept.number} / 06</span>
                 </div>
 
-                <div className="dept-card-header">
-                  <span className="dept-icon-circle">{dept.icon}</span>
-                  <div>
-                    <h3>{dept.title}</h3>
-                    <p className="dept-tagline-text">{dept.tagline}</p>
+                {/* Icon & Title */}
+                <div className="card-identity">
+                  <div className="icon-wrapper">
+                    <span className="icon-main">{dept.icon}</span>
+                  </div>
+                  <div className="identity-text">
+                    <h3 className="card-title">{dept.title}</h3>
+                    <p className="card-tagline">{dept.tagline}</p>
                   </div>
                 </div>
 
-                <p className="dept-desc">{dept.description}</p>
+                <p className="card-desc">{dept.description}</p>
 
-                <ul className="dept-features-list">
-                  {dept.features.map((item, idx) => (
-                    <li key={idx}>
-                      <span className="bullet-point">✳</span>
-                      <span>{item}</span>
+                {/* Tags Pill Bar */}
+                <div className="card-tags-row">
+                  {dept.tags.map((tag, idx) => (
+                    <span className="tag-pill" key={idx}>{tag}</span>
+                  ))}
+                </div>
+
+                {/* Features List */}
+                <ul className="card-features">
+                  {dept.features.map((feature, fIdx) => (
+                    <li key={fIdx}>
+                      <span className="feature-icon">✳</span>
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="dept-card-foot">
-                  <Link className="dept-link" href={dept.href}>
-                    Explore {dept.title} <span aria-hidden="true">↗</span>
-                  </Link>
+                {/* Card Action Foot */}
+                <div className="card-foot">
+                  <div className="cta-action">
+                    <span className="cta-label">Explore {dept.code} Department</span>
+                    <span className="cta-arrow">↗</span>
+                  </div>
+                  <span className="card-hint">Click to view services</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -295,95 +361,207 @@ export default function Services() {
           gap: 18px;
           flex-wrap: wrap;
         }
-        .dept-grid {
-          margin-top: 55px;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 28px;
+        .dept-filter-bar {
+          margin-top: 36px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
         }
-        .dept-card-new {
+        .filter-label {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          color: var(--muted);
+          text-transform: uppercase;
+          margin-right: 4px;
+        }
+        .filter-chip {
+          padding: 6px 14px;
           background: white;
           border: 1px solid var(--line);
-          padding: 34px 36px 30px;
+          border-radius: 20px;
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--ink);
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .filter-chip:hover {
+          border-color: #829b42;
+          background: #f4f6eb;
+          transform: translateY(-1px);
+        }
+        .filter-chip.is-active {
+          background: var(--forest-deep);
+          color: var(--lime);
+          border-color: var(--forest-deep);
+        }
+        /* Hover Cards Grid */
+        .dept-hover-grid {
+          margin-top: 40px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+        }
+        /* The Hover Card Container */
+        .hover-card {
           display: flex;
           flex-direction: column;
           position: relative;
-          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          background: white;
+          border: 1px solid var(--line);
+          padding: 34px 34px 28px;
+          border-radius: 4px;
+          text-decoration: none;
+          color: inherit;
+          overflow: hidden;
+          isolation: isolate;
+          cursor: pointer;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.35s ease,
+                      background 0.35s ease;
         }
-        .dept-card-new:hover {
-          transform: translateY(-4px);
-          border-color: #9cb84d;
-          box-shadow: 0 16px 36px rgba(16, 43, 36, 0.08);
+        /* Hover Effect: elevation, lime border accent, ambient green glow */
+        .hover-card:hover,
+        .hover-card:focus-visible {
+          transform: translateY(-9px);
+          border-color: #9db84d;
+          box-shadow: 0 24px 50px -12px rgba(16, 43, 36, 0.16),
+                      0 0 0 1px rgba(215, 243, 106, 0.6);
+          background: linear-gradient(180deg, #ffffff 0%, #fbfcf8 100%);
         }
-        .dept-card-top {
+        /* Animated Top Indicator Accent */
+        .card-top-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 3px;
+          width: 48px;
+          background: #dedfd5;
+          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+        }
+        .hover-card:hover .card-top-bar {
+          width: 100%;
+          background: linear-gradient(90deg, #d7f36a, #829b42, #15382e);
+        }
+        .card-head {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 22px;
+        }
+        .badge-group {
+          display: flex;
+          align-items: center;
+          gap: 10px;
         }
         .dept-badge {
           display: inline-block;
-          padding: 3px 10px;
+          padding: 4px 10px;
           background: var(--lime-soft);
           color: var(--forest-deep);
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 1px;
+          font-size: 11px;
+          font-weight: 850;
+          letter-spacing: 1.2px;
           border-radius: 2px;
+          transition: background 0.3s, color 0.3s;
+        }
+        .hover-card:hover .dept-badge {
+          background: var(--forest-deep);
+          color: var(--lime);
+        }
+        .dept-stats-pill {
+          font-size: 10px;
+          color: #71836b;
+          font-weight: 600;
+          letter-spacing: 0.3px;
         }
         .dept-number {
-          color: #758078;
-          font-size: 10px;
+          color: #8a968d;
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 1px;
         }
-        .dept-card-header {
+        .card-identity {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: 16px;
           margin-bottom: 14px;
         }
-        .dept-icon-circle {
-          width: 48px;
-          height: 48px;
+        .icon-wrapper {
+          width: 52px;
+          height: 52px;
           display: grid;
           place-items: center;
           background: #f4f6eb;
           border-radius: 50%;
-          font-size: 22px;
+          font-size: 24px;
           flex-shrink: 0;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      background 0.35s ease,
+                      box-shadow 0.35s ease;
         }
-        .dept-card-header h3 {
+        .hover-card:hover .icon-wrapper {
+          transform: scale(1.1) rotate(-4deg);
+          background: var(--lime);
+          box-shadow: 0 0 0 6px rgba(215, 243, 106, 0.25);
+        }
+        .card-title {
           margin: 0;
-          font-size: 22px;
+          font-size: 23px;
           font-weight: 650;
           letter-spacing: -0.6px;
           color: var(--ink);
+          transition: color 0.2s;
         }
-        .dept-tagline-text {
-          margin: 3px 0 0;
+        .hover-card:hover .card-title {
+          color: var(--forest-deep);
+        }
+        .card-tagline {
+          margin: 4px 0 0;
           color: #71836b;
-          font-size: 11px;
+          font-size: 12px;
           font-style: italic;
           font-family: Georgia, 'Times New Roman', serif;
         }
-        .dept-desc {
-          margin: 0 0 20px;
+        .card-desc {
+          margin: 0 0 16px;
           color: var(--muted);
           font-size: 13px;
           line-height: 1.75;
         }
-        .dept-features-list {
+        .card-tags-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 20px;
+        }
+        .tag-pill {
+          padding: 4px 10px;
+          background: #f0f2e8;
+          border-radius: 12px;
+          font-size: 10px;
+          font-weight: 600;
+          color: #445148;
+          transition: background 0.2s, color 0.2s;
+        }
+        .hover-card:hover .tag-pill {
+          background: #e8ecd8;
+          color: var(--forest-deep);
+        }
+        .card-features {
           list-style: none;
           padding: 0;
           margin: 0 0 24px;
           display: grid;
           gap: 9px;
-          border-top: 1px solid #eef0e6;
+          border-top: 1px solid #edf0e6;
           padding-top: 18px;
           flex-grow: 1;
         }
-        .dept-features-list li {
+        .card-features li {
           display: flex;
           align-items: flex-start;
           gap: 10px;
@@ -391,31 +569,59 @@ export default function Services() {
           color: #3b463f;
           line-height: 1.5;
         }
-        .bullet-point {
-          color: #758e2d;
+        .feature-icon {
+          color: #829b42;
           font-size: 11px;
           line-height: 1.5;
+          transition: transform 0.25s ease, color 0.25s ease;
         }
-        .dept-card-foot {
+        .hover-card:hover .feature-icon {
+          color: #718e2b;
+          transform: scale(1.2);
+        }
+        .card-foot {
           margin-top: auto;
           padding-top: 18px;
-          border-top: 1px solid #eef0e6;
+          border-top: 1px solid #edf0e6;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
-        .dept-link {
+        .cta-action {
           display: inline-flex;
           align-items: center;
           gap: 8px;
+          padding: 8px 14px;
+          background: #f0f2e8;
+          border-radius: 3px;
           color: var(--forest);
           font-size: 12px;
           font-weight: 750;
-          transition: gap 0.2s, color 0.2s;
+          transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
         }
-        .dept-link:hover {
-          color: #758e2d;
-          gap: 12px;
+        .cta-arrow {
+          font-size: 14px;
+          transition: transform 0.25s ease;
+        }
+        .hover-card:hover .cta-action {
+          background: var(--forest-deep);
+          color: var(--lime);
+          transform: translateX(4px);
+        }
+        .hover-card:hover .cta-arrow {
+          transform: translate(2px, -2px);
+        }
+        .card-hint {
+          font-size: 10px;
+          color: #8c978f;
+          letter-spacing: 0.3px;
+          transition: color 0.2s;
+        }
+        .hover-card:hover .card-hint {
+          color: var(--forest);
         }
         @media (max-width: 900px) {
-          .dept-grid {
+          .dept-hover-grid {
             grid-template-columns: 1fr;
           }
         }
@@ -427,7 +633,7 @@ export default function Services() {
             font-size: clamp(38px, 10vw, 52px);
             letter-spacing: -2.4px;
           }
-          .dept-card-new {
+          .hover-card {
             padding: 24px 20px;
           }
         }
