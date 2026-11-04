@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa6';
 import Navbar from '@/components/Navbar';
 import ContactDrawer from '@/components/ContactDrawer';
 import Footer from '@/components/Footer';
+import SocialLinks from '@/components/SocialLinks';
 
 export default function Contact() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -175,7 +177,7 @@ export default function Contact() {
           {/* 3 Channels Cards */}
           <div className="contact-channels-grid">
             <div className="channel-card">
-              <span className="card-symbol">✉</span>
+              <span className="card-symbol"><FaEnvelope style={{ width: 18, height: 18 }} /></span>
               <h3>Email Us</h3>
               <p>For project proposals, formal scopes, and general inquiries.</p>
               <a className="card-link" href="mailto:popeeadlegacycompany@gmail.com">
@@ -184,7 +186,7 @@ export default function Contact() {
             </div>
 
             <div className="channel-card">
-              <span className="card-symbol">☎</span>
+              <span className="card-symbol"><FaPhone style={{ width: 18, height: 18 }} /></span>
               <h3>Call Direct</h3>
               <p>Monday to Friday, 8:00 AM – 6:00 PM CAT for voice discussions.</p>
               <a className="card-link" href="tel:0892236030">
@@ -193,7 +195,7 @@ export default function Contact() {
             </div>
 
             <div className="channel-card">
-              <span className="card-symbol">◉</span>
+              <span className="card-symbol"><FaWhatsapp style={{ width: 20, height: 20 }} /></span>
               <h3>WhatsApp</h3>
               <p>Quick questions, instant voice notes, and fast consultations.</p>
               <a
@@ -373,6 +375,18 @@ export default function Contact() {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Social & Community Presence Section */}
+          <div className="social-presence-card">
+            <div className="social-presence-header">
+              <p className="eyebrow"><span className="eyebrow-mark">02</span> Official Social Channels</p>
+              <h2>Connect &amp; Follow PELC</h2>
+              <p>Stay informed with our newest software projects, open source tools, design insights, and masterclasses across all major platforms.</p>
+            </div>
+            <div className="social-presence-grid">
+              <SocialLinks theme="light" size="lg" showLabels={true} />
             </div>
           </div>
         </div>
@@ -700,6 +714,32 @@ export default function Contact() {
         }
         .chips-row button:hover {
           background: var(--lime-soft);
+        }
+        .social-presence-card {
+          margin-top: 50px;
+          background: white;
+          border: 1px solid var(--line);
+          padding: 38px 36px;
+          box-shadow: 0 15px 40px rgba(36, 52, 40, 0.04);
+        }
+        .social-presence-header {
+          margin-bottom: 24px;
+        }
+        .social-presence-header h2 {
+          margin: 0 0 8px;
+          font-size: 26px;
+          letter-spacing: -0.7px;
+          color: var(--ink);
+        }
+        .social-presence-header p:last-child {
+          margin: 0;
+          color: var(--muted);
+          font-size: 13px;
+          max-width: 680px;
+          line-height: 1.6;
+        }
+        .social-presence-grid {
+          margin-top: 20px;
         }
         @media (max-width: 1024px) {
           .contact-channels-grid {

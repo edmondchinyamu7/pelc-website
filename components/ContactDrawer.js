@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import SocialLinks from './SocialLinks';
 
 export default function ContactDrawer({ isOpen, onClose }) {
   useEffect(() => {
@@ -100,12 +101,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
 
           <div className="sidebar-socials">
             <h4>Follow Us</h4>
-            <div className="social-icons">
-              <a href="/contact" aria-label="Facebook">f</a>
-              <a href="/contact" aria-label="Instagram">◎</a>
-              <a href="/contact" aria-label="X">𝕏</a>
-              <a href="/contact" aria-label="YouTube">▶</a>
-            </div>
+            <SocialLinks theme="light" size="sm" />
           </div>
 
           <p className="home-contact-note">

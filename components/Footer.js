@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import SocialLinks from './SocialLinks';
 
 function FooterArrow() {
   return (
@@ -111,12 +112,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <div className="social-icons">
-          <a href="/contact" aria-label="Facebook">f</a>
-          <a href="/contact" aria-label="Instagram">◎</a>
-          <a href="/contact" aria-label="X">𝕏</a>
-          <a href="/contact" aria-label="YouTube">▶</a>
-        </div>
+        <SocialLinks theme="dark" size="default" />
         <div className="divider" />
         <div className="copyright">
           <p>© {new Date().getFullYear()} POPE EAD LEGACY COMPANY (PELC). All rights reserved.</p>
