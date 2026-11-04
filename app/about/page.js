@@ -1,8 +1,11 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const values = [
   { number: '01', title: 'Thoughtful craft', text: 'We care about the details—from the first conversation to the final pixel—because good work should feel considered at every step.' },
-  { number: '02', title: 'Clear partnership', text: 'You stay in the loop. We communicate plainly, share progress, and make decisions together without the unnecessary jargon.' },
+  { number: '02', title: 'Clear partnership', text: 'You stay in the loop. We communicate plainly, share progress, and make decisions together without unnecessary jargon.' },
   { number: '03', title: 'Practical creativity', text: 'We bring fresh thinking to real business challenges, making digital tools and experiences useful as well as beautiful.' },
   { number: '04', title: 'Built for growth', text: 'We create with your next chapter in mind, so the things we make can grow alongside your goals.' },
 ];
@@ -19,6 +22,24 @@ function FooterArrow() {
 }
 
 export default function About() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (!sidebarOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setSidebarOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [sidebarOpen]);
+
   return (
     <main className="about-page">
       <style jsx global>{`
@@ -26,11 +47,12 @@ export default function About() {
         .about-page *, .about-page *::before, .about-page *::after { box-sizing: border-box; }
         .about-page a { color: inherit; text-decoration: none; }
         .about-width { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
-        .about-nav { min-height: 70px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--about-deep); }
+        .about-nav { min-height: 70px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--about-deep); position: relative; z-index: 20; }
         .about-nav-logo { color: var(--about-lime) !important; font-size: 24px; font-weight: 800; }
         .about-nav-links { display: flex; gap: 30px; align-items: center; }
-        .about-nav-links a { color: white; font-size: 15px; font-weight: 550; transition: color .2s; }
-        .about-nav-links a:hover, .about-nav-links a:focus-visible { color: var(--about-lime); }
+        .about-nav-links a, .about-nav-links button { color: white; font: inherit; font-size: 15px; font-weight: 550; transition: color .2s; }
+        .about-nav-links a:hover, .about-nav-links a:focus-visible, .about-nav-links button:hover, .about-nav-links button:focus-visible { color: var(--about-lime); }
+        .about-nav-links button { padding: 0; border: 0; background: transparent; cursor: pointer; }
         .about-hero { position: relative; overflow: hidden; padding: 95px 0 103px; color: white; background: radial-gradient(ellipse at 82% 18%, rgba(215,243,106,.13), transparent 30%), var(--about-deep); }
         .about-hero::after { position: absolute; right: 7%; bottom: -180px; width: 440px; height: 440px; content: '✳'; color: rgba(215,243,106,.07); font-size: 420px; line-height: 1; pointer-events: none; }
         .about-eyebrow { margin: 0 0 20px; display: flex; align-items: center; gap: 10px; color: #c1d0c3; font-size: 10px; font-weight: 750; letter-spacing: 1.65px; text-transform: uppercase; }
@@ -43,7 +65,7 @@ export default function About() {
         .about-intro { padding: 100px 0; }
         .about-intro-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 9%; }
         .about-founder-frame { min-height: 420px; position: relative; display: grid; place-items: center; overflow: hidden; background: #e8eadf; }
-        .about-founder-frame::before { position: absolute; inset: 18px; border: 1px solid rgba(21,56,46,.18); content: ''; }
+        .about-founder-frame::before { position: absolute; z-index: 1; inset: 18px; border: 1px solid rgba(21,56,46,.18); content: ''; pointer-events: none; }
         .about-founder-frame img { width: 100%; height: 420px; object-fit: cover; object-position: center 18%; }
         .about-photo-caption { position: absolute; right: 0; bottom: 0; left: 0; padding: 16px 21px; color: white; background: linear-gradient(transparent, rgba(16,43,36,.88)); font-size: 10px; letter-spacing: .5px; }
         .about-section-label { margin: 0 0 17px; color: #718e2b; font-size: 10px; font-weight: 750; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -85,7 +107,33 @@ export default function About() {
         .about-cta p:not(.about-section-label) { max-width: 570px; margin: 16px auto 23px; color: #c0ccc3; font-size: 12px; }
         .about-cta-link { min-height: 48px; padding: 0 20px; display: inline-flex; align-items: center; gap: 16px; border-radius: 3px; color: var(--about-deep) !important; background: var(--about-lime); font-size: 11px; font-weight: 700; transition: background .2s, transform .2s; }
         .about-cta-link:hover { transform: translateY(-2px); background: white; }
-        /* Keep the established four-column PELC footer layout; use the refreshed forest palette. */
+        /* Match the contact drawer used on Events and Services. */
+        .about-contact-overlay { position: fixed; inset: 0; z-index: 1998; background: rgba(0,0,0,.6); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
+        .about-contact-overlay.active { opacity: 1; visibility: visible; }
+        .about-contact-sidebar { width: 350px; max-width: 100vw; height: 100vh; position: fixed; z-index: 1999; top: 0; right: -400px; overflow-y: auto; color: #fff; background: #070d1f; box-shadow: -5px 0 15px rgba(0,0,0,.4); transition: right .3s ease; }
+        .about-contact-sidebar.active { right: 0; }
+        .about-contact-sidebar .sidebar-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(229,183,64,.3); background: linear-gradient(135deg,#0b152c,#070d1f); }
+        .about-contact-sidebar .sidebar-header h2 { margin: 0; color: #e5b740; font-size: 1.2rem; font-weight: 700; }
+        .about-contact-sidebar .close-btn { border: 0; color: #fff; background: transparent; font-size: 2rem; line-height: 1; cursor: pointer; transition: color .3s, transform .3s; }
+        .about-contact-sidebar .close-btn:hover { color: #e5b740; transform: rotate(90deg); }
+        .about-contact-sidebar .sidebar-content { padding: 30px 20px; display: flex; flex-direction: column; gap: 14px; }
+        .about-contact-sidebar .sidebar-content > p { margin: 0 0 10px; color: #b3b9c9; font-size: .9rem; }
+        .about-contact-sidebar .contact-item { padding: 10px; display: flex; align-items: center; gap: 15px; border-radius: 8px; transition: background-color .3s ease; }
+        .about-contact-sidebar .contact-item:hover { background: rgba(229,183,64,.1); }
+        .about-contact-sidebar .contact-icon { width: 45px; height: 45px; flex: 0 0 45px; display: grid; place-items: center; border-radius: 50%; color: #070d1f; background: #e5b740; font-size: 20px; }
+        .about-contact-sidebar .contact-info h3 { margin: 0 0 2px; color: #fff; font-size: .9rem; font-weight: 600; }
+        .about-contact-sidebar .contact-info a { color: #b3b9c9; font-size: .8rem; overflow-wrap: anywhere; }
+        .about-contact-sidebar .contact-info a:hover { color: #e5b740; }
+        .about-contact-sidebar .sidebar-see-more { margin-top: 8px; padding-top: 20px; border-top: 1px solid rgba(229,183,64,.3); }
+        .about-contact-sidebar .see-more-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1px solid #e5b740; color: #e5b740; font-size: 14px; font-weight: 600; transition: background .3s, color .3s; }
+        .about-contact-sidebar .see-more-btn:hover { color: #070d1f; background: #e5b740; }
+        .about-contact-sidebar .sidebar-socials { margin-top: 10px; padding-top: 20px; border-top: 1px solid rgba(229,183,64,.3); }
+        .about-contact-sidebar .sidebar-socials h3 { margin: 0 0 15px; color: #e5b740; font-size: .9rem; }
+        .about-contact-sidebar .social-icons { display: flex; gap: 15px; }
+        .about-contact-sidebar .social-icons a { width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 50%; transition: transform .3s; }
+        .about-contact-sidebar .social-icons a svg { width: 100%; height: 100%; display: block; }
+        .about-contact-sidebar .social-icons a:hover { transform: translateY(-5px) scale(1.1); }
+        /* Preserve the original four-column PELC footer layout with the refreshed palette. */
         .about-footer { width: 100%; position: relative; overflow: hidden; color: white; background: #0c211b; line-height: 1.7; }
         .about-footer-top { height: 220px; padding: 0 5%; position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #15382e, #102b24); }
         .about-building-image { position: absolute; inset: 0 0 0 auto; width: 55%; opacity: .5; background: radial-gradient(ellipse at 75% 38%, rgba(215,243,106,.22), transparent 30%), linear-gradient(135deg, #15382e, #102b24); }
@@ -103,7 +151,7 @@ export default function About() {
         .about-footer-bottom { min-height: 60px; padding: 12px 5%; display: flex; justify-content: center; align-items: center; gap: 20px; border-top: 1px solid rgba(215,243,106,.25); background: #0c211b; }.about-socials { display: flex; gap: 10px; }.about-socials a { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(215,243,106,.36); border-radius: 50%; color: var(--about-lime); font-size: 13px; font-weight: 700; transition: transform .2s, background .2s; }.about-socials a:hover { transform: translateY(-4px); background: rgba(215,243,106,.14); }.about-divider { width: 1px; height: 20px; background: rgba(215,243,106,.45); }.about-copyright { margin: 0; color: #b3c1b6; font-size: .75rem; }
         @media (max-width: 1024px) { .about-footer-middle { grid-template-columns: 1fr 1fr; }.about-values-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { .about-width { width: min(100% - 56px, 720px); }.about-nav { padding-inline: 28px; }.about-nav-links { gap: 18px; }.about-intro-grid, .about-process-grid { gap: 7%; }.about-founder-frame, .about-founder-frame img { min-height: 360px; height: 360px; }.about-purpose-card { padding: 25px; }.about-footer-top { height: auto; min-height: 190px; padding: 30px 5% 60px; }.about-footer-middle { grid-template-columns: 1fr 1fr; padding: 25px 5%; }.about-footer-bottom { flex-wrap: wrap; } }
-        @media (max-width: 560px) { .about-width { width: calc(100% - 40px); }.about-nav { min-height: 70px; padding: 12px 20px; gap: 10px; }.about-nav-logo { font-size: 21px; }.about-nav-links { justify-content: flex-end; flex-wrap: wrap; gap: 6px 12px; }.about-nav-links a { font-size: 11px; }.about-hero { padding: 72px 0 65px; }.about-hero h1 { font-size: clamp(46px, 12vw, 62px); letter-spacing: -3.4px; }.about-hero-copy { font-size: 13px; }.about-hero-meta { gap: 14px; flex-wrap: wrap; font-size: 9px; }.about-intro { padding: 66px 0; }.about-intro-grid, .about-purpose-grid, .about-process-grid { grid-template-columns: 1fr; gap: 30px; }.about-founder-frame, .about-founder-frame img { min-height: 330px; height: 330px; }.about-heading { font-size: 42px; letter-spacing: -2.5px; }.about-purpose { padding: 62px 0; }.about-purpose-card { min-height: 0; padding: 25px; }.about-purpose-card h2 { margin-top: 17px; }.about-values { padding: 70px 0; }.about-values-grid { margin-top: 30px; grid-template-columns: 1fr; }.about-value-card { min-height: 0; padding: 21px; }.about-value-card h3 { margin-top: 17px; }.about-process { padding: 68px 0; }.about-cta { padding: 68px 20px; }.about-cta h2 { font-size: 42px; letter-spacing: -2.4px; }.about-footer-top { min-height: 170px; padding: 25px 20px 45px; justify-content: center; text-align: center; }.about-logo-area { flex-direction: column; gap: 8px; }.about-logo-icon { width: 64px; height: 64px; }.about-tagline { justify-content: center; font-size: .72rem; }.about-footer-middle { grid-template-columns: 1fr; padding: 25px 24px; }.about-footer-col h3 { font-size: 1rem; }.about-footer-col p, .about-footer-col ul li a { font-size: .8rem; }.about-footer-bottom { flex-direction: column; gap: 10px; text-align: center; }.about-divider { width: 40px; height: 1px; } }
+        @media (max-width: 560px) { .about-width { width: calc(100% - 40px); }.about-nav { min-height: 70px; padding: 12px 20px; gap: 10px; }.about-nav-logo { font-size: 21px; }.about-nav-links { justify-content: flex-end; flex-wrap: wrap; gap: 6px 12px; }.about-nav-links a { font-size: 11px; }.about-nav-links button { font-size: 11px; }.about-hero { padding: 72px 0 65px; }.about-hero h1 { font-size: clamp(46px, 12vw, 62px); letter-spacing: -3.4px; }.about-hero-copy { font-size: 13px; }.about-hero-meta { gap: 14px; flex-wrap: wrap; font-size: 9px; }.about-intro { padding: 66px 0; }.about-intro-grid, .about-purpose-grid, .about-process-grid { grid-template-columns: 1fr; gap: 30px; }.about-founder-frame, .about-founder-frame img { min-height: 330px; height: 330px; }.about-heading { font-size: 42px; letter-spacing: -2.5px; }.about-purpose { padding: 62px 0; }.about-purpose-card { min-height: 0; padding: 25px; }.about-purpose-card h2 { margin-top: 17px; }.about-values { padding: 70px 0; }.about-values-grid { margin-top: 30px; grid-template-columns: 1fr; }.about-value-card { min-height: 0; padding: 21px; }.about-value-card h3 { margin-top: 17px; }.about-process { padding: 68px 0; }.about-cta { padding: 68px 20px; }.about-cta h2 { font-size: 42px; letter-spacing: -2.4px; }.about-footer-top { min-height: 170px; padding: 25px 20px 45px; justify-content: center; text-align: center; }.about-logo-area { flex-direction: column; gap: 8px; }.about-logo-icon { width: 64px; height: 64px; }.about-tagline { justify-content: center; font-size: .72rem; }.about-footer-middle { grid-template-columns: 1fr; padding: 25px 24px; }.about-footer-col h3 { font-size: 1rem; }.about-footer-col p, .about-footer-col ul li a { font-size: .8rem; }.about-footer-bottom { flex-direction: column; gap: 10px; text-align: center; }.about-divider { width: 40px; height: 1px; }.about-contact-sidebar { width: 300px; }.about-contact-sidebar .sidebar-content { padding: 30px 20px; } }
         @media (prefers-reduced-motion: reduce) { .about-page *, .about-page *::before, .about-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
       `}</style>
 
@@ -113,9 +161,25 @@ export default function About() {
           <Link href="/">Home</Link>
           <Link href="/about" aria-current="page">About</Link>
           <Link href="/services">Services</Link>
-          <Link href="/contact">Contact</Link>
+          <button type="button" onClick={() => setSidebarOpen(true)}>Contact</button>
         </div>
       </nav>
+
+      <div className={`about-contact-overlay${sidebarOpen ? ' active' : ''}`} onClick={() => setSidebarOpen(false)} aria-hidden="true" />
+      <aside className={`about-contact-sidebar${sidebarOpen ? ' active' : ''}`} role="dialog" aria-modal="true" aria-labelledby="about-contact-title" aria-hidden={!sidebarOpen}>
+        <div className="sidebar-header">
+          <h2 id="about-contact-title">Contact Us</h2>
+          <button className="close-btn" type="button" onClick={() => setSidebarOpen(false)} aria-label="Close contact sidebar">&times;</button>
+        </div>
+        <div className="sidebar-content">
+          <p>We are here to help! Reach out to us through any of these channels.</p>
+          <div className="contact-item"><div className="contact-icon" aria-hidden="true">✉</div><div className="contact-info"><h3>Email</h3><a href="mailto:popeeadlegacycompany@gmail.com">popeeadlegacycompany@gmail.com</a></div></div>
+          <div className="contact-item"><div className="contact-icon" aria-hidden="true">☎</div><div className="contact-info"><h3>Phone</h3><a href="tel:0892236030">0892236030</a></div></div>
+          <div className="contact-item"><div className="contact-icon" aria-hidden="true">◉</div><div className="contact-info"><h3>WhatsApp</h3><a href="https://wa.me/265892236030" target="_blank" rel="noreferrer">Chat with our team</a></div></div>
+          <div className="sidebar-see-more"><Link className="see-more-btn" href="/contact" onClick={() => setSidebarOpen(false)}>See more <span aria-hidden="true">→</span></Link></div>
+          <div className="sidebar-socials"><h3>Follow Us</h3><div className="social-icons"><a href="/contact" aria-label="Facebook">f</a><a href="/contact" aria-label="Instagram">◎</a><a href="/contact" aria-label="X">𝕏</a><a href="/contact" aria-label="YouTube">▶</a></div></div>
+        </div>
+      </aside>
 
       <section className="about-hero">
         <div className="about-width">
