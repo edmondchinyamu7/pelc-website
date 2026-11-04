@@ -1,0 +1,190 @@
+.pelc-auth {
+  min-height: 100svh;
+  display: flex;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.pelc-auth__brand {
+  display: none;
+  flex: 1 1 50%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  background: var(--forest-deep);
+  color: var(--paper);
+}
+
+.pelc-auth__logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--lime);
+}
+
+.pelc-auth__tagline {
+  margin: 0 0 16px;
+  max-width: 14ch;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.pelc-auth__sub {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(247, 247, 241, 0.7);
+}
+
+.pelc-auth__meta {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(247, 247, 241, 0.5);
+}
+
+.pelc-auth__panel {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 20px;
+}
+
+.pelc-auth__back {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.pelc-auth__back:hover { color: var(--ink); }
+
+.pelc-auth__card {
+  width: 100%;
+  max-width: 400px;
+  margin-block: auto;
+}
+
+.pelc-auth__eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.pelc-auth__title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.pelc-auth__desc {
+  margin: 0 0 28px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.pelc-auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pelc-auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pelc-auth__label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pelc-auth__input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pelc-auth__input:focus {
+  outline: none;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 4px rgba(21, 56, 46, 0.12);
+}
+
+.pelc-auth__error {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fdecec;
+  color: #a12626;
+  font-size: 14px;
+}
+
+.pelc-auth__button {
+  height: 48px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--forest);
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.pelc-auth__button:hover { background: var(--forest-deep); }
+.pelc-auth__button:active { transform: scale(0.99); }
+.pelc-auth__button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.pelc-auth__button--ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.pelc-auth__button--ghost:hover { background: var(--cream); }
+
+.pelc-auth__footer {
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.pelc-auth__footer a {
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .pelc-auth__brand { display: flex; }
+  .pelc-auth__panel { padding: 48px; }
+}
