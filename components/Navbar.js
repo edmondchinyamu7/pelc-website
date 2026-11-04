@@ -12,6 +12,7 @@ export default function Navbar({ onOpenContact, activePage = '' }) {
         <Link href="/services" className={activePage === 'services' ? 'nav-active' : ''}>Services</Link>
         <Link href="/event" className={activePage === 'event' ? 'nav-active' : ''}>Event</Link>
         <Link href="/contact" className={activePage === 'contact' ? 'nav-active' : ''}>Contact</Link>
+        <Link href="/auth/login">Log in</Link>
         {onOpenContact && (
           <button
             type="button"
