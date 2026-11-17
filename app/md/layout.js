@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'MD | PELC',
-  description: 'Marketing Department at PELC.',
+  title: 'MD | NOVEX DIGITAL',
+  description: 'Digital Marketing Department at NOVEX DIGITAL.',
 };
 
 export default function MdLayout({ children }) {

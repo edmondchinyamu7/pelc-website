@@ -14,7 +14,7 @@ export default function Contact() {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: "Hello! 👋 I'm <strong>PELC Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
+      text: "Hello! 👋 I'm <strong>NOVEX Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -30,42 +30,46 @@ export default function Contact() {
     const t = text.toLowerCase().trim();
 
     if (/^(hi|hey|hello|good (morning|afternoon|evening)|howdy|yo|hola|sup)\b/i.test(t)) {
-      return "Hello! 👋 Welcome to <strong>POPE EAD LEGACY COMPANY</strong>. How can I assist you today?<br><br>Feel free to ask about our <strong>web development</strong>, <strong>software</strong>, <strong>branding</strong>, or booking a <strong>consultation</strong>.";
+      return "Hello! 👋 Welcome to <strong>NOVEX DIGITAL</strong>. How can I assist you today?<br><br>Feel free to ask about our <strong>web development</strong>, <strong>software</strong>, <strong>AI solutions</strong>, <strong>branding</strong>, or booking a <strong>consultation</strong>.";
     }
 
     if (/service|offer|what do you do/i.test(t)) {
-      return "We deliver complete digital solutions across 6 specialized departments:<br><br>💻 <strong>Website Development (WDD)</strong><br>⚙️ <strong>Software Development (SDD)</strong><br>🎨 <strong>UX/UI Design (UD)</strong><br>📣 <strong>Advertisement (AD)</strong><br>📈 <strong>Marketing (MD)</strong><br>🖌️ <strong>Creative & Publications (CPD)</strong><br><br>Which department would you like to explore?";
+      return "We deliver end-to-end digital solutions across specialized disciplines:<br><br>💻 <strong>Website Development (WDD)</strong><br>⚙️ <strong>Software &amp; App Development (SDD)</strong><br>🎨 <strong>UX/UI Design (UD)</strong><br>📣 <strong>Digital Advertising (AD)</strong><br>📈 <strong>Digital Marketing (MD)</strong><br>🖌️ <strong>Graphic Design &amp; Branding (CPD)</strong><br>🧠 <strong>AI Solutions &amp; Tech Consultancy</strong><br><br>Which area would you like to explore?";
     }
 
     if (t.includes('website') || t.includes('web dev')) {
-      return "Our <strong>Website Development Department (WDD)</strong> builds fast, high-converting websites and e-commerce stores.<br><br>👉 <a href='/wdd' style='color:#718e2b;font-weight:700;'>Learn more about WDD</a>";
+      return "Our <strong>Website Development Department (WDD)</strong> builds fast, high-converting websites and e-commerce stores.<br><br>👉 <a href='/wdd' style='color:#9c7921;font-weight:700;'>Learn more about WDD</a>";
     }
 
     if (t.includes('software') || t.includes('app') || t.includes('mobile')) {
-      return "Our <strong>Software Development Department (SDD)</strong> builds custom business software, mobile apps, and cloud APIs.<br><br>👉 <a href='/sdd' style='color:#718e2b;font-weight:700;'>Learn more about SDD</a>";
+      return "Our <strong>Software Development Department (SDD)</strong> builds custom business software, mobile apps, and cloud APIs.<br><br>👉 <a href='/sdd' style='color:#9c7921;font-weight:700;'>Learn more about SDD</a>";
     }
 
     if (t.includes('design') || t.includes('ux') || t.includes('ui')) {
-      return "Our <strong>UX/UI Design Department (UD)</strong> designs intuitive interfaces, prototypes in Figma, and design systems.<br><br>👉 <a href='/ud' style='color:#718e2b;font-weight:700;'>Learn more about UD</a>";
+      return "Our <strong>UX/UI Design Department (UD)</strong> designs intuitive interfaces, prototypes in Figma, and design systems.<br><br>👉 <a href='/ud' style='color:#9c7921;font-weight:700;'>Learn more about UD</a>";
+    }
+
+    if (t.includes('ai') || t.includes('consult') || t.includes('transform')) {
+      return "We deliver practical <strong>AI Solutions</strong>, <strong>Technology Consultancy</strong>, and <strong>Digital Transformation</strong> roadmaps.<br><br>👉 <a href='/consultation?project=ai' style='color:#9c7921;font-weight:700;'>Book a Consultation</a>";
     }
 
     if (t.includes('price') || t.includes('cost') || t.includes('quote') || t.includes('how much') || t.includes('fee')) {
-      return "Every project is scoped to your specific requirements and phased for budget predictability. You can book a free 15-minute consultation to get an exact scope and proposal.<br><br>👉 <a href='/consultation' style='color:#718e2b;font-weight:700;'>Book a Free Consultation</a>";
+      return "Every project is scoped to your specific requirements and phased for budget predictability. You can book a free 15-minute consultation to get an exact scope and proposal.<br><br>👉 <a href='/consultation' style='color:#9c7921;font-weight:700;'>Book a Free Consultation</a>";
     }
 
     if (t.includes('location') || t.includes('where') || t.includes('based') || t.includes('malawi')) {
-      return "📍 We are based in <strong>Malawi</strong> and collaborate with ambitious startups, businesses, and organizations worldwide.";
+      return "📍 We are based in <strong>Malawi</strong> and collaborate with ambitious startups, businesses, and institutions worldwide.";
     }
 
     if (t.includes('contact') || t.includes('phone') || t.includes('email') || t.includes('whatsapp')) {
-      return "You can reach us directly via:<br><br>📧 <strong>Email:</strong> <a href='mailto:popeeadlegacycompany@gmail.com' style='color:#718e2b;font-weight:700;'>popeeadlegacycompany@gmail.com</a><br>📞 <strong>Phone:</strong> <a href='tel:0892236030' style='color:#718e2b;font-weight:700;'>0892236030</a><br>💬 <strong>WhatsApp:</strong> <a href='https://wa.me/265892236030' target='_blank' style='color:#718e2b;font-weight:700;'>+265 892 236 030</a>";
+      return "You can reach us directly via:<br><br>📧 <strong>Email:</strong> <a href='mailto:popeeadlegacycompany@gmail.com' style='color:#9c7921;font-weight:700;'>popeeadlegacycompany@gmail.com</a><br>📞 <strong>Phone:</strong> <a href='tel:0892236030' style='color:#9c7921;font-weight:700;'>0892236030</a><br>💬 <strong>WhatsApp:</strong> <a href='https://wa.me/265892236030' target='_blank' style='color:#9c7921;font-weight:700;'>+265 892 236 030</a>";
     }
 
-    if (t.includes('founder') || t.includes('owner') || t.includes('edmond') || t.includes('pope ead')) {
-      return "PELC was founded by <strong>Edmond Chinyamu</strong> (Pope Ead), an engineer and creative director passionate about elevating African digital capability.";
+    if (t.includes('founder') || t.includes('owner') || t.includes('edmond') || t.includes('novex') || t.includes('pope ead')) {
+      return "NOVEX DIGITAL was founded by <strong>Edmond Chinyamu</strong>, an engineer and creative director passionate about helping businesses and institutions grow through technology and creativity.";
     }
 
-    return "Thank you for asking! For detailed questions or to review your specific project brief, you can message our team on WhatsApp or send an email to <a href='mailto:popeeadlegacycompany@gmail.com' style='color:#718e2b;font-weight:700;'>popeeadlegacycompany@gmail.com</a>.";
+    return "Thank you for asking! For detailed questions or to review your specific project brief, you can message our team on WhatsApp or send an email to <a href='mailto:popeeadlegacycompany@gmail.com' style='color:#9c7921;font-weight:700;'>popeeadlegacycompany@gmail.com</a>.";
   };
 
   const handleSendMessage = (e) => {
@@ -125,7 +129,7 @@ export default function Contact() {
       setErrorMessage('Please enter your name and message before launching WhatsApp.');
       return;
     }
-    const text = `*New Contact Message – PELC*%0A%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Subject:* ${encodeURIComponent(form.subject || 'General Inquiry')}%0A%0A*Message:*%0A${encodeURIComponent(form.message)}`;
+    const text = `*New Contact Message – NOVEX DIGITAL*%0A%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Subject:* ${encodeURIComponent(form.subject || 'General Inquiry')}%0A%0A*Message:*%0A${encodeURIComponent(form.message)}`;
     window.open(`https://wa.me/265892236030?text=${text}`, '_blank');
     setSubmitted(true);
   };
@@ -166,7 +170,7 @@ export default function Contact() {
             Fast replies on <span>WhatsApp</span>, detailed scopes by <span>email</span>, or in-person meetings in <span>Malawi</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            PELC<br />DIRECT<br />DESK<span>✳</span>
+            NOVEX<br />DIRECT<br />DESK<span>✳</span>
           </div>
         </div>
       </section>
@@ -328,7 +332,7 @@ export default function Contact() {
               <div className="assistant-header">
                 <div className="assistant-avatar">🤖</div>
                 <div>
-                  <h4>PELC Assistant</h4>
+                  <h4>NOVEX Assistant</h4>
                   <span className="assistant-status">Online · Instant Answers</span>
                 </div>
               </div>
@@ -382,7 +386,7 @@ export default function Contact() {
           <div className="social-presence-card">
             <div className="social-presence-header">
               <p className="eyebrow"><span className="eyebrow-mark">02</span> Official Social Channels</p>
-              <h2>Connect &amp; Follow PELC</h2>
+              <h2>Connect &amp; Follow NOVEX DIGITAL</h2>
               <p>Stay informed with our newest software projects, open source tools, design insights, and masterclasses across all major platforms.</p>
             </div>
             <div className="social-presence-grid">

@@ -27,7 +27,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'Facebook',
     label: 'Facebook',
-    handle: '@pelccompany',
+    handle: '@novexdigital',
     url: 'https://facebook.com',
     icon: FaFacebookF,
     brandColor: '#1877F2',
@@ -36,7 +36,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'Instagram',
     label: 'Instagram',
-    handle: '@pelc_official',
+    handle: '@novexdigital_mw',
     url: 'https://instagram.com',
     icon: FaInstagram,
     brandColor: '#E1306C',
@@ -45,7 +45,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'X',
     label: 'X (formerly Twitter)',
-    handle: '@PELC_tech',
+    handle: '@novexdigital',
     url: 'https://x.com',
     icon: FaXTwitter,
     brandColor: '#1D1D1F',
@@ -54,7 +54,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'LinkedIn',
     label: 'LinkedIn',
-    handle: 'PELC Company',
+    handle: 'NOVEX DIGITAL',
     url: 'https://linkedin.com',
     icon: FaLinkedinIn,
     brandColor: '#0A66C2',
@@ -63,7 +63,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'YouTube',
     label: 'YouTube',
-    handle: 'PELC Tech & Design',
+    handle: 'NOVEX DIGITAL',
     url: 'https://youtube.com',
     icon: FaYoutube,
     brandColor: '#FF0000',
@@ -91,7 +91,7 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
     .join(' ');
 
   return (
-    <ul className={groupClass} aria-label="PELC on social media">
+    <ul className={groupClass} aria-label="NOVEX DIGITAL on social media">
       {SOCIAL_PROFILES.map((item) => {
         const IconComponent = item.icon;
         return (
@@ -101,7 +101,7 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btn}
-              aria-label={`Visit PELC on ${item.label}`}
+              aria-label={`Visit NOVEX DIGITAL on ${item.label}`}
               style={{ '--brand-color': item.brandColor, '--brand-on-color': item.onBrandColor }}
             >
               <span className={styles.icon}>

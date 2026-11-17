@@ -109,6 +109,40 @@ const departments = [
     stats: 'Print & Digital Output',
     href: '/cpd',
   },
+  {
+    number: '07',
+    code: 'AI',
+    title: 'Artificial Intelligence Solutions',
+    icon: '🧠',
+    tagline: 'Smart automation tailored to real workflows.',
+    description: 'Practical AI assistants, workflow automation, and intelligent business tools that save time and elevate service.',
+    features: [
+      'Custom AI Assistants & Knowledge Chat',
+      'Workflow & Document Automation',
+      'Data Synthesis & Smart Reporting',
+      'Responsible AI Integration into Apps',
+    ],
+    tags: ['AI Workflows', 'Smart Assistants', 'Automation', 'LLM Integration'],
+    stats: 'Practical Automation',
+    href: '/consultation?project=ai',
+  },
+  {
+    number: '08',
+    code: 'DT',
+    title: 'Tech Consultancy & Digital Transformation',
+    icon: '🧭',
+    tagline: 'Clear technology roadmaps for lasting growth.',
+    description: 'Strategic digital transformation guidance and systems advisory helping organizations modernize with confidence.',
+    features: [
+      'Digital Transformation Roadmaps',
+      'Systems Architecture & Tool Selection',
+      'Process Digitization & Cloud Migration',
+      'Ongoing Technical Advisory & Audits',
+    ],
+    tags: ['Tech Consultancy', 'Digital Transformation', 'Advisory', 'Strategy'],
+    stats: 'Executive Clarity',
+    href: '/consultation?project=ai',
+  },
 ];
 
 export default function Services() {
@@ -129,14 +163,14 @@ export default function Services() {
         <div className="hero-grain" aria-hidden="true" />
         <div className="page-width services-hero-inner">
           <p className="eyebrow eyebrow-light">
-            <span className="status-dot" /> Our Capabilities · 06 Dedicated Departments
+            <span className="status-dot" /> Our Capabilities · 08 Specialized Disciplines
           </p>
           <h1>
             Expert solutions, delivered by <em>specialized teams.</em>
           </h1>
           <p className="services-hero-copy">
-            At POPE EAD LEGACY COMPANY, we do not believe in one-size-fits-all digital work.
-            Our team is organized into distinct departments, ensuring every aspect of your project is led by specialists.
+            At NOVEX DIGITAL, we do not believe in one-size-fits-all digital work.
+            Our disciplines span websites, software, AI, marketing, graphic branding, and technology consultancy—ensuring specialists lead your project.
           </p>
           <div className="services-hero-actions">
             <Link className="button button-lime" href="/consultation">
@@ -157,10 +191,10 @@ export default function Services() {
       <section className="intro-strip" aria-label="Our department philosophy">
         <div className="page-width intro-inner">
           <p>
-            From the initial blueprint to post-launch scaling, our six departments combine <span>engineering rigour</span> with <span>practical creativity</span>.
+            From the initial blueprint to post-launch scaling, NOVEX DIGITAL combines <span>engineering rigour</span> with <span>practical creativity</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            INNOVATE<br />CREATE<br />GENERATE<span>✳</span>
+            NEW IDEAS<br />NEW POSSIBILITIES<br />NEW LEGACY<span>✳</span>
           </div>
         </div>
       </section>
@@ -196,7 +230,7 @@ export default function Services() {
               className={`filter-chip${activeFilter === 'all' ? ' is-active' : ''}`}
               onClick={() => setActiveFilter('all')}
             >
-              All Departments (06)
+              All Disciplines (08)
             </button>
             {departments.map((d) => (
               <button
@@ -228,7 +262,7 @@ export default function Services() {
                     <span className="dept-badge">{dept.code}</span>
                     <span className="dept-stats-pill">{dept.stats}</span>
                   </div>
-                  <span className="dept-number">{dept.number} / 06</span>
+                  <span className="dept-number">{dept.number} / 08</span>
                 </div>
 
                 {/* Icon & Title */}

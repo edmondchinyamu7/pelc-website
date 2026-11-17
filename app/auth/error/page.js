@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AuthShell from '@/components/AuthShell';
 
-export const metadata = { title: 'Authentication error | PELC' };
+export const metadata = { title: 'Authentication error | NOVEX DIGITAL' };
 
 export default function AuthErrorPage() {
   return (

@@ -36,7 +36,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
         <div className="home-contact-header">
           <div>
             <p>LET’S TALK</p>
-            <h2 id="contact-drawer-title">Contact PELC</h2>
+            <h2 id="contact-drawer-title">Contact NOVEX DIGITAL</h2>
           </div>
           <button
             className="home-contact-close"
@@ -92,7 +92,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
 
           <Link
             className="home-contact-more"
-            style={{ background: '#dedfd5', color: '#17241e', marginTop: '6px' }}
+            style={{ background: '#f5eed8', color: '#161513', marginTop: '6px' }}
             href="/contact"
             onClick={onClose}
           >

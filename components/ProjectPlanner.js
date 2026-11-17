@@ -4,17 +4,19 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const projectOptions = [
-  { id: 'website', label: 'A new or better website', detail: 'A clear home for your business online.' },
-  { id: 'app', label: 'An app or digital product', detail: 'A useful product for your team or customers.' },
-  { id: 'brand', label: 'Design or brand support', detail: 'A more distinct and consistent identity.' },
-  { id: 'growth', label: 'Marketing and growth', detail: 'A plan to reach and engage more people.' },
+  { id: 'website', label: 'Website Development', detail: 'A clear, fast home for your business online.' },
+  { id: 'app', label: 'Software & Application Development', detail: 'Useful digital tools and apps for your team or customers.' },
+  { id: 'brand', label: 'Graphic Design & Branding', detail: 'A minimalist, distinctive visual identity and UI/UX.' },
+  { id: 'growth', label: 'Digital Marketing & Advertising', detail: 'Strategic campaigns to reach and engage more customers.' },
+  { id: 'ai', label: 'AI Solutions & Tech Consultancy', detail: 'Intelligent automation and digital transformation planning.' },
 ];
 
 const projectAdvice = {
   website: 'A great place to start is with your audience, your key message, and the one action you want visitors to take.',
-  app: 'We can help shape the idea, define a useful first version, and map out how it could work in the real world.',
-  brand: 'Let’s find the story and visual direction that make your business easier to recognize and remember.',
-  growth: 'We can start with your audience and goals, then choose the channels and creative that make sense for you.',
+  app: 'We can help shape the idea, define a useful first version, and map out how it will work in the real world.',
+  brand: 'Let’s craft a clean, modern visual identity and design system that makes your brand unforgettable.',
+  growth: 'We can align your audience and goals, then launch targeted advertising and organic growth channels.',
+  ai: 'Let’s audit your current workflows and identify high-impact AI automation and technology upgrades.',
 };
 
 export default function ProjectPlanner() {

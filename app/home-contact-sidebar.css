@@ -1,11 +1,11 @@
-/* Unified brand contact drawer styling: Forest & Lime palette */
+/* Unified brand contact drawer styling: White & Metallic Gold palette */
 .home-contact-overlay,
 .sidebar-overlay,
 .about-contact-overlay {
   position: fixed;
   inset: 0;
   z-index: 1998;
-  background: rgba(10, 27, 22, 0.65);
+  background: rgba(17, 16, 13, 0.65);
   backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
@@ -31,8 +31,8 @@ aside.home-contact-sidebar,
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  color: #17241e;
-  background: #f7f7f1;
+  color: #161513;
+  background: #ffffff;
   box-shadow: -15px 0 45px rgba(0, 0, 0, 0.25);
   transform: translateX(105%);
   visibility: hidden;
@@ -54,14 +54,14 @@ aside.home-contact-sidebar.is-open,
   justify-content: space-between;
   align-items: flex-start;
   color: white;
-  background: #102b24;
-  border-bottom: 1px solid rgba(215, 243, 106, 0.2);
+  background: #11100d;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
 }
 
 .home-contact-header p,
 .sidebar-header .header-label {
   margin: 0 0 6px;
-  color: #d7f36a;
+  color: #d4af37;
   font-size: 10px;
   font-weight: 750;
   letter-spacing: 1.5px;
@@ -95,9 +95,9 @@ aside.home-contact-sidebar.is-open,
 
 .home-contact-close:hover,
 .sidebar-header .close-btn:hover {
-  background: #d7f36a;
-  color: #102b24;
-  border-color: #d7f36a;
+  background: #d4af37;
+  color: #11100d;
+  border-color: #d4af37;
   transform: rotate(90deg);
 }
 
@@ -113,7 +113,7 @@ aside.home-contact-sidebar.is-open,
 .home-contact-content > p:first-child,
 .sidebar-content > p:first-child {
   margin: 0 0 10px;
-  color: #6f7972;
+  color: #686257;
   font-size: 13px;
   line-height: 1.7;
 }
@@ -127,9 +127,9 @@ aside.home-contact-sidebar.is-open,
   align-items: center;
   gap: 14px;
   border-radius: 6px;
-  border: 1px solid #dedfd5;
-  background: white;
-  color: #17241e;
+  border: 1px solid #eae4d5;
+  background: #faf8f2;
+  color: #161513;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   text-decoration: none;
 }
@@ -137,8 +137,8 @@ aside.home-contact-sidebar.is-open,
 .home-contact-item:hover,
 .sidebar-content .contact-item:hover {
   transform: translateY(-2px);
-  border-color: #d7f36a;
-  box-shadow: 0 6px 18px rgba(16, 43, 36, 0.08);
+  border-color: #d4af37;
+  box-shadow: 0 6px 18px rgba(17, 16, 13, 0.08);
 }
 
 .home-contact-icon,
@@ -148,8 +148,8 @@ aside.home-contact-sidebar.is-open,
   display: grid;
   place-items: center;
   border-radius: 50%;
-  color: #102b24;
-  background: #d7f36a;
+  color: #11100d;
+  background: #d4af37;
   font-size: 17px;
   font-weight: 700;
   flex-shrink: 0;
@@ -159,7 +159,7 @@ aside.home-contact-sidebar.is-open,
 .sidebar-content .contact-info h3,
 .sidebar-content .contact-info h4 {
   margin: 0;
-  color: #17241e;
+  color: #161513;
   font-size: 13px;
   font-weight: 650;
   display: block;
@@ -168,7 +168,7 @@ aside.home-contact-sidebar.is-open,
 .home-contact-item small,
 .sidebar-content .contact-info a {
   margin-top: 2px;
-  color: #6f7972;
+  color: #686257;
   font-size: 11px;
   word-break: break-word;
   display: block;
@@ -176,7 +176,7 @@ aside.home-contact-sidebar.is-open,
 
 .home-contact-arrow,
 .sidebar-content .contact-arrow {
-  color: #15382e;
+  color: #9c7921;
   font-size: 15px;
   font-weight: 700;
   justify-self: end;
@@ -191,8 +191,8 @@ aside.home-contact-sidebar.is-open,
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
-  color: #102b24;
-  background: #e8f4c2;
+  color: #11100d;
+  background: #f5eed8;
   font-size: 12px;
   font-weight: 700;
   transition: background 0.2s;
@@ -201,15 +201,15 @@ aside.home-contact-sidebar.is-open,
 
 .home-contact-more:hover,
 .sidebar-see-more .see-more-btn:hover {
-  background: #d7f36a;
+  background: #d4af37;
 }
 
 .home-contact-note,
 .sidebar-content .sidebar-note {
   margin: 16px 0 0;
   padding-top: 16px;
-  border-top: 1px solid #dedfd5;
-  color: #7a857c;
+  border-top: 1px solid #eae4d5;
+  color: #7c7567;
   font-size: 11px;
   line-height: 1.6;
 }
@@ -217,13 +217,13 @@ aside.home-contact-sidebar.is-open,
 .sidebar-socials {
   margin-top: 10px;
   padding-top: 16px;
-  border-top: 1px solid #dedfd5;
+  border-top: 1px solid #eae4d5;
 }
 
 .sidebar-socials h4,
 .sidebar-socials h3 {
   margin: 0 0 10px;
-  color: #17241e;
+  color: #161513;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -241,9 +241,9 @@ aside.home-contact-sidebar.is-open,
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 1px solid #dedfd5;
+  border: 1px solid #eae4d5;
   background: white;
-  color: #102b24;
+  color: #11100d;
   font-size: 12px;
   font-weight: 700;
   transition: transform 0.2s, background 0.2s, border-color 0.2s;
@@ -252,8 +252,8 @@ aside.home-contact-sidebar.is-open,
 
 .sidebar-socials .social-icons a:hover {
   transform: translateY(-2px);
-  background: #d7f36a;
-  border-color: #d7f36a;
+  background: #d4af37;
+  border-color: #d4af37;
 }
 
 @media (max-width: 640px) {

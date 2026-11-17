@@ -10,7 +10,7 @@ const services = [
     code: 'WDD',
     title: 'Website Development',
     tagline: 'Websites that work harder',
-    description: 'Fast, thoughtful websites that make it easy for the right people to understand what you do—and take the next step.',
+    description: 'Fast, thoughtful websites and web platforms that make it easy for people to understand what you do—and take the next step.',
     tags: ['Web development', 'E-commerce', 'SEO-ready'],
     href: '/wdd',
     icon: '💻',
@@ -18,52 +18,72 @@ const services = [
   {
     number: '02',
     code: 'SDD',
-    title: 'Software Development',
+    title: 'Software & Application Development',
     tagline: 'Software built around you',
-    description: 'Useful digital tools, platforms, and mobile apps shaped around your team, your customers, and the way your business runs.',
+    description: 'Custom digital tools, enterprise platforms, and mobile apps shaped around your team, your customers, and your operations.',
     tags: ['Custom software', 'Mobile apps', 'Integrations'],
     href: '/sdd',
     icon: '⚙️',
   },
   {
     number: '03',
-    code: 'UD',
-    title: 'UX/UI Design',
-    tagline: 'Design with a point of view',
-    description: 'Clear, consistent visual identities and intuitive interfaces that help your brand feel unmistakably yours.',
-    tags: ['UI/UX design', 'Brand identity', 'Figma'],
-    href: '/ud',
-    icon: '🎨',
+    code: 'MD',
+    title: 'Digital Marketing',
+    tagline: 'Get the word out',
+    description: 'Bring the right audience to your brand with organic search visibility, content strategy, and sustainable digital growth.',
+    tags: ['SEO', 'Content Strategy', 'Social Growth'],
+    href: '/md',
+    icon: '📈',
   },
   {
     number: '04',
     code: 'AD',
-    title: 'Advertisement',
+    title: 'Digital Advertising',
     tagline: 'Campaigns that command attention',
-    description: 'Targeted pay-per-click and multi-channel digital ad campaigns engineered to turn marketing budget into revenue.',
+    description: 'Targeted pay-per-click and multi-channel advertising engineered to turn marketing investment into measurable growth.',
     tags: ['Google Ads', 'Meta Ads', 'LinkedIn B2B'],
     href: '/ad',
     icon: '📣',
   },
   {
     number: '05',
-    code: 'MD',
-    title: 'Marketing',
-    tagline: 'Get the word out',
-    description: 'Bring the right people to your business with considered organic search visibility, content strategy, and ongoing growth.',
-    tags: ['SEO', 'Content Strategy', 'Social Growth'],
-    href: '/md',
-    icon: '📈',
+    code: 'CPD',
+    title: 'Graphic Design & Branding',
+    tagline: 'Minimalist, lasting brand identity',
+    description: 'Clean brand identities, logos, publications, and visual systems built to establish an unmistakable presence.',
+    tags: ['Brand Identity', 'Logo Systems', 'Publications'],
+    href: '/cpd',
+    icon: '🖌️',
   },
   {
     number: '06',
-    code: 'CPD',
-    title: 'Creative & Publication',
-    tagline: 'Crafted for lasting presence',
-    description: 'Logos, publications, bulletins, and corporate collateral that establish an unmistakable presence in print and digital.',
-    tags: ['Brand Identity', 'Publications', 'Bulletins'],
-    href: '/cpd',
-    icon: '🖌️',
+    code: 'UD',
+    title: 'UX/UI Product Design',
+    tagline: 'Design with a point of view',
+    description: 'Intuitive user experiences, interactive prototypes, and clean interfaces crafted for clarity across every screen.',
+    tags: ['UI/UX design', 'Design Systems', 'Figma'],
+    href: '/ud',
+    icon: '🎨',
+  },
+  {
+    number: '07',
+    code: 'AI',
+    title: 'Artificial Intelligence Solutions',
+    tagline: 'Intelligent automation & workflows',
+    description: 'Practical AI assistants, workflow automation, and smart data tools tailored to boost operational speed and decision-making.',
+    tags: ['AI Automation', 'Smart Assistants', 'Data Insights'],
+    href: '/consultation?project=ai',
+    icon: '🧠',
+  },
+  {
+    number: '08',
+    code: 'DT',
+    title: 'Technology Consultancy & Digital Transformation',
+    tagline: 'Modernizing how you operate',
+    description: 'Strategic technology guidance, systems modernization, and end-to-end digital transformation roadmaps for ambitious organizations.',
+    tags: ['Tech Strategy', 'Digital Transformation', 'Advisory'],
+    href: '/consultation?project=ai',
+    icon: '🧭',
   },
 ];
 
@@ -87,14 +107,14 @@ export default function Home() {
         <div className="hero-grain" aria-hidden="true" />
         <div className="hero-inner page-width">
           <div className="hero-copy">
-            <p className="eyebrow eyebrow-light"><span className="status-dot" /> Digital studio · Malawi and beyond</p>
+            <p className="eyebrow eyebrow-light"><span className="status-dot" /> NOVEX DIGITAL · Malawi and beyond</p>
             <h1 id="hero-title">Good ideas deserve <em>great digital.</em></h1>
-            <p className="hero-intro">We design and build websites, apps, and brands that help ambitious businesses move forward.</p>
+            <p className="hero-intro">We combine technology, AI, software, and creative branding to help individuals, businesses, and institutions operate smarter and grow.</p>
             <div className="hero-actions">
               <Link className="button button-lime" href="/consultation">Tell us what you’re building <Arrow diagonal /></Link>
               <a className="text-link text-link-light" href="#services">Explore what we do <Arrow /></a>
             </div>
-            <div className="hero-note"><span className="note-line" /> Thoughtful by design. Built to make a difference.</div>
+            <div className="hero-note"><span className="note-line" /> New Ideas. New Possibilities. New Legacy.</div>
           </div>
           <div className="hero-art" aria-label="Illustration of a digital product taking shape" role="img">
             <div className="art-orbit orbit-one" />
@@ -106,12 +126,12 @@ export default function Home() {
                 <span className="art-menu">•••</span>
               </div>
               <div className="art-card-body">
-                <div className="art-label">A clearer way forward</div>
+                <div className="art-label">NOVEX DIGITAL</div>
                 <div className="art-headline">Make your<br /><span>next move</span><br />matter.</div>
                 <div className="art-lines"><i /><i /><i /></div>
                 <div className="art-button">Let’s begin <Arrow diagonal /></div>
               </div>
-              <div className="art-card-foot"><span>DESIGNED WITH PURPOSE</span><span>✳</span></div>
+              <div className="art-card-foot"><span>NEW IDEAS · NEW LEGACY</span><span>✳</span></div>
             </div>
             <div className="art-chip chip-top"><span className="chip-icon">✳</span><span>Ideas into impact</span></div>
             <div className="art-chip chip-bottom"><span className="chip-icon chip-dark">↗</span><span>Built for what’s next</span></div>
@@ -120,15 +140,15 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-bottom page-width">
-          <span>Independent thinking, collaborative making.</span>
+          <span>Independent thinking, practical technology, lasting legacy.</span>
           <a href="#services">Scroll to explore <span aria-hidden="true">↓</span></a>
         </div>
       </section>
 
       <section className="intro-strip" aria-label="Our approach">
         <div className="page-width intro-inner">
-          <p>We turn <span>big ideas</span> into useful digital experiences—with strategy, creativity, and care at every step.</p>
-          <div className="intro-stamp" aria-hidden="true">INNOVATE<br />CREATE<br />GENERATE<span>✳</span></div>
+          <p>We turn <span>new ideas</span> into useful digital solutions—with strategy, technology, and creativity at every step.</p>
+          <div className="intro-stamp" aria-hidden="true">NEW IDEAS<br />NEW POSSIBILITIES<br />NEW LEGACY<span>✳</span></div>
         </div>
       </section>
 
@@ -138,10 +158,10 @@ export default function Home() {
           <div className="section-heading">
             <div>
               <p className="eyebrow"><span className="eyebrow-mark">01</span> What we do</p>
-              <h2>One good partner.<br /><em>Hover cards to explore.</em></h2>
+              <h2>One trusted partner.<br /><em>Explore our solutions.</em></h2>
             </div>
             <div className="section-aside">
-              <p>From the first sketch to the next big milestone, we bring the right specialists around your challenge.</p>
+              <p>From websites and custom software to AI solutions, branding, and digital transformation, we build what moves your organization forward.</p>
               <Link className="text-link" href="/services">Discover all our services <Arrow /></Link>
             </div>
           </div>
@@ -153,7 +173,7 @@ export default function Home() {
 
                 <div className="home-card-head">
                   <span className="home-badge">{service.code}</span>
-                  <span className="home-number">{service.number} / 06</span>
+                  <span className="home-number">{service.number} / 08</span>
                 </div>
 
                 <div className="home-card-title-row">
@@ -176,7 +196,7 @@ export default function Home() {
                   <span className="home-explore-action">
                     Explore {service.code} <span className="home-explore-arrow">↗</span>
                   </span>
-                  <span className="home-view-hint">View department</span>
+                  <span className="home-view-hint">Learn more</span>
                 </div>
               </Link>
             ))}
@@ -242,7 +262,7 @@ export default function Home() {
           <div className="faq-list">
             <details>
               <summary>What kind of projects do you take on?<span>+</span></summary>
-              <p>We work across web development, software and mobile apps, UI/UX and creative design, advertising, and marketing. If you have an idea but aren’t sure what it needs, we’re happy to help you figure out a starting point.</p>
+              <p>We work across website development, software and mobile applications, digital marketing and advertising, graphic design and branding, UX/UI design, artificial intelligence solutions, technology consultancy, and digital transformation. If you have an idea and need a clear starting point, we’re ready to help.</p>
             </details>
             <details>
               <summary>How does a project usually begin?<span>+</span></summary>

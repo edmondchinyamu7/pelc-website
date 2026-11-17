@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Services | PELC',
-  description: 'Explore PELC departments across web, software, UI/UX, advertising, marketing, and creative print design.',
+  title: 'Services | NOVEX DIGITAL',
+  description: 'Explore NOVEX DIGITAL services across website development, software, UI/UX, AI solutions, technology consultancy, advertising, marketing, and creative branding.',
 };
 
 export default function ServicesLayout({ children }) {

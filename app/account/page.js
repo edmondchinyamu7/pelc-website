@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import AuthShell from '@/components/AuthShell';
 import SignOutButton from '@/components/SignOutButton';
 
-export const metadata = { title: 'Your account | PELC' };
+export const metadata = { title: 'Your account | NOVEX DIGITAL' };
 
 export default async function AccountPage() {
   const supabase = await createClient();

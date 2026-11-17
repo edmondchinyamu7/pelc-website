@@ -32,12 +32,12 @@ const events = [
     type: 'Founder Roundtable',
     date: 'Quarterly Gathering',
     description: 'Connect with local startup founders, SME operators, and tech leaders to explore how software and targeted advertising unlock revenue.',
-    location: 'PELC Studio / Partner Space',
+    location: 'NOVEX DIGITAL Studio / Partner Space',
   },
   {
     number: '04',
     icon: '★',
-    title: 'PELC Community & Developer Day',
+    title: 'NOVEX DIGITAL Community & Developer Day',
     type: 'Community Celebration',
     date: 'Annual Milestone',
     description: 'Celebrate collaborative creation, student mentorship, and the creators building dependable digital infrastructure.',
@@ -76,7 +76,7 @@ export default function Event() {
             Ideas that become <em>experiences.</em>
           </h1>
           <p className="event-hero-desc">
-            Explore our upcoming workshops, creative sessions, digital showcases, and opportunities to connect with the PELC community.
+            Explore our upcoming workshops, creative sessions, digital showcases, and opportunities to connect with the NOVEX DIGITAL community.
           </p>
           <div className="event-hero-actions">
             <a className="button button-lime" href="#events">
@@ -100,7 +100,7 @@ export default function Event() {
             Where technology, design, and <span>practical entrepreneurship</span> meet to share knowledge that matters.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            PELC<br />LIVE<br />EVENTS<span>✳</span>
+            NOVEX<br />LIVE<br />EVENTS<span>✳</span>
           </div>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function Event() {
                 <div className="rsvp-success-view">
                   <span className="success-badge">✓</span>
                   <h4>RSVP Confirmed!</h4>
-                  <p>Thank you for registering. We’ve sent your details to the PELC event coordination team.</p>
+                  <p>Thank you for registering. We’ve sent your details to the NOVEX DIGITAL event coordination team.</p>
                   <button
                     type="button"
                     className="button button-dark"
@@ -201,7 +201,7 @@ export default function Event() {
                       onChange={(e) => setRsvpName(e.target.value)}
                       placeholder="e.g. Peter Banda"
                       required
-                      style={{ width: '100%', padding: '11px 12px', border: '1px solid #dedfd5', borderRadius: '3px' }}
+                      style={{ width: '100%', padding: '11px 12px', border: '1px solid #e5dec9', borderRadius: '3px' }}
                     />
                   </div>
 
@@ -213,7 +213,7 @@ export default function Event() {
                       onChange={(e) => setRsvpEmail(e.target.value)}
                       placeholder="e.g. peter@example.com"
                       required
-                      style={{ width: '100%', padding: '11px 12px', border: '1px solid #dedfd5', borderRadius: '3px' }}
+                      style={{ width: '100%', padding: '11px 12px', border: '1px solid #e5dec9', borderRadius: '3px' }}
                     />
                   </div>
 
@@ -224,7 +224,7 @@ export default function Event() {
                     <button
                       type="button"
                       className="button button-outline"
-                      style={{ color: 'var(--ink)', borderColor: '#dedfd5' }}
+                      style={{ color: 'var(--ink)', borderColor: '#e5dec9' }}
                       onClick={() => setSelectedEvent(null)}
                     >
                       Cancel
@@ -241,9 +241,9 @@ export default function Event() {
       <section className="final-cta">
         <div className="cta-orb" aria-hidden="true" />
         <div className="page-width final-cta-inner">
-          <p className="eyebrow eyebrow-light"><span className="status-dot" /> HOST WITH PELC</p>
+          <p className="eyebrow eyebrow-light"><span className="status-dot" /> HOST WITH NOVEX DIGITAL</p>
           <h2>Be part of the next <em>experience.</em></h2>
-          <p>Have an event or workshop idea, or want to sponsor or collaborate with PELC? Let’s make it memorable together.</p>
+          <p>Have an event or workshop idea, or want to sponsor or collaborate with NOVEX DIGITAL? Let’s make it memorable together.</p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
             <Link className="button button-lime" href="/contact">
               Propose an Event Collaboration <span aria-hidden="true">↗</span>

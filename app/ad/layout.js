@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'AD | PELC',
-  description: 'Advertising Department at PELC.',
+  title: 'AD | NOVEX DIGITAL',
+  description: 'Digital Advertising Department at NOVEX DIGITAL.',
 };
 
 export default function AdLayout({ children }) {

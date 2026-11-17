@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'CPD | PELC',
-  description: 'Creative & Print Design Department at PELC.',
+  title: 'CPD | NOVEX DIGITAL',
+  description: 'Graphic Design, Branding & Publication Department at NOVEX DIGITAL.',
 };
 
 export default function CpdLayout({ children }) {

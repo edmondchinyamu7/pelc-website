@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'UD | PELC',
-  description: 'UI/UX Design Department at PELC.',
+  title: 'UD | NOVEX DIGITAL',
+  description: 'UX/UI Design Department at NOVEX DIGITAL.',
 };
 
 export default function UdLayout({ children }) {

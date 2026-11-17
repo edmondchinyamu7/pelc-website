@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="logo-icon">
             <Image
               src="/logo.jpg"
-              alt="PELC Company Logo"
+              alt="NOVEX DIGITAL Logo"
               width={90}
               height={90}
               sizes="90px"
@@ -28,11 +28,11 @@ export default function Footer() {
             />
           </div>
           <div className="logo-text">
-            <p>POPE EAD LEGACY COMPANY</p>
+            <p>NOVEX DIGITAL</p>
             <div className="tagline">
-              <span>Innovate</span>
-              <span>Create</span>
-              <span>Generate</span>
+              <span>New Ideas</span>
+              <span>New Possibilities</span>
+              <span>New Legacy</span>
             </div>
           </div>
         </div>
@@ -45,19 +45,19 @@ export default function Footer() {
         >
           <path
             d="M0,100 L1440,100 L1440,40 C1200,40 900,0 500,0 C250,0 100,40 0,100 Z"
-            fill="#0c211b"
+            fill="#11100d"
           />
         </svg>
       </div>
 
       <div className="footer-middle">
         <div className="footer-col">
-          <h3>PELC Company</h3>
+          <h3>NOVEX DIGITAL</h3>
           <p>
-            We are a digital solutions company focused on building a better tomorrow
-            through technology, creativity and innovation.
+            A digital solutions provider helping individuals, businesses, and organizations use
+            technology and creativity to solve problems and grow.
           </p>
-          <p className="quote">“Innovate. Create. Generate.”</p>
+          <p className="quote">“New Ideas. New Possibilities. New Legacy.”</p>
         </div>
 
         <div className="footer-col">
@@ -116,7 +116,7 @@ export default function Footer() {
         <SocialLinks theme="dark" size="default" />
         <div className="divider" />
         <div className="copyright">
-          <p>© {new Date().getFullYear()} POPE EAD LEGACY COMPANY (PELC). All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NOVEX DIGITAL. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'WDD | PELC',
-  description: 'Web Design & Development Department at PELC.',
+  title: 'WDD | NOVEX DIGITAL',
+  description: 'Website Development Department at NOVEX DIGITAL.',
 };
 
 export default function WddLayout({ children }) {

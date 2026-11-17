@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'SDD | PELC',
-  description: 'Software Development Department at PELC.',
+  title: 'SDD | NOVEX DIGITAL',
+  description: 'Software & Application Development Department at NOVEX DIGITAL.',
 };
 
 export default function SddLayout({ children }) {

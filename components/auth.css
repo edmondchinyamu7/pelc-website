@@ -78,7 +78,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--forest);
+  color: #9c7921;
 }
 
 .pelc-auth__title {
@@ -128,8 +128,8 @@
 
 .pelc-auth__input:focus {
   outline: none;
-  border-color: var(--forest);
-  box-shadow: 0 0 0 4px rgba(21, 56, 46, 0.12);
+  border-color: #b58d29;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.16);
 }
 
 .pelc-auth__error {
@@ -146,7 +146,7 @@
   margin-top: 4px;
   border: 0;
   border-radius: 12px;
-  background: var(--forest);
+  background: var(--forest-deep);
   color: var(--paper);
   font-size: 15px;
   font-weight: 600;
@@ -154,7 +154,7 @@
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.pelc-auth__button:hover { background: var(--forest-deep); }
+.pelc-auth__button:hover { background: #26221c; }
 .pelc-auth__button:active { transform: scale(0.99); }
 .pelc-auth__button:disabled { opacity: 0.6; cursor: not-allowed; }
 
@@ -178,7 +178,7 @@
 }
 
 .pelc-auth__footer a {
-  color: var(--forest);
+  color: #9c7921;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;

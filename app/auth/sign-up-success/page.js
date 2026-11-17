@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AuthShell from '@/components/AuthShell';
 
-export const metadata = { title: 'Check your email | PELC' };
+export const metadata = { title: 'Check your email | NOVEX DIGITAL' };
 
 export default function SignUpSuccessPage() {
   return (

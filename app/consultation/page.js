@@ -12,8 +12,9 @@ const servicesList = [
   { id: 'design', icon: '🎨', label: 'UX/UI & Brand Design', dept: 'UD', desc: 'Interface design, design systems, or brand visual identity.' },
   { id: 'advertising', icon: '📣', label: 'Paid Advertising', dept: 'AD', desc: 'Google, Meta, and LinkedIn targeted PPC ad campaigns.' },
   { id: 'marketing', icon: '📈', label: 'Organic Marketing & SEO', dept: 'MD', desc: 'SEO, content strategy, and long-term brand authority.' },
-  { id: 'creative', icon: '🖌️', label: 'Creative & Publications', dept: 'CPD', desc: 'Logos, publications, bulletins, and corporate collateral.' },
-  { id: 'comprehensive', icon: '✨', label: 'Full Digital Transformation', dept: 'PELC', desc: 'Comprehensive package combining multiple departments.' },
+  { id: 'creative', icon: '🖌️', label: 'Graphic Design & Publications', dept: 'CPD', desc: 'Logos, brand guidelines, publications, and corporate collateral.' },
+  { id: 'ai', icon: '🧠', label: 'AI Solutions & Tech Consultancy', dept: 'AI / DT', desc: 'AI automation, smart workflows, and technology advisory.' },
+  { id: 'comprehensive', icon: '✨', label: 'Full Digital Transformation', dept: 'NOVEX', desc: 'Comprehensive package combining multiple disciplines.' },
 ];
 
 export default function Consultation() {
@@ -108,7 +109,7 @@ export default function Consultation() {
     }
     const serviceObj = servicesList.find((s) => s.id === selectedService);
     const serviceName = serviceObj ? serviceObj.label : 'General Digital Project';
-    const text = `*New Consultation Request – PELC*%0A%0A*Service:* ${encodeURIComponent(serviceName)}%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Timeline:* ${encodeURIComponent(form.timeline)}%0A*Budget Range:* ${encodeURIComponent(form.budget)}%0A%0A*Project Details:*%0A${encodeURIComponent(form.project)}`;
+    const text = `*New Consultation Request – NOVEX DIGITAL*%0A%0A*Service:* ${encodeURIComponent(serviceName)}%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Timeline:* ${encodeURIComponent(form.timeline)}%0A*Budget Range:* ${encodeURIComponent(form.budget)}%0A%0A*Project Details:*%0A${encodeURIComponent(form.project)}`;
     window.open(`https://wa.me/265892236030?text=${text}`, '_blank');
     setSubmitted(true);
   };
@@ -161,7 +162,7 @@ export default function Consultation() {
                 <span className="success-badge">✓</span>
                 <h2>Consultation Booked!</h2>
                 <p>
-                  Thank you, <strong>{form.name || 'there'}</strong>. We have received your project details. Edmond Chinyamu and the PELC team will review your brief and follow up with available consultation slots.
+                  Thank you, <strong>{form.name || 'there'}</strong>. We have received your project details. Edmond Chinyamu and the NOVEX DIGITAL team will review your brief and follow up with available consultation slots.
                 </p>
                 <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link className="button button-dark" href="/">
@@ -363,7 +364,7 @@ export default function Consultation() {
                       <button
                         type="button"
                         className="button button-outline"
-                        style={{ color: 'var(--ink)', borderColor: '#dedfd5' }}
+                        style={{ color: 'var(--ink)', borderColor: '#e5dec9' }}
                         onClick={handlePrev}
                       >
                         ← Back
@@ -393,7 +394,7 @@ export default function Consultation() {
                       <button
                         type="button"
                         className="button button-outline"
-                        style={{ color: 'var(--ink)', borderColor: '#dedfd5' }}
+                        style={{ color: 'var(--ink)', borderColor: '#e5dec9' }}
                         onClick={handlePrev}
                       >
                         ← Previous

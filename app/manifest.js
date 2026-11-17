@@ -1,15 +1,15 @@
 export default function manifest() {
   return {
     id: '/',
-    name: 'PELC',
-    short_name: 'PELC',
+    name: 'NOVEX DIGITAL',
+    short_name: 'NOVEX',
     description:
-      'PELC is a digital studio based in Malawi. We design and build websites, apps, brands, and digital experiences that help businesses move forward.',
+      'NOVEX DIGITAL — New Ideas. New Possibilities. New Legacy. Websites, software, AI solutions, digital marketing, and branding.',
     start_url: '/',
     scope: '/',
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: '#102b24',
+    theme_color: '#11100d',
     icons: [
       {
         src: '/pwa-192x192.png',

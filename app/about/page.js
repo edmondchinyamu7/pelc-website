@@ -5,9 +5,9 @@ import Footer from '@/components/Footer';
 import OpenContactButton from '@/components/OpenContactButton';
 
 export const metadata = {
-  title: 'About | PELC',
+  title: 'About | NOVEX DIGITAL',
   description:
-    'POPE EAD LEGACY COMPANY is an independent digital studio based in Malawi bringing strategy, design, and technology together.',
+    'NOVEX DIGITAL is a digital solutions provider based in Malawi helping individuals, businesses, and organizations grow through technology and creativity.',
 };
 
 const values = [
@@ -38,7 +38,7 @@ export default function About() {
           </p>
           <h1>We make digital work feel <em>more human.</em></h1>
           <p className="about-hero-copy">
-            POPE EAD LEGACY COMPANY is an independent digital studio based in Malawi. We bring strategy, design, and technology together to help people turn good ideas into meaningful progress.
+            NOVEX DIGITAL is a digital solutions provider based in Malawi. We help individuals, businesses, and institutions use technology and creativity to solve problems, improve operations, and grow.
           </p>
           <div className="about-hero-meta">
             <span>Based in Malawi</span>
@@ -53,7 +53,7 @@ export default function About() {
           <div className="about-founder-frame">
             <Image
               src="/founder.png"
-              alt="Edmond Chinyamu, founder of POPE EAD LEGACY COMPANY"
+              alt="Edmond Chinyamu, founder of NOVEX DIGITAL"
               width={500}
               height={420}
               sizes="(max-width: 768px) 100vw, 45vw"
@@ -67,12 +67,12 @@ export default function About() {
             <p className="about-section-label">Who we are</p>
             <h2 className="about-heading">A dedicated team for <em>big possibilities.</em></h2>
             <p>
-              We started PELC with a simple belief: every business deserves thoughtful digital work, not an impersonal, one-size-fits-all template. We partner with startups, organizations, and growing businesses to make the internet work better for them.
+              We built NOVEX DIGITAL with a simple belief: every organization deserves thoughtful, dependable digital work—not an impersonal, one-size-fits-all template. We partner with startups, institutions, and growing businesses across Malawi and beyond.
             </p>
             <p>
-              From websites and software to design and marketing, we bring the right mix of skills to each challenge. We listen first, make a clear plan, and stay close from the first idea through launch and beyond.
+              From websites, software, and AI solutions to branding, marketing, and technology consultancy, we listen first, craft a practical plan, and stay close from concept through growth.
             </p>
-            <div className="about-signoff"><span /> Innovate · Create · Generate</div>
+            <div className="about-signoff"><span /> New Ideas · New Possibilities · New Legacy</div>
           </div>
         </div>
       </section>

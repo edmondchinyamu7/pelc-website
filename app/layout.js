@@ -15,19 +15,19 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport = {
-  themeColor: "#102b24",
+  themeColor: "#11100d",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata = {
-  title: "PELC",
+  title: "NOVEX DIGITAL",
   description:
-    "PELC is a digital studio based in Malawi. We design and build websites, apps, brands, and digital experiences that help businesses move forward.",
+    "NOVEX DIGITAL — New Ideas. New Possibilities. New Legacy. Digital solutions in website development, software, AI, marketing, branding, and technology consultancy.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "PELC",
+    title: "NOVEX DIGITAL",
   },
 };
 

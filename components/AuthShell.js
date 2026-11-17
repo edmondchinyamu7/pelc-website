@@ -5,14 +5,14 @@ export default function AuthShell({ eyebrow, title, description, children, foote
   return (
     <main className="pelc-auth">
       <aside className="pelc-auth__brand" aria-hidden="true">
-        <Link href="/" className="pelc-auth__logo">PELC</Link>
+        <Link href="/" className="pelc-auth__logo">NOVEX DIGITAL</Link>
         <div>
-          <p className="pelc-auth__tagline">Digital studio for what&apos;s next.</p>
+          <p className="pelc-auth__tagline">New Ideas. New Possibilities. New Legacy.</p>
           <p className="pelc-auth__sub">
-            Websites, software, brands and campaigns built in Malawi for businesses moving forward.
+            Websites, software, AI solutions, brands, and digital transformation built in Malawi for businesses moving forward.
           </p>
         </div>
-        <p className="pelc-auth__meta">Pope Ead Legacy Company</p>
+        <p className="pelc-auth__meta">NOVEX DIGITAL · Technology &amp; Creativity</p>
       </aside>
 
       <section className="pelc-auth__panel">

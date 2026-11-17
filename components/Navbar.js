@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useContactDrawer } from './ContactDrawerProvider';
 
 export default function Navbar({ onOpenContact, activePage = '', showContactButton = true }) {
@@ -9,7 +10,17 @@ export default function Navbar({ onOpenContact, activePage = '', showContactButt
 
   return (
     <nav className="navbar" aria-label="Main navigation">
-      <Link className="logo" href="/" aria-label="PELC home">PELC</Link>
+      <Link className="logo" href="/" aria-label="NOVEX DIGITAL home">
+        <Image
+          src="/logo.jpg"
+          alt="NOVEX DIGITAL logo"
+          width={34}
+          height={34}
+          referrerPolicy="no-referrer"
+          className="logo-mark"
+        />
+        <span>NOVEX <span className="logo-accent">DIGITAL</span></span>
+      </Link>
       <div className="nav-links">
         <Link href="/" className={activePage === 'home' ? 'nav-active' : ''}>Home</Link>
         <Link href="/about" className={activePage === 'about' ? 'nav-active' : ''}>About</Link>

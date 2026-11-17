@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Consultation | PELC',
-  description: 'Book a project consultation with the PELC team.',
+  title: 'Consultation | NOVEX DIGITAL',
+  description: 'Book a project consultation with the NOVEX DIGITAL team.',
 };
 
 export default function ConsultationLayout({ children }) {

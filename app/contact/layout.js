@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Contact | PELC',
-  description: 'Get in touch with PELC in Malawi for web, software, design, and marketing projects.',
+  title: 'Contact | NOVEX DIGITAL',
+  description: 'Get in touch with NOVEX DIGITAL in Malawi for website development, software, AI, design, and marketing projects.',
 };
 
 export default function ContactLayout({ children }) {

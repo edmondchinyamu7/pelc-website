@@ -135,7 +135,7 @@ export default function UD() {
             Good design is not decorative—it is how things work. We prioritize <span>clarity</span>, <span>accessibility</span>, and <span>subtle craft</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            PELC<br />UD<br />STUDIO<span>✳</span>
+            NOVEX<br />UD<br />STUDIO<span>✳</span>
           </div>
         </div>
       </section>
