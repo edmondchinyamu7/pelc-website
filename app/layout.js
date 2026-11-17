@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "PELC | Digital Studio for What’s Next",
+  title: "PELC",
   description:
     "PELC is a digital studio based in Malawi. We design and build websites, apps, brands, and digital experiences that help businesses move forward.",
 };
