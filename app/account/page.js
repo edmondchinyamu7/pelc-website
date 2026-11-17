@@ -7,6 +7,8 @@ export const metadata = { title: 'Your account | PELC' };
 
 export default async function AccountPage() {
   const supabase = await createClient();
+  if (!supabase) redirect('/auth/login');
+
   const {
     data: { user },
   } = await supabase.auth.getUser();

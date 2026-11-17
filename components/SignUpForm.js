@@ -39,6 +39,12 @@ export default function SignUpForm() {
 
     setIsLoading(true);
     const supabase = createClient();
+    if (!supabase) {
+      setError('Authentication is not configured yet. Please try again later.');
+      setIsLoading(false);
+      return;
+    }
+
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
