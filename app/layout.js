@@ -14,10 +14,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: "#102b24",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "PELC",
   description:
     "PELC is a digital studio based in Malawi. We design and build websites, apps, brands, and digital experiences that help businesses move forward.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "PELC",
+  },
 };
 
 export default function RootLayout({ children }) {
