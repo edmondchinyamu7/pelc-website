@@ -1,8 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { useContactDrawer } from './ContactDrawerProvider';
 
-export default function Navbar({ onOpenContact, activePage = '' }) {
+export default function Navbar({ onOpenContact, activePage = '', showContactButton = true }) {
+  const { openContact } = useContactDrawer();
+  const handleOpenContact = onOpenContact || openContact;
+
   return (
     <nav className="navbar" aria-label="Main navigation">
       <Link className="logo" href="/" aria-label="PELC home">PELC</Link>
@@ -13,10 +17,10 @@ export default function Navbar({ onOpenContact, activePage = '' }) {
         <Link href="/event" className={activePage === 'event' ? 'nav-active' : ''}>Event</Link>
         <Link href="/contact" className={activePage === 'contact' ? 'nav-active' : ''}>Contact</Link>
         <Link href="/auth/login">Log in</Link>
-        {onOpenContact && (
+        {showContactButton && (
           <button
             type="button"
-            onClick={onOpenContact}
+            onClick={handleOpenContact}
             className="nav-drawer-btn"
             aria-label="Open quick contact menu"
           >
@@ -25,46 +29,6 @@ export default function Navbar({ onOpenContact, activePage = '' }) {
           </button>
         )}
       </div>
-
-      <style jsx>{`
-        .nav-active {
-          color: var(--lime) !important;
-        }
-        .nav-drawer-btn {
-          padding: 6px 14px;
-          border: 1px solid var(--lime);
-          border-radius: 3px;
-          color: var(--forest-deep);
-          background: var(--lime);
-          font: inherit;
-          font-size: 13px;
-          font-weight: 700;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          margin-left: 6px;
-          transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-        }
-        .nav-drawer-btn:hover,
-        .nav-drawer-btn:focus-visible {
-          background: white;
-          border-color: white;
-          color: var(--forest-deep);
-          transform: translateY(-1px);
-        }
-        .btn-arrow {
-          font-size: 14px;
-          line-height: 1;
-        }
-        @media (max-width: 640px) {
-          .nav-drawer-btn {
-            padding: 5px 10px;
-            font-size: 11px;
-            margin-left: 0;
-          }
-        }
-      `}</style>
     </nav>
   );
 }

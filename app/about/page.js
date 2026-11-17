@@ -1,11 +1,14 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
-import ContactDrawer from '@/components/ContactDrawer';
 import Footer from '@/components/Footer';
+import OpenContactButton from '@/components/OpenContactButton';
+
+export const metadata = {
+  title: 'About | PELC',
+  description:
+    'POPE EAD LEGACY COMPANY is an independent digital studio based in Malawi bringing strategy, design, and technology together.',
+};
 
 const values = [
   { number: '01', title: 'Thoughtful craft', text: 'We care about the details—from the first conversation to the final pixel—because good work should feel considered at every step.' },
@@ -22,12 +25,9 @@ const process = [
 ];
 
 export default function About() {
-  const [contactOpen, setContactOpen] = useState(false);
-
   return (
     <main className="about-page">
-      <Navbar onOpenContact={() => setContactOpen(true)} activePage="about" />
-      <ContactDrawer isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+      <Navbar activePage="about" />
 
       {/* Hero */}
       <section className="about-hero">
@@ -56,6 +56,8 @@ export default function About() {
               alt="Edmond Chinyamu, founder of POPE EAD LEGACY COMPANY"
               width={500}
               height={420}
+              sizes="(max-width: 768px) 100vw, 45vw"
+              priority
               referrerPolicy="no-referrer"
               style={{ width: '100%', height: '420px', objectFit: 'cover', objectPosition: 'center 18%' }}
             />
@@ -152,301 +154,15 @@ export default function About() {
             <Link className="button button-lime" href="/consultation">
               Start a conversation <span aria-hidden="true">↗</span>
             </Link>
-            <button
-              type="button"
-              className="button button-outline"
-              onClick={() => setContactOpen(true)}
-            >
+            <OpenContactButton className="button button-outline">
               Get in touch <span aria-hidden="true">→</span>
-            </button>
+            </OpenContactButton>
           </div>
         </div>
         <span className="cta-decoration" aria-hidden="true">✳</span>
       </section>
 
       <Footer />
-
-      <style jsx>{`
-        .about-page {
-          color: var(--ink);
-          background: var(--paper);
-          line-height: 1.7;
-        }
-        .about-hero {
-          position: relative;
-          overflow: hidden;
-          padding: 95px 0 105px;
-          color: white;
-          background: radial-gradient(ellipse at 82% 18%, rgba(215,243,106,.13), transparent 30%), var(--forest-deep);
-        }
-        .about-hero h1 {
-          max-width: 850px;
-          margin: 0;
-          font-size: clamp(48px, 7vw, 82px);
-          line-height: 1.03;
-          letter-spacing: -4.5px;
-          font-weight: 620;
-        }
-        .about-hero h1 em, .about-heading em {
-          color: var(--lime);
-          font-family: Georgia, 'Times New Roman', serif;
-          font-weight: 400;
-        }
-        .about-hero-copy {
-          max-width: 600px;
-          margin: 24px 0 0;
-          color: #c0ccc3;
-          font-size: 15px;
-          line-height: 1.9;
-        }
-        .about-hero-meta {
-          margin-top: 36px;
-          display: flex;
-          gap: 30px;
-          color: #c1d0c3;
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.5px;
-        }
-        .about-hero-meta span + span::before {
-          margin-right: 12px;
-          color: var(--lime);
-          content: '✳';
-        }
-        .about-intro {
-          padding: 100px 0;
-        }
-        .about-intro-grid {
-          display: grid;
-          grid-template-columns: .85fr 1.15fr;
-          align-items: center;
-          gap: 9%;
-        }
-        .about-founder-frame {
-          min-height: 420px;
-          position: relative;
-          display: grid;
-          place-items: center;
-          overflow: hidden;
-          background: #e8eadf;
-          border-radius: 2px;
-        }
-        .about-founder-frame::before {
-          position: absolute;
-          z-index: 1;
-          inset: 18px;
-          border: 1px solid rgba(21,56,46,.18);
-          content: '';
-          pointer-events: none;
-        }
-        .about-founder-frame img {
-          width: 100%;
-          height: 420px;
-          object-fit: cover;
-          object-position: center 18%;
-        }
-        .about-photo-caption {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          padding: 16px 21px;
-          color: white;
-          background: linear-gradient(transparent, rgba(16,43,36,.88));
-          font-size: 10px;
-          letter-spacing: .5px;
-          font-weight: 700;
-        }
-        .about-section-label {
-          margin: 0 0 17px;
-          color: #718e2b;
-          font-size: 10px;
-          font-weight: 750;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-        }
-        .about-heading {
-          margin: 0;
-          font-size: clamp(37px, 4.5vw, 56px);
-          line-height: 1.08;
-          letter-spacing: -3px;
-          font-weight: 620;
-        }
-        .about-copy p {
-          margin: 19px 0 0;
-          color: var(--muted);
-          font-size: 13px;
-          line-height: 1.9;
-        }
-        .about-signoff {
-          margin-top: 26px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          color: var(--forest);
-          font-size: 11px;
-          font-weight: 700;
-        }
-        .about-signoff span {
-          width: 28px;
-          height: 1px;
-          background: #829b42;
-        }
-        .about-purpose {
-          padding: 84px 0;
-          background: #edefe5;
-        }
-        .about-purpose-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 24px;
-        }
-        .about-purpose-card {
-          min-height: 250px;
-          padding: 33px;
-          border: 1px solid #dfe1d7;
-          background: var(--paper);
-        }
-        .about-purpose-card h2 {
-          margin: 18px 0 12px;
-          font-size: 26px;
-          letter-spacing: -.8px;
-          line-height: 1.2;
-          font-weight: 650;
-        }
-        .about-purpose-card p {
-          max-width: 470px;
-          margin: 0;
-          color: var(--muted);
-          font-size: 13px;
-          line-height: 1.85;
-        }
-        .about-values {
-          padding: 108px 0;
-        }
-        .about-values-heading {
-          max-width: 620px;
-        }
-        .about-values-heading > p:last-child {
-          max-width: 490px;
-          margin: 18px 0 0;
-          color: var(--muted);
-          font-size: 13px;
-          line-height: 1.9;
-        }
-        .about-values-grid {
-          margin-top: 43px;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          border-top: 1px solid var(--line);
-          border-left: 1px solid var(--line);
-        }
-        .about-value-card {
-          min-height: 216px;
-          padding: 26px 22px;
-          border-right: 1px solid var(--line);
-          border-bottom: 1px solid var(--line);
-          background: white;
-          transition: background 0.2s ease;
-        }
-        .about-value-card:hover {
-          background: #f4f6eb;
-        }
-        .about-value-card span {
-          color: #829b42;
-          font-size: 9px;
-          font-weight: 750;
-          letter-spacing: 1px;
-        }
-        .about-value-card h3 {
-          margin: 22px 0 9px;
-          font-size: 18px;
-          letter-spacing: -.4px;
-          font-weight: 650;
-        }
-        .about-value-card p {
-          margin: 0;
-          color: var(--muted);
-          font-size: 11px;
-          line-height: 1.8;
-        }
-        .about-process {
-          padding: 95px 0;
-          color: white;
-          background: var(--forest);
-        }
-        .about-process-grid {
-          display: grid;
-          grid-template-columns: .8fr 1.2fr;
-          gap: 10%;
-        }
-        .about-process-intro {
-          max-width: 390px;
-          margin: 18px 0 0;
-          color: #bfcdc2;
-          font-size: 13px;
-          line-height: 1.9;
-        }
-        .about-process-list {
-          border-top: 1px solid rgba(255,255,255,.2);
-        }
-        .about-process-step {
-          min-height: 84px;
-          padding: 18px 0;
-          display: grid;
-          grid-template-columns: 42px 1fr;
-          gap: 12px;
-          border-bottom: 1px solid rgba(255,255,255,.2);
-        }
-        .about-process-step > span {
-          padding-top: 3px;
-          color: var(--lime);
-          font-size: 11px;
-          font-weight: 700;
-        }
-        .about-process-step h3 {
-          margin: 0 0 6px;
-          font-size: 16px;
-          font-weight: 650;
-        }
-        .about-process-step p {
-          max-width: 460px;
-          margin: 0;
-          color: #bfcdc2;
-          font-size: 12px;
-          line-height: 1.8;
-        }
-        @media (max-width: 1024px) {
-          .about-values-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 768px) {
-          .about-intro-grid, .about-process-grid {
-            grid-template-columns: 1fr;
-            gap: 36px;
-          }
-          .about-founder-frame, .about-founder-frame img {
-            min-height: 360px;
-            height: 360px;
-          }
-          .about-purpose-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-        @media (max-width: 640px) {
-          .about-hero {
-            padding: 70px 0 65px;
-          }
-          .about-hero h1 {
-            font-size: clamp(42px, 11vw, 58px);
-            letter-spacing: -3px;
-          }
-          .about-values-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </main>
   );
 }

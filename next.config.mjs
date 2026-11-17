@@ -2,6 +2,9 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  experimental: {
+    optimizePackageImports: ["react-icons", "lucide-react"],
+  },
   turbopack: {
     rules: {
       "*.css": {

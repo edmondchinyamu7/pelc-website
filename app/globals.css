@@ -33,7 +33,11 @@ button { font: inherit; }
 .navbar .logo { color: var(--lime); font-size: 24px; font-weight: 800; letter-spacing: .3px; }
 .nav-links { display: flex; gap: 30px; align-items: center; }
 .nav-links a { color: white; font-size: 15px; font-weight: 550; transition: color .2s ease; }
-.nav-links a:hover, .nav-links a:focus-visible { color: var(--lime); }
+.nav-links a:hover, .nav-links a:focus-visible, .nav-links a.nav-active { color: var(--lime); }
+.nav-drawer-btn { padding: 6px 14px; border: 1px solid var(--lime); border-radius: 3px; color: var(--forest-deep); background: var(--lime); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-left: 6px; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.nav-drawer-btn:hover, .nav-drawer-btn:focus-visible { background: white; border-color: white; color: var(--forest-deep); transform: translateY(-1px); }
+.nav-drawer-btn .btn-arrow { font-size: 14px; line-height: 1; }
+@media (max-width: 640px) { .nav-drawer-btn { padding: 5px 10px; font-size: 11px; margin-left: 0; } }
 
 .hero { min-height: 680px; position: relative; isolation: isolate; overflow: hidden; background: var(--forest-deep); color: white; }
 .hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 68% 47%, rgba(73,119,74,.18), transparent 43%), linear-gradient(110deg, transparent 53%, rgba(255,255,255,.018) 53.1%, transparent 53.3%); }

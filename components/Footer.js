@@ -22,6 +22,7 @@ export default function Footer() {
               alt="PELC Company Logo"
               width={90}
               height={90}
+              sizes="90px"
               referrerPolicy="no-referrer"
               style={{ borderRadius: '50%', objectFit: 'contain' }}
             />
