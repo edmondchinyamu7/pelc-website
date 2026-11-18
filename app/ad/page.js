@@ -135,7 +135,7 @@ export default function AD() {
             We eliminate wasted ad spend through <span>rigorous targeting</span>, <span>persuasive copy</span>, and <span>daily optimization</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />AD<br />SCALE<span>✳</span>
+            NEOPAD<br />AD<br />SCALE<span>✳</span>
           </div>
         </div>
       </section>
