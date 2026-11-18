@@ -32,12 +32,12 @@ const events = [
     type: 'Founder Roundtable',
     date: 'Quarterly Gathering',
     description: 'Connect with local startup founders, SME operators, and tech leaders to explore how software and targeted advertising unlock revenue.',
-    location: 'NOVEX DIGITAL Studio / Partner Space',
+    location: 'NEOPAD STUDIO Studio / Partner Space',
   },
   {
     number: '04',
     icon: '★',
-    title: 'NOVEX DIGITAL Community & Developer Day',
+    title: 'NEOPAD STUDIO Community & Developer Day',
     type: 'Community Celebration',
     date: 'Annual Milestone',
     description: 'Celebrate collaborative creation, student mentorship, and the creators building dependable digital infrastructure.',
@@ -76,7 +76,7 @@ export default function Event() {
             Ideas that become <em>experiences.</em>
           </h1>
           <p className="event-hero-desc">
-            Explore our upcoming workshops, creative sessions, digital showcases, and opportunities to connect with the NOVEX DIGITAL community.
+            Explore our upcoming workshops, creative sessions, digital showcases, and opportunities to connect with the NEOPAD STUDIO community.
           </p>
           <div className="event-hero-actions">
             <a className="button button-lime" href="#events">
@@ -100,7 +100,7 @@ export default function Event() {
             Where technology, design, and <span>practical entrepreneurship</span> meet to share knowledge that matters.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />LIVE<br />EVENTS<span>✳</span>
+            NEOPAD<br />LIVE<br />EVENTS<span>✳</span>
           </div>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function Event() {
                 <div className="rsvp-success-view">
                   <span className="success-badge">✓</span>
                   <h4>RSVP Confirmed!</h4>
-                  <p>Thank you for registering. We’ve sent your details to the NOVEX DIGITAL event coordination team.</p>
+                  <p>Thank you for registering. We’ve sent your details to the NEOPAD STUDIO event coordination team.</p>
                   <button
                     type="button"
                     className="button button-dark"
@@ -241,9 +241,9 @@ export default function Event() {
       <section className="final-cta">
         <div className="cta-orb" aria-hidden="true" />
         <div className="page-width final-cta-inner">
-          <p className="eyebrow eyebrow-light"><span className="status-dot" /> HOST WITH NOVEX DIGITAL</p>
+          <p className="eyebrow eyebrow-light"><span className="status-dot" /> HOST WITH NEOPAD STUDIO</p>
           <h2>Be part of the next <em>experience.</em></h2>
-          <p>Have an event or workshop idea, or want to sponsor or collaborate with NOVEX DIGITAL? Let’s make it memorable together.</p>
+          <p>Have an event or workshop idea, or want to sponsor or collaborate with NEOPAD STUDIO? Let’s make it memorable together.</p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
             <Link className="button button-lime" href="/contact">
               Propose an Event Collaboration <span aria-hidden="true">↗</span>
