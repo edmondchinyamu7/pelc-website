@@ -135,7 +135,7 @@ export default function SDD() {
             From workflow bottlenecks to scalable customer apps, we engineer <span>robust software</span> that pays for itself.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />SDD<br />ENGINE<span>✳</span>
+            NEOPAD<br />SDD<br />ENGINE<span>✳</span>
           </div>
         </div>
       </section>
