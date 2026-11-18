@@ -12,6 +12,12 @@ export default function manifest() {
     theme_color: '#11100d',
     icons: [
       {
+        src: '/neopad-mark.svg',
+        sizes: 'any',
+        type: 'image/svg+xml',
+        purpose: 'any',
+      },
+      {
         src: '/pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
