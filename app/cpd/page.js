@@ -135,7 +135,7 @@ export default function CPD() {
             Whether on screen or in print, design should feel <span>intentional</span>, <span>durable</span>, and <span>crafted with pride</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />CPD<br />PRESS<span>✳</span>
+            NEOPAD<br />CPD<br />PRESS<span>✳</span>
           </div>
         </div>
       </section>
