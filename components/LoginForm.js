@@ -47,7 +47,16 @@ export default function LoginForm() {
       return;
     }
 
-    router.push('/account');
+    const nextParam =
+      typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search).get('next')
+        : null;
+    const safeNext =
+      nextParam && nextParam.startsWith('/') && !nextParam.startsWith('//')
+        ? nextParam
+        : '/account';
+
+    router.push(safeNext);
     router.refresh();
   };
 
