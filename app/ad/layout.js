@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'AD | NOVEX DIGITAL',
-  description: 'Digital Advertising Department at NOVEX DIGITAL.',
+  title: 'AD | NEOPAD STUDIO',
+  description: 'Digital Advertising Department at NEOPAD STUDIO.',
 };
 
 export default function AdLayout({ children }) {
