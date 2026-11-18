@@ -21,13 +21,13 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "NOVEX DIGITAL",
+  title: "NEOPAD STUDIO",
   description:
-    "NOVEX DIGITAL — New Ideas. New Possibilities. New Legacy. Digital solutions in website development, software, AI, marketing, branding, and technology consultancy.",
+    "NEOPAD STUDIO is a creative digital and technology studio helping individuals, businesses, organisations, and entrepreneurs turn ideas into practical digital solutions through website development, software and applications, digital marketing and advertising, graphic design and branding, AI, and digital consultancy.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "NOVEX DIGITAL",
+    title: "NEOPAD STUDIO",
   },
 };
 
