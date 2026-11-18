@@ -23,7 +23,7 @@ export default function Navbar({ onOpenContact, activePage = '', showContactButt
         onClick={() => setMenuOpen((open) => !open)}>
         <span /><span /><span />
       </button>
-      <div id="primary-navigation" className={'nav-links' + (menuOpen ? ' is-open' : '')}>
+      {menuOpen && <button type="button" className="nav-menu-backdrop" aria-label="Close navigation menu" onClick={closeMenu} />}\n      <div id="primary-navigation" className={'nav-links' + (menuOpen ? ' is-open' : '')}>
         <Link href="/" className={activePage === 'home' ? 'nav-active' : ''} onClick={closeMenu}>Home</Link>
         <Link href="/about" className={activePage === 'about' ? 'nav-active' : ''} onClick={closeMenu}>About</Link>
         <Link href="/services" className={activePage === 'services' ? 'nav-active' : ''} onClick={closeMenu}>Services</Link>
