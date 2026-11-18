@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="logo-icon">
             <Image
               src="/logo.jpg"
-              alt="NOVEX DIGITAL Logo"
+              alt="NEOPAD STUDIO Logo"
               width={90}
               height={90}
               sizes="90px"
@@ -28,7 +28,7 @@ export default function Footer() {
             />
           </div>
           <div className="logo-text">
-            <p>NOVEX DIGITAL</p>
+            <p>NEOPAD STUDIO</p>
             <div className="tagline">
               <span>New Ideas</span>
               <span>New Possibilities</span>
@@ -52,12 +52,12 @@ export default function Footer() {
 
       <div className="footer-middle">
         <div className="footer-col">
-          <h3>NOVEX DIGITAL</h3>
+          <h3>NEOPAD STUDIO</h3>
           <p>
             A digital solutions provider helping individuals, businesses, and organizations use
             technology and creativity to solve problems and grow.
           </p>
-          <p className="quote">“New Ideas. New Possibilities. New Legacy.”</p>
+          <p className="quote">“New Ideas. New Possibilities. New legacy”</p>
         </div>
 
         <div className="footer-col">
@@ -116,7 +116,7 @@ export default function Footer() {
         <SocialLinks theme="dark" size="default" />
         <div className="divider" />
         <div className="copyright">
-          <p>© {new Date().getFullYear()} NOVEX DIGITAL. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NEOPAD STUDIO. All rights reserved.</p>
         </div>
       </div>
     </footer>
