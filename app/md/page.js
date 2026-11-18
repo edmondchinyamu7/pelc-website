@@ -135,7 +135,7 @@ export default function MD() {
             Real marketing is about <span>trust</span>, <span>resonance</span>, and <span>consistent presence</span> that creates durable organic equity.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />MD<br />GROWTH<span>✳</span>
+            NEOPAD<br />MD<br />GROWTH<span>✳</span>
           </div>
         </div>
       </section>
