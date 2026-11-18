@@ -12,7 +12,7 @@ export default function Navbar({ onOpenContact, activePage = '', showContactButt
     <nav className="navbar" aria-label="Main navigation">
       <Link className="logo" href="/" aria-label="NEOPAD STUDIO home">
         <Image
-          src="/logo.jpg"
+          src="/neopad-mark.svg"
           alt="NEOPAD STUDIO logo"
           width={34}
           height={34}
