@@ -5,9 +5,9 @@ import Footer from '@/components/Footer';
 import OpenContactButton from '@/components/OpenContactButton';
 
 export const metadata = {
-  title: 'About | NOVEX DIGITAL',
+  title: 'About | NEOPAD STUDIO',
   description:
-    'NOVEX DIGITAL is a digital solutions provider based in Malawi helping individuals, businesses, and organizations grow through technology and creativity.',
+    'NEOPAD STUDIO is a digital solutions provider based in Malawi helping individuals, businesses, and organizations grow through technology and creativity.',
 };
 
 const values = [
@@ -38,7 +38,7 @@ export default function About() {
           </p>
           <h1>We make digital work feel <em>more human.</em></h1>
           <p className="about-hero-copy">
-            NOVEX DIGITAL is a digital solutions provider based in Malawi. We help individuals, businesses, and institutions use technology and creativity to solve problems, improve operations, and grow.
+            NEOPAD STUDIO is a creative digital and technology studio focused on helping individuals, businesses, organisations, and entrepreneurs turn ideas into practical digital solutions. We combine technology, creativity, innovation, and strategic thinking to build digital experiences that help people and businesses grow.
           </p>
           <div className="about-hero-meta">
             <span>Based in Malawi</span>
@@ -53,7 +53,7 @@ export default function About() {
           <div className="about-founder-frame">
             <Image
               src="/founder.png"
-              alt="Edmond Chinyamu, founder of NOVEX DIGITAL"
+              alt="Edmond Chinyamu, founder of NEOPAD STUDIO"
               width={500}
               height={420}
               sizes="(max-width: 768px) 100vw, 45vw"
@@ -65,14 +65,14 @@ export default function About() {
           </div>
           <div className="about-copy">
             <p className="about-section-label">Who we are</p>
-            <h2 className="about-heading">A dedicated team for <em>big possibilities.</em></h2>
+            <h2 className="about-heading">A creative technology studio for <em>new possibilities.</em></h2>
             <p>
-              We built NOVEX DIGITAL with a simple belief: every organization deserves thoughtful, dependable digital work—not an impersonal, one-size-fits-all template. We partner with startups, institutions, and growing businesses across Malawi and beyond.
+              NEOPAD STUDIO brings technology and creativity together to turn ideas into practical digital solutions. We work with individuals, businesses, organisations, and entrepreneurs, shaping each project around its purpose and the people it needs to serve.
             </p>
             <p>
-              From websites, software, and AI solutions to branding, marketing, and technology consultancy, we listen first, craft a practical plan, and stay close from concept through growth.
+              Our services include website development; software and application development; digital marketing and advertising; graphic design and branding; AI and technology solutions; and digital consultancy. We listen first, develop a clear direction, and work collaboratively from concept to delivery.
             </p>
-            <div className="about-signoff"><span /> New Ideas · New Possibilities · New Legacy</div>
+            <div className="about-signoff"><span /> New Ideas · New Possibilities · New legacy</div>
           </div>
         </div>
       </section>
