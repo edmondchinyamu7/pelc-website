@@ -10,16 +10,16 @@ export default function Navbar({ onOpenContact, activePage = '', showContactButt
 
   return (
     <nav className="navbar" aria-label="Main navigation">
-      <Link className="logo" href="/" aria-label="NOVEX DIGITAL home">
+      <Link className="logo" href="/" aria-label="NEOPAD STUDIO home">
         <Image
           src="/logo.jpg"
-          alt="NOVEX DIGITAL logo"
+          alt="NEOPAD STUDIO logo"
           width={34}
           height={34}
           referrerPolicy="no-referrer"
           className="logo-mark"
         />
-        <span>NOVEX <span className="logo-accent">DIGITAL</span></span>
+        <span>NEOPAD <span className="logo-accent">DIGITAL</span></span>
       </Link>
       <div className="nav-links">
         <Link href="/" className={activePage === 'home' ? 'nav-active' : ''}>Home</Link>
