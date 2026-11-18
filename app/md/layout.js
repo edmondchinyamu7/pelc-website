@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'MD | NOVEX DIGITAL',
-  description: 'Digital Marketing Department at NOVEX DIGITAL.',
+  title: 'MD | NEOPAD STUDIO',
+  description: 'Digital Marketing Department at NEOPAD STUDIO.',
 };
 
 export default function MdLayout({ children }) {
