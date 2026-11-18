@@ -14,7 +14,7 @@ export default function Contact() {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: "Hello! 👋 I'm <strong>NEOPAD Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
+      text: "Hello! 👋 I'm <strong>NEOPAD STUDIO Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -332,7 +332,7 @@ export default function Contact() {
               <div className="assistant-header">
                 <div className="assistant-avatar">🤖</div>
                 <div>
-                  <h4>NEOPAD Assistant</h4>
+                  <h4>NEOPAD STUDIO Assistant</h4>
                   <span className="assistant-status">Online · Instant Answers</span>
                 </div>
               </div>
