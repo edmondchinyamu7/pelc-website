@@ -107,14 +107,14 @@ export default function Home() {
         <div className="hero-grain" aria-hidden="true" />
         <div className="hero-inner page-width">
           <div className="hero-copy">
-            <p className="eyebrow eyebrow-light"><span className="status-dot" /> NOVEX DIGITAL · Malawi and beyond</p>
-            <h1 id="hero-title">Good ideas deserve <em>great digital.</em></h1>
-            <p className="hero-intro">We combine technology, AI, software, and creative branding to help individuals, businesses, and institutions operate smarter and grow.</p>
+            <p className="eyebrow eyebrow-light"><span className="status-dot" /> NEOPAD STUDIO · Malawi and beyond</p>
+            <h1 id="hero-title">New ideas deserve <em>new possibilities.</em></h1>
+            <p className="hero-intro">NEOPAD STUDIO combines technology, creativity, innovation, and strategic thinking to help individuals, businesses, organisations, and entrepreneurs turn ideas into practical digital solutions.</p>
             <div className="hero-actions">
               <Link className="button button-lime" href="/consultation">Tell us what you’re building <Arrow diagonal /></Link>
               <a className="text-link text-link-light" href="#services">Explore what we do <Arrow /></a>
             </div>
-            <div className="hero-note"><span className="note-line" /> New Ideas. New Possibilities. New Legacy.</div>
+            <div className="hero-note"><span className="note-line" /> New Ideas. New Possibilities. New legacy</div>
           </div>
           <div className="hero-art" aria-label="Illustration of a digital product taking shape" role="img">
             <div className="art-orbit orbit-one" />
@@ -126,7 +126,7 @@ export default function Home() {
                 <span className="art-menu">•••</span>
               </div>
               <div className="art-card-body">
-                <div className="art-label">NOVEX DIGITAL</div>
+                <div className="art-label">NEOPAD STUDIO</div>
                 <div className="art-headline">Make your<br /><span>next move</span><br />matter.</div>
                 <div className="art-lines"><i /><i /><i /></div>
                 <div className="art-button">Let’s begin <Arrow diagonal /></div>
@@ -147,7 +147,7 @@ export default function Home() {
 
       <section className="intro-strip" aria-label="Our approach">
         <div className="page-width intro-inner">
-          <p>We turn <span>new ideas</span> into useful digital solutions—with strategy, technology, and creativity at every step.</p>
+          <p>We turn <span>new ideas</span> into practical digital experiences through thoughtful technology, creative design, and strategic thinking.</p>
           <div className="intro-stamp" aria-hidden="true">NEW IDEAS<br />NEW POSSIBILITIES<br />NEW LEGACY<span>✳</span></div>
         </div>
       </section>
@@ -161,7 +161,7 @@ export default function Home() {
               <h2>One trusted partner.<br /><em>Explore our solutions.</em></h2>
             </div>
             <div className="section-aside">
-              <p>From websites and custom software to AI solutions, branding, and digital transformation, we build what moves your organization forward.</p>
+              <p>From website and application development to digital marketing and advertising, graphic design, AI solutions, and digital consultancy, we bring creative and technology services together.</p>
               <Link className="text-link" href="/services">Discover all our services <Arrow /></Link>
             </div>
           </div>
