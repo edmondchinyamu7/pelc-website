@@ -7,7 +7,7 @@ import OpenContactButton from '@/components/OpenContactButton';
 export const metadata = {
   title: 'About | NEOPAD STUDIO',
   description:
-    'NEOPAD STUDIO is a digital solutions provider based in Malawi helping individuals, businesses, and organizations grow through technology and creativity.',
+    'NEOPAD STUDIO is a creative digital and technology studio focused on helping individuals, businesses, organisations, and entrepreneurs turn ideas into practical digital solutions. We combine technology, creativity, innovation, and strategic thinking to build digital experiences that help people and businesses grow.',
 };
 
 const values = [
