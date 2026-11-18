@@ -14,7 +14,7 @@ export default function Contact() {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: "Hello! 👋 I'm <strong>NOVEX Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
+      text: "Hello! 👋 I'm <strong>NEOPAD Assistant</strong>. How can I help you today? You can ask about our <strong>services</strong>, <strong>pricing</strong>, <strong>consultations</strong>, or how to reach Edmond and the team.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -30,7 +30,7 @@ export default function Contact() {
     const t = text.toLowerCase().trim();
 
     if (/^(hi|hey|hello|good (morning|afternoon|evening)|howdy|yo|hola|sup)\b/i.test(t)) {
-      return "Hello! 👋 Welcome to <strong>NOVEX DIGITAL</strong>. How can I assist you today?<br><br>Feel free to ask about our <strong>web development</strong>, <strong>software</strong>, <strong>AI solutions</strong>, <strong>branding</strong>, or booking a <strong>consultation</strong>.";
+      return "Hello! 👋 Welcome to <strong>NEOPAD STUDIO</strong>, a creative digital and technology studio. How can I assist you today?<br><br>Feel free to ask about our <strong>web development</strong>, <strong>software</strong>, <strong>AI solutions</strong>, <strong>branding</strong>, or booking a <strong>consultation</strong>.";
     }
 
     if (/service|offer|what do you do/i.test(t)) {
@@ -66,7 +66,7 @@ export default function Contact() {
     }
 
     if (t.includes('founder') || t.includes('owner') || t.includes('edmond') || t.includes('novex') || t.includes('pope ead')) {
-      return "NOVEX DIGITAL was founded by <strong>Edmond Chinyamu</strong>, an engineer and creative director passionate about helping businesses and institutions grow through technology and creativity.";
+      return "NEOPAD STUDIO was founded by <strong>Edmond Chinyamu</strong>, an engineer and creative director passionate about helping businesses and institutions grow through technology and creativity.";
     }
 
     return "Thank you for asking! For detailed questions or to review your specific project brief, you can message our team on WhatsApp or send an email to <a href='mailto:popeeadlegacycompany@gmail.com' style='color:#9c7921;font-weight:700;'>popeeadlegacycompany@gmail.com</a>.";
@@ -129,7 +129,7 @@ export default function Contact() {
       setErrorMessage('Please enter your name and message before launching WhatsApp.');
       return;
     }
-    const text = `*New Contact Message – NOVEX DIGITAL*%0A%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Subject:* ${encodeURIComponent(form.subject || 'General Inquiry')}%0A%0A*Message:*%0A${encodeURIComponent(form.message)}`;
+    const text = `*New Contact Message – NEOPAD STUDIO*%0A%0A*Name:* ${encodeURIComponent(form.name)}%0A*Email:* ${encodeURIComponent(form.email)}%0A${form.phone ? `*Phone:* ${encodeURIComponent(form.phone)}%0A` : ''}*Subject:* ${encodeURIComponent(form.subject || 'General Inquiry')}%0A%0A*Message:*%0A${encodeURIComponent(form.message)}`;
     window.open(`https://wa.me/265892236030?text=${text}`, '_blank');
     setSubmitted(true);
   };
@@ -170,7 +170,7 @@ export default function Contact() {
             Fast replies on <span>WhatsApp</span>, detailed scopes by <span>email</span>, or in-person meetings in <span>Malawi</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />DIRECT<br />DESK<span>✳</span>
+            NEOPAD<br />DIRECT<br />DESK<span>✳</span>
           </div>
         </div>
       </section>
@@ -332,7 +332,7 @@ export default function Contact() {
               <div className="assistant-header">
                 <div className="assistant-avatar">🤖</div>
                 <div>
-                  <h4>NOVEX Assistant</h4>
+                  <h4>NEOPAD Assistant</h4>
                   <span className="assistant-status">Online · Instant Answers</span>
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default function Contact() {
           <div className="social-presence-card">
             <div className="social-presence-header">
               <p className="eyebrow"><span className="eyebrow-mark">02</span> Official Social Channels</p>
-              <h2>Connect &amp; Follow NOVEX DIGITAL</h2>
+              <h2>Connect &amp; Follow NEOPAD STUDIO</h2>
               <p>Stay informed with our newest software projects, open source tools, design insights, and masterclasses across all major platforms.</p>
             </div>
             <div className="social-presence-grid">
