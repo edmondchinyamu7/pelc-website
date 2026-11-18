@@ -94,6 +94,7 @@ export default function Contact() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (status === 'sending') return;
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setErrorMessage('Please fill in your name, email, and message.');
       return;
@@ -102,25 +103,33 @@ export default function Contact() {
     setStatus('sending');
 
     try {
-      const formData = new FormData();
-      Object.entries(form).forEach(([k, v]) => formData.append(k, v));
-      formData.append('type', 'General Contact Form');
-
-      const res = await fetch('https://formspree.io/f/xyezboed', {
+      const res = await fetch('/api/inquiries', {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          department: 'general',
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          subject: form.subject,
+          message: form.message,
+        }),
       });
 
+      const payload = await res.json().catch(() => ({}));
       if (res.ok) {
         setStatus('success');
         setSubmitted(true);
       } else {
-        throw new Error('Failed');
+        throw new Error(payload.error || 'Failed to send');
       }
-    } catch {
+    } catch (err) {
       setStatus('error');
-      setErrorMessage('Could not send automatically. Please reach us via WhatsApp or email directly below.');
+      setErrorMessage(
+        err instanceof Error && err.message && err.message !== 'Failed to send'
+          ? err.message
+          : 'Could not send automatically. Please reach us via WhatsApp or email directly below.',
+      );
     }
   };
 

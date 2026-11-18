@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { getAuthRedirectUrl } from '@/lib/supabase/redirect';
 
 function signUpErrorMessage(error) {
   const { code, status } = error ?? {};
@@ -45,13 +46,11 @@ export default function SignUpForm() {
       return;
     }
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo:
-          process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
-          `${window.location.origin}/auth/callback`,
+        emailRedirectTo: getAuthRedirectUrl('/account'),
       },
     });
 
@@ -59,6 +58,12 @@ export default function SignUpForm() {
       console.error('Sign-up error:', signUpError);
       setError(signUpErrorMessage(signUpError));
       setIsLoading(false);
+      return;
+    }
+
+    if (data?.session) {
+      router.push('/account');
+      router.refresh();
       return;
     }
 

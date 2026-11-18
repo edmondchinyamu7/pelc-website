@@ -141,6 +141,31 @@
   font-size: 14px;
 }
 
+.pelc-auth__success {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--lime-soft);
+  color: var(--ink);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  font-size: 14px;
+}
+
+.pelc-auth__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pelc-auth__inline-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9c7921;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .pelc-auth__button {
   height: 48px;
   margin-top: 4px;

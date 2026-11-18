@@ -71,6 +71,7 @@ export default function Consultation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (status === 'sending') return;
     if (!form.name.trim() || !form.email.trim()) {
       setValidationError('Please provide your name and email address.');
       return;
@@ -79,26 +80,29 @@ export default function Consultation() {
     setStatus('sending');
 
     try {
-      const formData = new FormData();
-      formData.append('service', selectedService);
-      Object.entries(form).forEach(([k, v]) => formData.append(k, v));
-      formData.append('type', 'Consultation Booking');
-
-      const res = await fetch('https://formspree.io/f/xyezboed', {
+      const res = await fetch('/api/consultations', {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          service: selectedService,
+          ...form,
+        }),
       });
 
+      const payload = await res.json().catch(() => ({}));
       if (res.ok) {
         setStatus('success');
         setSubmitted(true);
       } else {
-        throw new Error('Failed');
+        throw new Error(payload.error || 'Failed');
       }
-    } catch {
+    } catch (err) {
       setStatus('error');
-      setValidationError('Could not send automatically. Please use the WhatsApp button below or email us directly.');
+      setValidationError(
+        err instanceof Error && err.message && err.message !== 'Failed'
+          ? err.message
+          : 'Could not send automatically. Please use the WhatsApp button below or email us directly.',
+      );
     }
   };
 

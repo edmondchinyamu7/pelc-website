@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
@@ -66,7 +67,12 @@ export default function LoginForm() {
         />
       </div>
       <div className="pelc-auth__field">
-        <label className="pelc-auth__label" htmlFor="password">Password</label>
+        <div className="pelc-auth__label-row">
+          <label className="pelc-auth__label" htmlFor="password">Password</label>
+          <Link href="/auth/forgot-password" className="pelc-auth__inline-link">
+            Forgot password?
+          </Link>
+        </div>
         <input
           id="password"
           className="pelc-auth__input"

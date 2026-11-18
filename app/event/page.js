@@ -50,14 +50,54 @@ export default function Event() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [rsvpName, setRsvpName] = useState('');
   const [rsvpEmail, setRsvpEmail] = useState('');
+  const [rsvpStatus, setRsvpStatus] = useState('idle');
+  const [rsvpError, setRsvpError] = useState('');
   const [rsvpSuccess, setRsvpSuccess] = useState(false);
 
-  const handleRsvpSubmit = (e) => {
+  const handleRsvpSubmit = async (e) => {
     e.preventDefault();
-    if (!rsvpName.trim() || !rsvpEmail.trim()) return;
+    if (rsvpStatus === 'sending') return;
+    if (!selectedEvent || !rsvpName.trim() || !rsvpEmail.trim()) {
+      setRsvpError('Please enter your name and email address.');
+      return;
+    }
+    setRsvpError('');
+    setRsvpStatus('sending');
+
+    try {
+      const res = await fetch('/api/event-rsvps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          eventNumber: selectedEvent.number,
+          eventTitle: selectedEvent.title,
+          name: rsvpName,
+          email: rsvpEmail,
+        }),
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(payload.error || 'Unable to save registration.');
+      }
+      setRsvpStatus('success');
+      setRsvpSuccess(true);
+    } catch (err) {
+      setRsvpStatus('error');
+      setRsvpError(
+        err instanceof Error && err.message
+          ? err.message
+          : 'Unable to save your RSVP right now. Please try again or confirm via WhatsApp.',
+      );
+    }
+  };
+
+  const confirmViaWhatsApp = () => {
+    if (!selectedEvent || !rsvpName.trim() || !rsvpEmail.trim()) {
+      setRsvpError('Please enter your name and email address before launching WhatsApp.');
+      return;
+    }
     const text = `*Event RSVP – ${selectedEvent.title}*%0A%0A*Name:* ${encodeURIComponent(rsvpName)}%0A*Email:* ${encodeURIComponent(rsvpEmail)}%0A*Event:* ${encodeURIComponent(selectedEvent.title)}`;
     window.open(`https://wa.me/265892236030?text=${text}`, '_blank');
-    setRsvpSuccess(true);
   };
 
   return (
@@ -144,6 +184,8 @@ export default function Event() {
                     onClick={() => {
                       setSelectedEvent(evt);
                       setRsvpSuccess(false);
+                      setRsvpStatus('idle');
+                      setRsvpError('');
                     }}
                   >
                     Register / RSVP <span aria-hidden="true">↗</span>
@@ -193,6 +235,12 @@ export default function Event() {
                     Join us for <strong>{selectedEvent.title}</strong> ({selectedEvent.date}). Enter your details below to reserve your slot:
                   </p>
 
+                  {rsvpError && (
+                    <div className="error-banner" role="alert" style={{ marginBottom: '14px' }}>
+                      {rsvpError}
+                    </div>
+                  )}
+
                   <div className="form-group" style={{ marginBottom: '14px' }}>
                     <label style={{ display: 'block', fontSize: '11px', fontWeight: '700', marginBottom: '6px' }}>Your Name *</label>
                     <input
@@ -218,7 +266,18 @@ export default function Event() {
                   </div>
 
                   <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <button type="submit" className="button button-lime">
+                    <button
+                      type="submit"
+                      className="button button-dark"
+                      disabled={rsvpStatus === 'sending'}
+                    >
+                      {rsvpStatus === 'sending' ? 'Registering…' : 'Register / Reserve Slot →'}
+                    </button>
+                    <button
+                      type="button"
+                      className="button button-lime"
+                      onClick={confirmViaWhatsApp}
+                    >
                       Confirm via WhatsApp ↗
                     </button>
                     <button

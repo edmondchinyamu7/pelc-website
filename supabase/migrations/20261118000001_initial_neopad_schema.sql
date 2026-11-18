@@ -1,12 +1,14 @@
 -- ============================================================================
 -- NEOPAD STUDIO - Initial Supabase Schema & RLS Migration
--- Target Region: Europe (Frankfurt)
+-- Project Ref: frsavqbtvrjqdsrbngwd (Europe / Frankfurt)
 -- Notes:
---   - Compatible with existing @supabase/ssr auth flow (/auth/*, /account)
---   - Covers user profiles, contact/department inquiries, consultation bookings,
---     event RSVPs, and private project brief attachments
---   - Does NOT insert any seed/mock user or client records
+--   - Compatible with @supabase/ssr auth flow (/auth/*, /account) and API routes
+--   - Covers profiles, inquiries, consultations, event_rsvps, and private
+--     project-briefs storage bucket
+--   - Idempotent & non-destructive (no DROP TABLE, TRUNCATE, or seed data)
 -- ============================================================================
+
+begin;
 
 create extension if not exists pgcrypto;
 
@@ -17,9 +19,10 @@ create extension if not exists pgcrypto;
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
+set search_path = public
 as $$
 begin
-  new.updated_at = timezone('utc', now());
+  new.updated_at = now();
   return new;
 end;
 $$;
@@ -109,6 +112,15 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row
   execute function public.handle_new_user();
+
+-- Backfill profile rows for any users already present in auth.users (safe no-op if empty)
+insert into public.profiles (id, email, full_name)
+select
+  u.id,
+  u.email,
+  nullif(trim(coalesce(u.raw_user_meta_data ->> 'full_name', '')), '')
+from auth.users u
+on conflict (id) do nothing;
 
 drop policy if exists "profiles_select_own_or_admin" on public.profiles;
 create policy "profiles_select_own_or_admin"
@@ -327,7 +339,15 @@ create policy "event_rsvps_delete_admin"
   using (public.is_studio_admin());
 
 -- ----------------------------------------------------------------------------
--- 6. Storage Bucket for Client Project Briefs (Private)
+-- 6. Explicit Table Privileges (enforced alongside RLS)
+-- ----------------------------------------------------------------------------
+
+grant usage on schema public to anon, authenticated;
+grant select, insert, update, delete on public.profiles, public.inquiries, public.consultations, public.event_rsvps to authenticated;
+grant insert on public.inquiries, public.consultations, public.event_rsvps to anon;
+
+-- ----------------------------------------------------------------------------
+-- 7. Storage Bucket for Client Project Briefs (Private)
 -- ----------------------------------------------------------------------------
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -338,7 +358,12 @@ values (
   10485760,
   array['application/pdf', 'image/png', 'image/jpeg', 'image/webp']
 )
-on conflict (id) do nothing;
+on conflict (id) do update
+set
+  name = excluded.name,
+  public = false,
+  file_size_limit = excluded.file_size_limit,
+  allowed_mime_types = excluded.allowed_mime_types;
 
 drop policy if exists "project_briefs_insert_own" on storage.objects;
 create policy "project_briefs_insert_own"
@@ -363,6 +388,26 @@ create policy "project_briefs_select_own_or_admin"
     )
   );
 
+drop policy if exists "project_briefs_update_own_or_admin" on storage.objects;
+create policy "project_briefs_update_own_or_admin"
+  on storage.objects
+  for update
+  to authenticated
+  using (
+    bucket_id = 'project-briefs'
+    and (
+      (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_studio_admin()
+    )
+  )
+  with check (
+    bucket_id = 'project-briefs'
+    and (
+      (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_studio_admin()
+    )
+  );
+
 drop policy if exists "project_briefs_delete_own_or_admin" on storage.objects;
 create policy "project_briefs_delete_own_or_admin"
   on storage.objects
@@ -375,3 +420,8 @@ create policy "project_briefs_delete_own_or_admin"
       or public.is_studio_admin()
     )
   );
+
+commit;
+
+-- Refresh PostgREST schema cache immediately so API routes see the new tables
+notify pgrst, 'reload schema';

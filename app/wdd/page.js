@@ -58,6 +58,7 @@ export default function WDD() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (status === 'sending') return;
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setErrorMessage('Please fill in your name, email, and project details.');
       return;
@@ -66,25 +67,34 @@ export default function WDD() {
     setStatus('sending');
 
     try {
-      const formData = new FormData();
-      Object.entries(form).forEach(([key, value]) => formData.append(key, value));
-      formData.append('department', 'Website Development (WDD)');
-
-      const res = await fetch('https://formspree.io/f/xyezboed', {
+      const res = await fetch('/api/inquiries', {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          department: 'wdd',
+          projectType: form.projectType,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          subject: form.subject,
+          message: form.message,
+        }),
       });
 
+      const payload = await res.json().catch(() => ({}));
       if (res.ok) {
         setStatus('success');
         setSubmitted(true);
       } else {
-        throw new Error('Failed to send');
+        throw new Error(payload.error || 'Failed to send');
       }
-    } catch {
+    } catch (err) {
       setStatus('error');
-      setErrorMessage('Could not send message automatically. Please reach out via WhatsApp or email directly below.');
+      setErrorMessage(
+        err instanceof Error && err.message && err.message !== 'Failed to send'
+          ? err.message
+          : 'Could not send message automatically. Please reach out via WhatsApp or email directly below.',
+      );
     }
   };
 
