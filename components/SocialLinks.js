@@ -54,7 +54,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'LinkedIn',
     label: 'LinkedIn',
-    handle: 'NOVEX DIGITAL',
+    handle: 'NEOPAD STUDIO',
     url: 'https://linkedin.com',
     icon: FaLinkedinIn,
     brandColor: '#0A66C2',
@@ -63,7 +63,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'YouTube',
     label: 'YouTube',
-    handle: 'NOVEX DIGITAL',
+    handle: 'NEOPAD STUDIO',
     url: 'https://youtube.com',
     icon: FaYoutube,
     brandColor: '#FF0000',
@@ -91,7 +91,7 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
     .join(' ');
 
   return (
-    <ul className={groupClass} aria-label="NOVEX DIGITAL on social media">
+    <ul className={groupClass} aria-label="NEOPAD STUDIO on social media">
       {SOCIAL_PROFILES.map((item) => {
         const IconComponent = item.icon;
         return (
@@ -101,7 +101,7 @@ export default function SocialLinks({ theme = 'dark', size = 'default', showLabe
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btn}
-              aria-label={`Visit NOVEX DIGITAL on ${item.label}`}
+              aria-label={`Visit NEOPAD STUDIO on ${item.label}`}
               style={{ '--brand-color': item.brandColor, '--brand-on-color': item.onBrandColor }}
             >
               <span className={styles.icon}>
