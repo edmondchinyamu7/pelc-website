@@ -36,7 +36,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
         <div className="home-contact-header">
           <div>
             <p>LET’S TALK</p>
-            <h2 id="contact-drawer-title">Contact NOVEX DIGITAL</h2>
+            <h2 id="contact-drawer-title">Contact NEOPAD STUDIO</h2>
           </div>
           <button
             className="home-contact-close"
