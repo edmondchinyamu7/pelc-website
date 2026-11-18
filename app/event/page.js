@@ -32,7 +32,7 @@ const events = [
     type: 'Founder Roundtable',
     date: 'Quarterly Gathering',
     description: 'Connect with local startup founders, SME operators, and tech leaders to explore how software and targeted advertising unlock revenue.',
-    location: 'NEOPAD STUDIO Studio / Partner Space',
+    location: 'NEOPAD STUDIO / Partner Space',
   },
   {
     number: '04',
