@@ -166,11 +166,10 @@ export default function Services() {
             <span className="status-dot" /> Our Capabilities · 08 Specialized Disciplines
           </p>
           <h1>
-            Expert solutions, delivered by <em>specialized teams.</em>
+            Creative thinking. Practical technology. <em>Digital possibilities.</em>
           </h1>
           <p className="services-hero-copy">
-            At NOVEX DIGITAL, we do not believe in one-size-fits-all digital work.
-            Our disciplines span websites, software, AI, marketing, graphic branding, and technology consultancy—ensuring specialists lead your project.
+            NEOPAD STUDIO brings creative and technology services together to turn ideas into practical digital solutions. Our work spans website development, software and applications, digital marketing and advertising, graphic design and branding, AI solutions, and digital consultancy.
           </p>
           <div className="services-hero-actions">
             <Link className="button button-lime" href="/consultation">
@@ -191,7 +190,7 @@ export default function Services() {
       <section className="intro-strip" aria-label="Our department philosophy">
         <div className="page-width intro-inner">
           <p>
-            From the initial blueprint to post-launch scaling, NOVEX DIGITAL combines <span>engineering rigour</span> with <span>practical creativity</span>.
+            From the initial blueprint to post-launch scaling, NEOPAD STUDIO combines <span>engineering rigour</span> with <span>practical creativity</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
             NEW IDEAS<br />NEW POSSIBILITIES<br />NEW LEGACY<span>✳</span>
