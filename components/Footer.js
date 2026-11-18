@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="logo-area">
           <div className="logo-icon">
             <Image
-              src="/logo.jpg"
+              src="/neopad-mark.svg"
               alt="NEOPAD STUDIO Logo"
               width={90}
               height={90}
