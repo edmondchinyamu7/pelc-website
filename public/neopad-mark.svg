@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">NEOPAD STUDIO N mark</title>
+  <rect width="128" height="128" rx="28" fill="#11100d"/>
+  <path d="M30 96V32h17l34 39V32h17v64H81L47 57v39H30Z" fill="#D4AF37"/>
+  <path d="M30 96h17V57L30 38v58Z" fill="#F5E6B3" opacity=".65"/>
+</svg>
