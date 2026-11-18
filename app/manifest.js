@@ -1,10 +1,10 @@
 export default function manifest() {
   return {
     id: '/',
-    name: 'NOVEX DIGITAL',
-    short_name: 'NOVEX',
+    name: 'NEOPAD STUDIO',
+    short_name: 'NEOPAD',
     description:
-      'NOVEX DIGITAL — New Ideas. New Possibilities. New Legacy. Websites, software, AI solutions, digital marketing, and branding.',
+      'NEOPAD STUDIO is a creative digital and technology studio offering websites, software and applications, digital marketing and advertising, graphic design and branding, AI, and digital consultancy.',
     start_url: '/',
     scope: '/',
     display: 'standalone',
