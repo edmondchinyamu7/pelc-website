@@ -27,7 +27,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'Facebook',
     label: 'Facebook',
-    handle: '@novexdigital',
+    handle: 'NEOPAD STUDIO',
     url: 'https://facebook.com',
     icon: FaFacebookF,
     brandColor: '#1877F2',
@@ -36,7 +36,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'Instagram',
     label: 'Instagram',
-    handle: '@novexdigital_mw',
+    handle: 'NEOPAD STUDIO',
     url: 'https://instagram.com',
     icon: FaInstagram,
     brandColor: '#E1306C',
@@ -45,7 +45,7 @@ export const SOCIAL_PROFILES = [
   {
     name: 'X',
     label: 'X (formerly Twitter)',
-    handle: '@novexdigital',
+    handle: 'NEOPAD STUDIO',
     url: 'https://x.com',
     icon: FaXTwitter,
     brandColor: '#1D1D1F',
