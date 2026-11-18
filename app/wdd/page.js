@@ -135,7 +135,7 @@ export default function WDD() {
             Every line of code is written with purpose: <span>lightning speed</span>, <span>bulletproof stability</span>, and <span>compelling UX</span>.
           </p>
           <div className="intro-stamp" aria-hidden="true">
-            NOVEX<br />WDD<br />STUDIO<span>✳</span>
+            NEOPAD<br />WDD<br />STUDIO<span>✳</span>
           </div>
         </div>
       </section>
