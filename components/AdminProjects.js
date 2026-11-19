@@ -6,7 +6,7 @@ import { BriefcaseBusiness, CalendarDays, ExternalLink, Pencil, Plus, RefreshCw,
 const EMPTY = { name: '', client_name: '', category: '', description: '', status: 'planning', start_date: '', completion_date: '', deadline: '', progress_percent: 0, project_url: '' };
 const STATUS_LABELS = { planning: 'Planning', in_progress: 'In Progress', completed: 'Completed', on_hold: 'On Hold' };
 
-export default function AdminProjects() {
+export default function AdminProjects({ initialCategory = '' } = {}) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -33,10 +33,11 @@ export default function AdminProjects() {
 
   const filtered = useMemo(() => items.filter((item) => {
     const matchesStatus = statusFilter === 'all' || item.status === statusFilter;
+    const matchesCategory = !initialCategory || (item.category || '').toLowerCase().includes(initialCategory.toLowerCase());
     const term = search.trim().toLowerCase();
     const matchesSearch = !term || [item.name, item.client_name, item.category].some((v) => (v || '').toLowerCase().includes(term));
-    return matchesStatus && matchesSearch;
-  }), [items, search, statusFilter]);
+    return matchesStatus && matchesSearch && matchesCategory;
+  }), [items, search, statusFilter, initialCategory]);
 
   const openNew = () => { setEditingId(null); setForm(EMPTY); setFormOpen(true); setNotice(''); };
   const openEdit = (item) => {
