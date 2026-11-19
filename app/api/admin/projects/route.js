@@ -23,7 +23,8 @@ function validateProject(body, partial = false) {
     if (typeof fields.description !== 'string' || fields.description.length > 3000) return { error: 'Description must be 3,000 characters or fewer.' };
     fields.description = fields.description.trim();
   }
-  if ('deadline' in fields && fields.deadline !== null && (typeof fields.deadline !== 'string' || !/^\\d{4}-\\d{2}-\\d{2}$/.test(fields.deadline))) return { error: 'Deadline must use YYYY-MM-DD format.' };\n  if ('progress_percent' in fields) {\n    const progress = Number(fields.progress_percent);\n    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };\n    fields.progress_percent = progress;\n  }\n  if ('status' in fields) {
+  if ('deadline' in fields && fields.deadline !== null && (typeof fields.deadline !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(fields.deadline))) return { error: 'Deadline must use YYYY-MM-DD format.' };
+  if ('progress_percent' in fields) {\n    const progress = Number(fields.progress_percent);\n    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };\n    fields.progress_percent = progress;\n  }\n  if ('status' in fields) {
     fields.status = fields.status || 'planning';
     if (!STATUSES.has(fields.status)) return { error: 'Choose a valid project status.' };
   }
