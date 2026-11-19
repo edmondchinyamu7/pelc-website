@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Building2, CheckCircle2, LoaderCircle, Phone, Save, UserRound } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function AccountProfileForm({ userId, userEmail, initialProfile }) {
@@ -12,8 +13,8 @@ export default function AccountProfileForm({ userId, userEmail, initialProfile }
   const [error, setError] = useState(null);
   const [saved, setSaved] = useState(false);
 
-  const handleSave = async (e) => {
-    e.preventDefault();
+  const handleSave = async (event) => {
+    event.preventDefault();
     if (isSaving) return;
     setIsSaving(true);
     setError(null);
@@ -52,44 +53,54 @@ export default function AccountProfileForm({ userId, userEmail, initialProfile }
   };
 
   return (
-    <form className="pelc-auth__form" onSubmit={handleSave} style={{ marginBottom: '12px' }}>
-      <div className="pelc-auth__field">
-        <label className="pelc-auth__label" htmlFor="profile-full-name">Full name</label>
-        <input
-          id="profile-full-name"
-          className="pelc-auth__input"
-          type="text"
-          placeholder="Your full name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
+    <form className="np-profile-form" onSubmit={handleSave} style={{ marginBottom: '12px' }}>
+      <div className="np-profile-field">
+        <label htmlFor="profile-full-name">Full Name</label>
+        <div className="np-profile-input-wrap">
+          <UserRound size={17} aria-hidden="true" />
+          <input
+            id="profile-full-name"
+            type="text"
+            autoComplete="name"
+            placeholder="Enter your full name"
+            value={fullName}
+            onChange={(event) => setFullName(event.target.value)}
+          />
+        </div>
       </div>
-      <div className="pelc-auth__field">
-        <label className="pelc-auth__label" htmlFor="profile-company">Company / Organization</label>
-        <input
-          id="profile-company"
-          className="pelc-auth__input"
-          type="text"
-          placeholder="Optional"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-        />
+      <div className="np-profile-field">
+        <label htmlFor="profile-company">Company / Organization</label>
+        <div className="np-profile-input-wrap">
+          <Building2 size={17} aria-hidden="true" />
+          <input
+            id="profile-company"
+            type="text"
+            autoComplete="organization"
+            placeholder="Your company or organization (optional)"
+            value={companyName}
+            onChange={(event) => setCompanyName(event.target.value)}
+          />
+        </div>
       </div>
-      <div className="pelc-auth__field">
-        <label className="pelc-auth__label" htmlFor="profile-phone">Phone / WhatsApp</label>
-        <input
-          id="profile-phone"
-          className="pelc-auth__input"
-          type="tel"
-          placeholder="Optional"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
+      <div className="np-profile-field">
+        <label htmlFor="profile-phone">Phone / WhatsApp</label>
+        <div className="np-profile-input-wrap">
+          <Phone size={17} aria-hidden="true" />
+          <input
+            id="profile-phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="Your phone number (optional)"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+          />
+        </div>
       </div>
-      {error && <p className="pelc-auth__error" role="alert">{error}</p>}
-      {saved && <p className="pelc-auth__success" role="status">Profile updated.</p>}
-      <button type="submit" className="pelc-auth__button" disabled={isSaving}>
-        {isSaving ? 'Saving…' : 'Save profile'}
+      {error ? <p className="np-profile-message np-profile-message--error" role="alert">{error}</p> : null}
+      {saved ? <p className="np-profile-message np-profile-message--success" role="status"><CheckCircle2 size={15} /> Profile updated successfully.</p> : null}
+      <button type="submit" className="np-profile-save" disabled={isSaving}>
+        {isSaving ? <LoaderCircle size={17} className="np-profile-spinner" /> : <Save size={17} />}
+        {isSaving ? 'Saving profile…' : 'Save Profile'}
       </button>
     </form>
   );
