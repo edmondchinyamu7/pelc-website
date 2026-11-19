@@ -50,10 +50,10 @@ export default function AdminOperations() {
     });
     return keys.map((key) => {
       const rows = data.finance.filter((r) => monthKey(r.recorded_on) === key && r.currency === currency);
-      return { key, label: new Date(key + '-01T12:00:00').toLocaleDateString('en', { month: 'short' }), income: rows.filter((r) => r.entry_type === 'income').reduce((s, r) => s + Number(r.amount), 0), expense: rows.filter((r) => r.entry_type === 'expense').reduce((s, r) => s + Number(r.amount), 0) };
+      return { key, label: new Date(key + '-01T12:00:00').toLocaleDateString('en', { month: 'short' }), income: rows.filter((r) => r.entry_type === 'income').reduce((s, r) => s + Number(r.amount), 0), expense: rows.filter((r) => r.entry_type === 'expense').reduce((s, r) => s + Number(r.amount), 0), profit: rows.filter((r) => r.entry_type === 'income').reduce((s, r) => s + Number(r.amount), 0) - rows.filter((r) => r.entry_type === 'expense').reduce((s, r) => s + Number(r.amount), 0) };
     });
   }, [data.finance, period, currency]);
-  const maxChart = Math.max(1, ...chart.flatMap((r) => [r.income, r.expense]));
+  const maxChart = Math.max(1, ...chart.flatMap((r) => [r.income, r.expense, Math.abs(r.profit)]));
   const services = ['Website Design & Development', 'Software Development', 'Branding', 'Automation', 'Consulting'];
   const serviceCounts = services.map((label) => ({ label, count: data.projects.filter((p) => {
     const c = (p.category || '').toLowerCase();
@@ -108,8 +108,8 @@ export default function AdminOperations() {
     </div>
     <div className="np-ops-grid">
       <article className="np-card"><div className="np-ops-card-head"><div><p className="np-card-kicker">Financial performance</p><h3>Income & expenses</h3></div><select className="np-select" value={period} onChange={(e) => setPeriod(e.target.value)}><option value="month">Last 6 months</option><option value="year">Last 12 months</option></select></div>
-        {data.finance.length === 0 ? <div className="np-empty-state">No financial entries recorded. Add verified income and expense records to activate this chart.</div> : <div className="np-ops-chart">{chart.map((r) => <div className="np-ops-chart-col" key={r.key}><div className="np-ops-bars"><span title={'Income ' + money(r.income, currency)} style={{ height: (r.income / maxChart * 100) + '%' }}/><span title={'Expenses ' + money(r.expense, currency)} style={{ height: (r.expense / maxChart * 100) + '%' }}/></div><small>{r.label}</small></div>)}</div>}
-        <div className="np-ops-legend"><span><i/> Income</span><span><i/> Expenses</span><button className="np-btn np-btn--outline" onClick={exportCsv}><Download size={13}/> Export CSV</button></div>
+        {data.finance.length === 0 ? <div className="np-empty-state">No financial entries recorded. Add verified income and expense records to activate this chart.</div> : <div className="np-ops-chart">{chart.map((r) => <div className="np-ops-chart-col" key={r.key}><div className="np-ops-bars"><span title={'Income ' + money(r.income, currency)} style={{ height: (r.income / maxChart * 100) + '%' }}/><span title={'Expenses ' + money(r.expense, currency)} style={{ height: (r.expense / maxChart * 100) + '%' }}/><span title={'Profit ' + money(r.profit, currency)} style={{ height: (Math.abs(r.profit) / maxChart * 100) + '%' }}/></div><small>{r.label}</small></div>)}</div>}
+        <div className="np-ops-legend"><span><i/> Income</span><span><i/> Expenses</span><span><i/> Profit</span><button className="np-btn np-btn--outline" onClick={exportCsv}><Download size={13}/> Export CSV</button></div>
       </article>
       <article className="np-card"><p className="np-card-kicker">Service portfolio</p><h3>Services breakdown</h3><p className="np-card-desc">Counts are derived from project category records; uncategorised projects are not guessed.</p>
         <div className="np-ops-service-list">{serviceCounts.map((s) => <div key={s.label}><span>{s.label}</span><strong>{s.count}</strong></div>)}</div>
