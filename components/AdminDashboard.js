@@ -2,9 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowUpRight,
   CalendarClock,
+  BriefcaseBusiness,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -19,6 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import SignOutButton from '@/components/SignOutButton';
+import AdminProjects from '@/components/AdminProjects';
 
 const INQUIRY_DEPARTMENTS = ['general', 'wdd', 'sdd', 'ud', 'ad', 'md', 'cpd'];
 const INQUIRY_STATUSES = ['new', 'in_review', 'replied', 'archived'];
@@ -349,9 +352,19 @@ export default function AdminDashboard({
       <aside className="np-admin-sidebar" aria-label="Admin navigation">
         <div>
           <div className="np-admin-brand">
-            <div className="np-admin-brand-title">
-              <strong>NEOPAD STUDIO</strong>
-              <span>Admin Operations</span>
+            <div className="np-admin-brand-lockup">
+              <Image
+                src="/neopad-mark.svg"
+                alt="NEOPAD STUDIO"
+                width={42}
+                height={42}
+                className="np-admin-brand-mark"
+                priority
+              />
+              <div className="np-admin-brand-title">
+                <strong>NEOPAD <span>STUDIO</span></strong>
+                <small>Admin Operations</small>
+              </div>
             </div>
             <button
               type="button"
@@ -413,6 +426,18 @@ export default function AdminDashboard({
                 </span>
                 <span className="np-admin-nav-badge">{stats.totalRsvps}</span>
               </button>
+
+              <button
+                type="button"
+                className={`np-admin-nav-btn${activeTab === 'projects' ? ' is-active' : ''}`}
+                onClick={() => switchTab('projects')}
+              >
+                <span className="np-admin-nav-left">
+                  <BriefcaseBusiness size={16} />
+                  Projects
+                </span>
+                <span className="np-admin-nav-badge">{stats.totalProjects ?? 0}</span>
+              </button>
             </nav>
           </div>
         </div>
@@ -449,6 +474,7 @@ export default function AdminDashboard({
               {activeTab === 'inquiries' && 'Inquiries Management'}
               {activeTab === 'consultations' && 'Consultations Pipeline'}
               {activeTab === 'rsvps' && 'Event RSVPs'}
+              {activeTab === 'projects' && 'Projects Management'}
             </h1>
             <p>
               Server-verified NEOPAD STUDIO administrative workspace · Live Supabase records
@@ -503,6 +529,18 @@ export default function AdminDashboard({
               <div className="np-stat-card">
                 <div className="np-stat-label">Total Event RSVPs</div>
                 <div className="np-stat-value">{stats.totalRsvps}</div>
+              </div>
+              <div className="np-stat-card np-stat-card--accent">
+                <div className="np-stat-label">Registered Accounts</div>
+                <div className="np-stat-value">{stats.totalAccounts ?? 0}</div>
+              </div>
+              <div className="np-stat-card">
+                <div className="np-stat-label">Projects Developed</div>
+                <div className="np-stat-value">{stats.completedProjects ?? 0}</div>
+              </div>
+              <div className="np-stat-card">
+                <div className="np-stat-label">Projects In Progress</div>
+                <div className="np-stat-value">{stats.inProgressProjects ?? 0}</div>
               </div>
             </div>
 
@@ -1117,6 +1155,8 @@ export default function AdminDashboard({
             </div>
           </div>
         )}
+
+        {activeTab === 'projects' && <AdminProjects />}
 
         {activeTab === 'rsvps' && (
           <div className="np-card">
