@@ -31,6 +31,7 @@ import SignOutButton from '@/components/SignOutButton';
 import AdminProjects from '@/components/AdminProjects';
 import AdminOperations from '@/components/AdminOperations';
 import AdminClients from '@/components/AdminClients';
+import AdminBusinessSummary from '@/components/AdminBusinessSummary';
 
 const INQUIRY_DEPARTMENTS = ['general', 'wdd', 'sdd', 'ud', 'ad', 'md', 'cpd'];
 const INQUIRY_STATUSES = ['new', 'in_review', 'replied', 'archived'];
@@ -512,7 +513,7 @@ export default function AdminDashboard({
           <div className="np-admin-top-actions">
             <form className="np-admin-global-search" onSubmit={(e) => { e.preventDefault(); switchTab('overview'); }}>
               <Search size={15} />
-              <input type="search" aria-label="Search recent activity" placeholder="Search dashboard…" value={globalSearch} onChange={(e) => setGlobalSearch(e.target.value)} />
+              <input type="search" aria-label="Search recent activity" placeholder="Search recent activity…" value={globalSearch} onChange={(e) => setGlobalSearch(e.target.value)} />
             </form>
             <div className="np-admin-action-wrap">
               <button type="button" className="np-admin-icon-btn" aria-label="Notifications" aria-expanded={notificationsOpen} onClick={() => { setNotificationsOpen((v) => !v); setProfileMenuOpen(false); }}>
