@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { LogOut, LoaderCircle } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { logSafeAuthDiagnostic } from '@/lib/supabase/diagnostics';
 
@@ -39,11 +40,12 @@ export default function SignOutButton() {
   return (
     <button
       type="button"
-      className="pelc-auth__button pelc-auth__button--ghost"
+      className="np-client-signout-btn"
       onClick={handleSignOut}
       disabled={isLoading}
     >
-      {isLoading ? 'Signing out…' : 'Sign out'}
+      {isLoading ? <LoaderCircle size={16} className="np-profile-spinner" /> : <LogOut size={16} />}
+      {isLoading ? 'Signing out…' : 'Sign Out'}
     </button>
   );
 }
