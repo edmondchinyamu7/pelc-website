@@ -15,7 +15,7 @@ function validateProject(body, partial = false) {
     fields[key] = cleanText(value[key]);
     if (fields[key].length < 2) return { error: `${key.replace('_', ' ')} must contain at least 2 characters.` };
   }
-  for (const key of ['description', 'project_url', 'start_date', 'completion_date', 'status']) {
+  for (const key of ['description', 'project_url', 'start_date', 'completion_date', 'deadline', 'progress_percent', 'status']) {
     if (partial && !(key in value)) continue;
     fields[key] = value[key] === null || value[key] === '' ? null : value[key];
   }
@@ -23,7 +23,8 @@ function validateProject(body, partial = false) {
     if (typeof fields.description !== 'string' || fields.description.length > 3000) return { error: 'Description must be 3,000 characters or fewer.' };
     fields.description = fields.description.trim();
   }
-  if ('status' in fields) {
+  if ('deadline' in fields && fields.deadline !== null && (typeof fields.deadline !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(fields.deadline))) return { error: 'Deadline must use YYYY-MM-DD format.' };
+  if ('progress_percent' in fields) {\n    const progress = Number(fields.progress_percent);\n    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };\n    fields.progress_percent = progress;\n  }\n  if ('status' in fields) {
     fields.status = fields.status || 'planning';
     if (!STATUSES.has(fields.status)) return { error: 'Choose a valid project status.' };
   }
@@ -41,13 +42,25 @@ function validateProject(body, partial = false) {
   return { fields };
 }
 
+async function recordProjectActivity(access, action, projectId, details) {
+  const { error } = await access.supabase.from('studio_activity_log').insert({
+    actor_id: access.user.id,
+    actor_name: access.profile?.full_name || access.user.email || 'Administrator',
+    action,
+    entity_type: 'project',
+    entity_id: projectId || null,
+    details: details || null,
+  });
+  if (error) console.error('[project-activity-log] Unable to record activity:', error.message);
+}
+
 async function authorize() {
   const auth = await requireStudioAdmin();
   if (auth.status !== 'authorized') {
     const status = auth.status === 'unauthenticated' ? 401 : auth.status === 'forbidden' ? 403 : 503;
     return { response: NextResponse.json({ error: auth.reason || 'Administrator access required.' }, { status }) };
   }
-  return { supabase: auth.supabase, user: auth.user };
+  return { supabase: auth.supabase, user: auth.user, profile: auth.profile };
 }
 
 export async function GET() {
@@ -55,7 +68,7 @@ export async function GET() {
   if (access.response) return access.response;
   const { data, error } = await access.supabase
     .from('studio_projects')
-    .select('id, name, client_name, category, description, status, start_date, completion_date, project_url, created_at, updated_at')
+    .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .order('created_at', { ascending: false });
   if (error) return NextResponse.json({ error: 'Unable to load projects. Apply the project-management migration and try again.' }, { status: 502 });
   return NextResponse.json({ items: data || [] }, { headers: { 'Cache-Control': 'no-store' } });
@@ -70,9 +83,10 @@ export async function POST(request) {
   const { data, error } = await access.supabase
     .from('studio_projects')
     .insert({ ...parsed.fields, created_by: access.user.id })
-    .select('id, name, client_name, category, description, status, start_date, completion_date, project_url, created_at, updated_at')
+    .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .single();
   if (error) return NextResponse.json({ error: 'Unable to save this project. Check that the project-management migration has been applied.' }, { status: 502 });
+  await recordProjectActivity(access, 'Created project', data.id, data.name);
   return NextResponse.json({ item: data }, { status: 201 });
 }
 
@@ -93,6 +107,7 @@ export async function PATCH(request) {
     .maybeSingle();
   if (error) return NextResponse.json({ error: 'Unable to update this project.' }, { status: 502 });
   if (!data) return NextResponse.json({ error: 'Project not found.' }, { status: 404 });
+  await recordProjectActivity(access, 'Updated project', data.id, data.name);
   return NextResponse.json({ item: data });
 }
 
@@ -104,5 +119,6 @@ export async function DELETE(request) {
   const { error, count } = await access.supabase.from('studio_projects').delete({ count: 'exact' }).eq('id', id);
   if (error) return NextResponse.json({ error: 'Unable to delete this project.' }, { status: 502 });
   if (count === 0) return NextResponse.json({ error: 'Project not found.' }, { status: 404 });
+  await recordProjectActivity(access, 'Deleted project', id, null);
   return NextResponse.json({ success: true });
 }

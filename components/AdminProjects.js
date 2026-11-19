@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BriefcaseBusiness, CalendarDays, ExternalLink, Pencil, Plus, RefreshCw, Search, Trash2, X } from 'lucide-react';
 
-const EMPTY = { name: '', client_name: '', category: '', description: '', status: 'planning', start_date: '', completion_date: '', project_url: '' };
+const EMPTY = { name: '', client_name: '', category: '', description: '', status: 'planning', start_date: '', completion_date: '', deadline: '', progress_percent: 0, project_url: '' };
 const STATUS_LABELS = { planning: 'Planning', in_progress: 'In Progress', completed: 'Completed', on_hold: 'On Hold' };
 
-export default function AdminProjects() {
+export default function AdminProjects({ initialCategory = '' } = {}) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -33,15 +33,16 @@ export default function AdminProjects() {
 
   const filtered = useMemo(() => items.filter((item) => {
     const matchesStatus = statusFilter === 'all' || item.status === statusFilter;
+    const matchesCategory = !initialCategory || (item.category || '').toLowerCase().includes(initialCategory.toLowerCase());
     const term = search.trim().toLowerCase();
     const matchesSearch = !term || [item.name, item.client_name, item.category].some((v) => (v || '').toLowerCase().includes(term));
-    return matchesStatus && matchesSearch;
-  }), [items, search, statusFilter]);
+    return matchesStatus && matchesSearch && matchesCategory;
+  }), [items, search, statusFilter, initialCategory]);
 
   const openNew = () => { setEditingId(null); setForm(EMPTY); setFormOpen(true); setNotice(''); };
   const openEdit = (item) => {
     setEditingId(item.id);
-    setForm({ name: item.name || '', client_name: item.client_name || '', category: item.category || '', description: item.description || '', status: item.status || 'planning', start_date: item.start_date || '', completion_date: item.completion_date || '', project_url: item.project_url || '' });
+    setForm({ name: item.name || '', client_name: item.client_name || '', category: item.category || '', description: item.description || '', status: item.status || 'planning', start_date: item.start_date || '', completion_date: item.completion_date || '', deadline: item.deadline || '', progress_percent: item.progress_percent ?? 0, project_url: item.project_url || '' });
     setFormOpen(true); setNotice('');
   };
 
@@ -104,7 +105,7 @@ export default function AdminProjects() {
             <label>Category / service<input className="np-input" required minLength={2} maxLength={80} placeholder="Website development, branding…" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} /></label>
             <label>Status<select className="np-select" value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })}>{Object.entries(STATUS_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
             <label>Start date<input className="np-input" type="date" value={form.start_date} onChange={(e) => setForm({ ...form, start_date: e.target.value })} /></label>
-            <label>Completion date<input className="np-input" type="date" value={form.completion_date} onChange={(e) => setForm({ ...form, completion_date: e.target.value })} /></label>
+            <label>Completion date<input className="np-input" type="date" value={form.completion_date} onChange={(e) => setForm({ ...form, completion_date: e.target.value })} /></label>\n            <label>Deadline<input className="np-input" type="date" value={form.deadline} onChange={(e) => setForm({ ...form, deadline: e.target.value })} /></label>\n            <label>Completion percentage<input className="np-input" type="number" min="0" max="100" value={form.progress_percent} onChange={(e) => setForm({ ...form, progress_percent: Number(e.target.value) })} /></label>
             <label className="np-project-form-wide">Project link (optional)<input className="np-input" type="url" placeholder="https://" value={form.project_url} onChange={(e) => setForm({ ...form, project_url: e.target.value })} /></label>
             <label className="np-project-form-wide">Description<textarea className="np-input" rows={3} maxLength={3000} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></label>
           </div>

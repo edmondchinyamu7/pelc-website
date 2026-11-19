@@ -7,6 +7,14 @@ import {
   ArrowUpRight,
   CalendarClock,
   BriefcaseBusiness,
+  ChartNoAxesCombined,
+  Globe,
+  Code2,
+  Palette,
+  Workflow,
+  Users,
+  Settings,
+  CircleHelp,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -21,6 +29,9 @@ import {
 } from 'lucide-react';
 import SignOutButton from '@/components/SignOutButton';
 import AdminProjects from '@/components/AdminProjects';
+import AdminOperations from '@/components/AdminOperations';
+import AdminClients from '@/components/AdminClients';
+import AdminBusinessSummary from '@/components/AdminBusinessSummary';
 
 const INQUIRY_DEPARTMENTS = ['general', 'wdd', 'sdd', 'ud', 'ad', 'md', 'cpd'];
 const INQUIRY_STATUSES = ['new', 'in_review', 'replied', 'archived'];
@@ -72,6 +83,9 @@ export default function AdminDashboard({
 }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [globalSearch, setGlobalSearch] = useState('');
 
   const [stats, setStats] = useState(initialStats);
   const [recentSubmissions] = useState(initialRecent || []);
@@ -437,6 +451,25 @@ export default function AdminDashboard({
                 </span>
                 <span className="np-admin-nav-badge">{stats.totalProjects ?? 0}</span>
               </button>
+
+              <button
+                type="button"
+                className={`np-admin-nav-btn${activeTab === 'operations' ? ' is-active' : ''}`}
+                onClick={() => switchTab('operations')}
+              >
+                <span className="np-admin-nav-left">
+                  <ChartNoAxesCombined size={16} />
+                  Business Operations
+                </span>
+              </button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'websites' ? ' is-active' : ''}`} onClick={() => switchTab('websites')}><span className="np-admin-nav-left"><Globe size={16}/> Websites</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'software' ? ' is-active' : ''}`} onClick={() => switchTab('software')}><span className="np-admin-nav-left"><Code2 size={16}/> Software</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'branding' ? ' is-active' : ''}`} onClick={() => switchTab('branding')}><span className="np-admin-nav-left"><Palette size={16}/> Branding</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'automation' ? ' is-active' : ''}`} onClick={() => switchTab('automation')}><span className="np-admin-nav-left"><Workflow size={16}/> Automation</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'clients' ? ' is-active' : ''}`} onClick={() => switchTab('clients')}><span className="np-admin-nav-left"><Users size={16}/> Clients</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'analytics' ? ' is-active' : ''}`} onClick={() => switchTab('analytics')}><span className="np-admin-nav-left"><ChartNoAxesCombined size={16}/> Analytics</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'settings' ? ' is-active' : ''}`} onClick={() => switchTab('settings')}><span className="np-admin-nav-left"><Settings size={16}/> Settings</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'help' ? ' is-active' : ''}`} onClick={() => switchTab('help')}><span className="np-admin-nav-left"><CircleHelp size={16}/> Help & Support</span></button>
             </nav>
           </div>
         </div>
@@ -462,16 +495,41 @@ export default function AdminDashboard({
               {activeTab === 'consultations' && 'Consultations Pipeline'}
               {activeTab === 'rsvps' && 'Event RSVPs'}
               {activeTab === 'projects' && 'Projects Management'}
+              {activeTab === 'operations' && 'Business Operations'}
+              {activeTab === 'websites' && 'Website Projects'}
+              {activeTab === 'software' && 'Software Projects'}
+              {activeTab === 'branding' && 'Branding Projects'}
+              {activeTab === 'automation' && 'Automation Projects'}
+              {activeTab === 'clients' && 'Client Directory'}
+              {activeTab === 'analytics' && 'Studio Analytics'}
+              {activeTab === 'settings' && 'Administrator Settings'}
+              {activeTab === 'help' && 'Help & Support'}
             </h1>
             <p>
               Server-verified NEOPAD STUDIO administrative workspace · Live Supabase records
             </p>
           </div>
 
-          <Link href="/" className="np-btn np-btn--outline">
-            View public site
-            <ArrowUpRight size={14} />
-          </Link>
+          <div className="np-admin-top-actions">
+            <form className="np-admin-global-search" onSubmit={(e) => { e.preventDefault(); switchTab('overview'); }}>
+              <Search size={15} />
+              <input type="search" aria-label="Search recent activity" placeholder="Search recent activity…" value={globalSearch} onChange={(e) => setGlobalSearch(e.target.value)} />
+            </form>
+            <div className="np-admin-action-wrap">
+              <button type="button" className="np-admin-icon-btn" aria-label="Notifications" aria-expanded={notificationsOpen} onClick={() => { setNotificationsOpen((v) => !v); setProfileMenuOpen(false); }}>
+                <Inbox size={17}/><span className="np-admin-notification-count">{(stats.newInquiries || 0) + (stats.pendingConsultations || 0)}</span>
+              </button>
+              {notificationsOpen && <div className="np-admin-popover"><strong>Notifications</strong><button type="button" onClick={() => { switchTab('inquiries'); setNotificationsOpen(false); }}>New inquiries <b>{stats.newInquiries || 0}</b></button><button type="button" onClick={() => { switchTab('consultations'); setNotificationsOpen(false); }}>Pending consultations <b>{stats.pendingConsultations || 0}</b></button><button type="button" onClick={() => { switchTab('rsvps'); setNotificationsOpen(false); }}>Event RSVPs <b>{stats.totalRsvps || 0}</b></button></div>}
+            </div>
+            <button type="button" className="np-admin-icon-btn" aria-label="Settings" onClick={() => switchTab('settings')}><Settings size={17}/></button>
+            <div className="np-admin-action-wrap">
+              <button type="button" className="np-admin-profile-btn" aria-expanded={profileMenuOpen} onClick={() => { setProfileMenuOpen((v) => !v); setNotificationsOpen(false); }}>
+                <span className="np-admin-avatar">{(adminName || adminEmail || 'A').slice(0,1).toUpperCase()}</span><span><strong>{adminName || 'Administrator'}</strong><small>Administrator</small></span>
+              </button>
+              {profileMenuOpen && <div className="np-admin-popover np-admin-profile-popover"><strong>{adminEmail}</strong><button type="button" onClick={() => { switchTab('settings'); setProfileMenuOpen(false); }}>Account settings</button><Link href="/account">Open client portal</Link></div>}
+            </div>
+            <Link href="/" className="np-btn np-btn--outline">Public site <ArrowUpRight size={14}/></Link>
+          </div>
         </div>
 
         {initialLoadError && (
@@ -496,6 +554,7 @@ export default function AdminDashboard({
 
         {activeTab === 'overview' && (
           <>
+            <AdminBusinessSummary />
             <div className="np-stats-grid">
               <div className="np-stat-card">
                 <div className="np-stat-label">Total Inquiries</div>
@@ -559,7 +618,7 @@ export default function AdminDashboard({
                 </div>
               </div>
 
-              {recentSubmissions.length === 0 ? (
+              {recentSubmissions.filter((entry) => !globalSearch.trim() || [entry.name, entry.email, entry.summary, entry.typeLabel].some((value) => (value || '').toLowerCase().includes(globalSearch.trim().toLowerCase()))).length === 0 ? (
                 <div className="np-empty-state">No submissions recorded yet.</div>
               ) : (
                 <div className="np-table-wrap">
@@ -574,7 +633,7 @@ export default function AdminDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {recentSubmissions.map((entry) => (
+                      {recentSubmissions.filter((entry) => !globalSearch.trim() || [entry.name, entry.email, entry.summary, entry.typeLabel].some((value) => (value || '').toLowerCase().includes(globalSearch.trim().toLowerCase()))).map((entry) => (
                         <tr key={`${entry.type}-${entry.id}`}>
                           <td style={{ fontWeight: 700 }}>{entry.typeLabel}</td>
                           <td>
@@ -1323,6 +1382,16 @@ export default function AdminDashboard({
             </div>
           </div>
         )}
+
+        {activeTab === 'operations' && <AdminOperations />}
+        {activeTab === 'analytics' && <AdminOperations />}
+        {activeTab === 'websites' && <AdminProjects initialCategory="web" />}
+        {activeTab === 'software' && <AdminProjects initialCategory="software" />}
+        {activeTab === 'branding' && <AdminProjects initialCategory="brand" />}
+        {activeTab === 'automation' && <AdminProjects initialCategory="automation" />}
+        {activeTab === 'clients' && <AdminClients />}
+        {activeTab === 'settings' && <section className="np-card"><p className="np-card-kicker">Account security</p><h2>Administrator account</h2><p className="np-card-desc">This workspace uses the existing NEOPAD Supabase authentication and database-verified administrator role. Role changes remain restricted to authorized database administration.</p><div className="np-detail-grid"><div><strong>Administrator</strong><span>{adminName || 'Studio Administrator'}</span></div><div><strong>Email</strong><span>{adminEmail}</span></div><div><strong>Access level</strong><span>Verified studio administrator</span></div><div><strong>Client portal</strong><span>Separate at /account</span></div></div></section>}
+        {activeTab === 'help' && <section className="np-card"><p className="np-card-kicker">Support centre</p><h2>NEOPAD Digital Help & Support</h2><p className="np-card-desc">For website enquiries and support requests, use the existing public contact channel. Report dashboard errors with the exact message and the section where they occurred.</p><div className="np-action-links"><Link href="/contact" className="np-action-link">Open contact page <ArrowUpRight size={14}/></Link><Link href="/" className="np-action-link">Visit public website <ArrowUpRight size={14}/></Link></div></section>}
       </main>
     </div>
   );
