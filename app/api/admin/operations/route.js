@@ -31,21 +31,22 @@ export async function GET() {
   const auth = await access();
   if (auth.response) return auth.response;
   const { supabase } = auth;
-  const [finance, meetings, feedback, activity, projects] = await Promise.all([
+  const [finance, meetings, feedback, activity, projects, clients] = await Promise.all([
     supabase.from('studio_financial_entries').select('id, entry_type, description, category, amount, currency, recorded_on, project_id, reference, created_at').order('recorded_on', { ascending: false }).limit(500),
     supabase.from('studio_meetings').select('id, title, meeting_type, attendee_name, attendee_email, starts_at, ends_at, location, meeting_url, notes, status, created_at').order('starts_at', { ascending: true }).limit(200),
     supabase.from('studio_client_feedback').select('id, client_name, client_email, rating, feedback, project_id, received_on, created_at').order('received_on', { ascending: false }).limit(200),
     supabase.from('studio_activity_log').select('id, actor_name, action, entity_type, entity_id, details, created_at').order('created_at', { ascending: false }).limit(100),
     supabase.from('studio_projects').select('id, name, client_name, category, status, progress_percent, deadline, created_at').order('deadline', { ascending: true }).limit(200),
+    supabase.from('profiles').select('id, email, full_name, company_name, created_at, role').eq('role', 'client').order('created_at', { ascending: false }).limit(500),
   ]);
-  const failed = [finance, meetings, feedback, activity, projects].find((r) => r.error);
+  const failed = [finance, meetings, feedback, activity, projects, clients].find((r) => r.error);
   if (failed) {
     console.error('[admin-operations] Query failed:', failed.error.message);
     return error('Unable to load operational records. Apply the admin operations migration and try again.', 502);
   }
   return NextResponse.json({
     finance: finance.data || [], meetings: meetings.data || [], feedback: feedback.data || [],
-    activity: activity.data || [], projects: projects.data || [],
+    activity: activity.data || [], projects: projects.data || [], clients: clients.data || [],
   }, { headers: { 'Cache-Control': 'no-store' } });
 }
 
