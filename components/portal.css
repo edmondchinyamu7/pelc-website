@@ -1336,3 +1336,108 @@
 
 .np-ops-legend span:nth-child(3) i { background:#8b6b19; }
 .np-ops-bars span:nth-child(3) { background:#8b6b19; }
+
+/* ==========================================================================
+   NEOPAD DIGITAL — Client account profile and private vault
+   Scoped to .np-client-account-page so admin and public pages are untouched.
+   ========================================================================== */
+.np-client-account-page { background: #faf9f5; color: #242424; }
+.np-client-hero { background: #171613; padding: clamp(34px, 5vw, 58px) 0; }
+.np-client-hero h1 { max-width: 900px; font-size: clamp(25px, 4vw, 38px); line-height: 1.16; letter-spacing: -1.1px; overflow-wrap: anywhere; }
+.np-client-hero h1 em { color: #d1b574; }
+.np-client-hero .np-portal-sub { max-width: 660px; font-size: 14px; }
+.np-client-account { background: #faf9f5; padding: clamp(26px, 4vw, 52px) 0 76px; }
+.np-client-account-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 2.2vw, 26px); align-items: start; }
+.np-client-card { min-width: 0; padding: clamp(18px, 2.5vw, 30px); border: 1px solid #e9e4d8; border-radius: 16px; background: #fff; box-shadow: 0 12px 32px rgba(36,36,36,.045); }
+.np-client-card-head { align-items: flex-start; gap: 14px; margin-bottom: 22px; padding-bottom: 20px; border-bottom-color: #eee9df; }
+.np-client-card-head > div { min-width: 0; }
+.np-client-card .np-card-kicker { margin-bottom: 8px; color: #a17d37; font-size: 10px; letter-spacing: 1.65px; }
+.np-client-card .np-card-head h2, .np-client-card-head h2 { color: #242424; font-size: clamp(21px, 2.2vw, 25px); line-height: 1.2; letter-spacing: -.55px; }
+.np-client-card .np-card-desc { max-width: 520px; color: #77736a; font-size: 13px; line-height: 1.7; }
+.np-client-role { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 5px; padding: 7px 11px; border: 1px solid #eadfc5; border-radius: 999px; background: #faf6eb; color: #80632c; font-size: 11px; }
+.np-profile-form { display: flex; flex-direction: column; gap: 17px; width: 100%; min-width: 0; }
+.np-profile-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.np-profile-field > label { color: #34312b; font-size: 13px; font-weight: 650; }
+.np-profile-input-wrap { display: flex; align-items: center; gap: 11px; width: 100%; min-width: 0; min-height: 49px; padding: 0 14px; border: 1px solid #e5dfd2; border-radius: 10px; background: #fff; color: #a17d37; transition: border-color .18s ease, box-shadow .18s ease, background .18s ease; }
+.np-profile-input-wrap:focus-within { border-color: #b08d45; background: #fffefa; box-shadow: 0 0 0 3px rgba(176,141,69,.13); }
+.np-profile-input-wrap svg { flex: 0 0 auto; }
+.np-profile-input-wrap input { display: block; width: 100%; min-width: 0; height: 47px; padding: 0; border: 0; outline: 0; background: transparent; color: #242424; font: inherit; font-size: 14px; }
+.np-profile-input-wrap input::placeholder { color: #a19b90; opacity: 1; }
+.np-profile-input-wrap input:focus-visible { outline: 0; }
+.np-profile-save { display: inline-flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 48px; margin-top: 3px; padding: 0 18px; border: 1px solid #a78039; border-radius: 10px; background: #b08d45; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 5px 13px rgba(176,141,69,.16); transition: background .18s ease, transform .18s ease, box-shadow .18s ease; }
+.np-profile-save:hover:not(:disabled) { background: #987536; box-shadow: 0 8px 18px rgba(176,141,69,.22); transform: translateY(-1px); }
+.np-profile-save:active:not(:disabled) { transform: translateY(0); }
+.np-profile-save:disabled { cursor: wait; opacity: .75; }
+.np-profile-message { display: flex; align-items: center; gap: 7px; margin: 0; padding: 11px 13px; border-radius: 9px; font-size: 12px; line-height: 1.5; }
+.np-profile-message--error { border: 1px solid #f0cccc; background: #fff4f3; color: #9a302a; }
+.np-profile-message--success { border: 1px solid #dce8d5; background: #f4f8f0; color: #41633c; }
+.np-profile-spinner { animation: np-profile-spin .9s linear infinite; }
+@keyframes np-profile-spin { to { transform: rotate(360deg); } }
+.np-client-actions { gap: 13px; margin-top: 26px; padding-top: 22px; border-top: 1px solid #eee9df; }
+.np-client-actions h3 { margin: 3px 0 0; color: #242424; font-size: 16px; font-weight: 650; }
+.np-client-action-links { display: grid; grid-template-columns: 1fr; gap: 9px; }
+.np-client-action { display: flex; justify-content: flex-start; gap: 11px; width: 100%; min-height: 47px; padding: 0 13px; border: 1px solid #e9e4d8; border-radius: 10px; background: #faf9f5; color: #34312b; font-size: 13px; font-weight: 650; text-decoration: none; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+.np-client-action svg:first-child { color: #a17d37; }
+.np-client-action svg:last-child { margin-left: auto; color: #999184; }
+.np-client-action:hover { border-color: #c8ad73; background: #f8f3e7; color: #6f5524; transform: translateY(-1px); }
+.np-client-admin-action { background: #fffdf8; }
+.np-client-signout { padding-top: 5px; }
+.np-client-signout-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 14px; border: 1px solid #ead5d2; border-radius: 10px; background: #fff8f7; color: #91443d; font-size: 13px; font-weight: 650; cursor: pointer; transition: background .18s ease, border-color .18s ease; }
+.np-client-signout-btn:hover:not(:disabled) { border-color: #d9aaa4; background: #fff0ee; }
+.np-client-signout-btn:disabled { opacity: .65; cursor: wait; }
+.np-client-vault .np-upload-box { gap: 17px; padding: clamp(16px, 2vw, 22px); border: 1px dashed #d7c69f; border-radius: 12px; background: #fdfbf6; }
+.np-client-vault .np-upload-meta { align-items: flex-start; }
+.np-client-vault .np-upload-meta strong { color: #302d27; font-size: 14px; }
+.np-client-vault .np-upload-meta span { color: #77736a; line-height: 1.55; }
+.np-client-vault .np-file-input-row { align-items: stretch; }
+.np-client-vault .np-file-input { min-width: 0; max-width: 100%; font-size: 12px; }
+.np-client-vault .np-btn { min-height: 42px; border-radius: 9px; font-size: 12px; }
+.np-client-vault .np-btn--gold { border-color: #b08d45; background: #b08d45; color: #fff; }
+.np-client-vault .np-btn--gold:hover:not(:disabled) { border-color: #987536; background: #987536; }
+.np-client-vault .np-btn--outline { border-color: #e3dccd; background: #fff; color: #4c463b; }
+.np-client-vault .np-btn--outline:hover:not(:disabled) { border-color: #b08d45; background: #faf6eb; }
+.np-client-vault .np-brief-list { gap: 9px; }
+.np-client-vault .np-brief-row { min-width: 0; padding: 13px; border-color: #eee9df; border-radius: 10px; }
+.np-client-vault .np-brief-info { min-width: 0; }
+.np-client-vault .np-brief-actions { max-width: 100%; }
+.np-client-vault .np-brief-name { overflow-wrap: anywhere; }
+.np-client-vault .np-brief-actions .np-btn { min-height: 37px; }
+.np-client-vault .np-empty-state { border-radius: 10px; background: #fcfbf8; color: #77736a; }
+.np-client-account-page :focus-visible { outline: 2px solid #b08d45; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .np-client-account-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .np-client-hero { padding: 32px 0 30px; }
+  .np-client-hero h1 { font-size: clamp(24px, 7vw, 30px); letter-spacing: -.65px; }
+  .np-client-hero .np-portal-sub { font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+  .np-client-account { padding: 22px 0 48px; }
+  .np-client-account-page .container { width: min(100% - 28px, 1160px); }
+  .np-client-card { padding: 17px; border-radius: 13px; }
+  .np-client-card-head { flex-direction: row; gap: 10px; }
+  .np-client-card-head h2 { font-size: 21px; }
+  .np-client-role { font-size: 10px; padding: 6px 8px; }
+  .np-profile-form { gap: 14px; }
+  .np-profile-input-wrap { min-height: 48px; padding: 0 12px; }
+  .np-profile-input-wrap input { height: 46px; font-size: 14px; }
+  .np-client-action-links { grid-template-columns: 1fr; }
+  .np-client-action, .np-client-signout-btn { min-height: 47px; }
+  .np-client-vault .np-file-input-row { flex-direction: column; }
+  .np-client-vault .np-file-input { width: 100%; }
+  .np-client-vault .np-file-input-row .np-btn { width: 100%; }
+  .np-client-vault .np-brief-row { align-items: stretch; flex-direction: column; }
+  .np-client-vault .np-brief-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .np-client-vault .np-brief-actions .np-btn { width: 100%; padding-inline: 8px; }
+}
+@media (max-width: 360px) {
+  .np-client-account-page .container { width: calc(100% - 22px); }
+  .np-client-card { padding: 14px; }
+  .np-client-card-head { flex-direction: column; }
+  .np-client-vault .np-brief-actions { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .np-client-account-page *, .np-client-account-page *::before, .np-client-account-page *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
