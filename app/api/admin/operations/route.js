@@ -36,7 +36,7 @@ export async function GET() {
     supabase.from('studio_meetings').select('id, title, meeting_type, attendee_name, attendee_email, starts_at, ends_at, location, meeting_url, notes, status, created_at').order('starts_at', { ascending: true }).limit(200),
     supabase.from('studio_client_feedback').select('id, client_name, client_email, rating, feedback, project_id, received_on, created_at').order('received_on', { ascending: false }).limit(200),
     supabase.from('studio_activity_log').select('id, actor_name, action, entity_type, entity_id, details, created_at').order('created_at', { ascending: false }).limit(100),
-    supabase.from('studio_projects').select('id, name, client_name, category, status, progress_percent, deadline').order('deadline', { ascending: true }).limit(200),
+    supabase.from('studio_projects').select('id, name, client_name, category, status, progress_percent, deadline, created_at').order('deadline', { ascending: true }).limit(200),
   ]);
   const failed = [finance, meetings, feedback, activity, projects].find((r) => r.error);
   if (failed) {
