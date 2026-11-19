@@ -113,16 +113,32 @@ export default function LoginForm() {
         return;
       }
 
-      const nextParam =
-        typeof window !== 'undefined'
-          ? new URLSearchParams(window.location.search).get('next')
-          : null;
-      const safeNext =
-        nextParam && nextParam.startsWith('/') && !nextParam.startsWith('//')
-          ? nextParam
-          : '/account';
+      // Resolve the destination from the database-backed role, never from
+      // user-editable metadata or a client-controlled redirect parameter.
+      const [{ data: isAdmin, error: adminCheckError }, { data: profile, error: profileError }] =
+        await Promise.all([
+          supabase.rpc('is_studio_admin'),
+          supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', data.user.id)
+            .maybeSingle(),
+        ]);
 
-      window.location.assign(safeNext);
+      if (adminCheckError || profileError || !profile) {
+        logSafeAuthDiagnostic({
+          location: 'components/LoginForm.js',
+          operation: adminCheckError ? 'rpc.is_studio_admin' : 'profiles.select',
+          error: adminCheckError || profileError,
+          reason: 'role_verification_failed_after_login',
+        });
+        setError('You are signed in, but we could not verify your account permissions. Please try again or contact NEOPAD support.');
+        setIsLoading(false);
+        return;
+      }
+
+      const isVerifiedAdmin = isAdmin === true && profile.role === 'admin';
+      window.location.assign(isVerifiedAdmin ? '/admin' : '/account');
     } catch (unexpectedError) {
       logSafeAuthDiagnostic({
         location: 'components/LoginForm.js',
