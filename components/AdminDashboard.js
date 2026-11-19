@@ -17,7 +17,6 @@ import {
   RefreshCw,
   Search,
   Ticket,
-  User,
   X,
 } from 'lucide-react';
 import SignOutButton from '@/components/SignOutButton';
@@ -362,7 +361,7 @@ export default function AdminDashboard({
                 priority
               />
               <div className="np-admin-brand-title">
-                <strong>NEOPAD <span>STUDIO</span></strong>
+                <strong>NEOPAD <span>DIGITAL</span></strong>
                 <small>Admin Operations</small>
               </div>
             </div>
@@ -448,18 +447,6 @@ export default function AdminDashboard({
               <strong>{adminName || 'Studio Administrator'}</strong>
               <span>{adminEmail}</span>
             </div>
-
-            <Link
-              href="/account"
-              className="np-admin-nav-btn"
-              style={{ border: '1px solid rgba(255,255,255,0.14)' }}
-            >
-              <span className="np-admin-nav-left">
-                <User size={15} />
-                Client Account
-              </span>
-              <ArrowUpRight size={14} />
-            </Link>
 
             <SignOutButton />
           </div>
