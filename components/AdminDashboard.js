@@ -8,6 +8,13 @@ import {
   CalendarClock,
   BriefcaseBusiness,
   ChartNoAxesCombined,
+  Globe,
+  Code2,
+  Palette,
+  Workflow,
+  Users,
+  Settings,
+  CircleHelp,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -23,6 +30,7 @@ import {
 import SignOutButton from '@/components/SignOutButton';
 import AdminProjects from '@/components/AdminProjects';
 import AdminOperations from '@/components/AdminOperations';
+import AdminClients from '@/components/AdminClients';
 
 const INQUIRY_DEPARTMENTS = ['general', 'wdd', 'sdd', 'ud', 'ad', 'md', 'cpd'];
 const INQUIRY_STATUSES = ['new', 'in_review', 'replied', 'archived'];
@@ -450,6 +458,14 @@ export default function AdminDashboard({
                   Business Operations
                 </span>
               </button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'websites' ? ' is-active' : ''}`} onClick={() => switchTab('websites')}><span className="np-admin-nav-left"><Globe size={16}/> Websites</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'software' ? ' is-active' : ''}`} onClick={() => switchTab('software')}><span className="np-admin-nav-left"><Code2 size={16}/> Software</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'branding' ? ' is-active' : ''}`} onClick={() => switchTab('branding')}><span className="np-admin-nav-left"><Palette size={16}/> Branding</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'automation' ? ' is-active' : ''}`} onClick={() => switchTab('automation')}><span className="np-admin-nav-left"><Workflow size={16}/> Automation</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'clients' ? ' is-active' : ''}`} onClick={() => switchTab('clients')}><span className="np-admin-nav-left"><Users size={16}/> Clients</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'analytics' ? ' is-active' : ''}`} onClick={() => switchTab('analytics')}><span className="np-admin-nav-left"><ChartNoAxesCombined size={16}/> Analytics</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'settings' ? ' is-active' : ''}`} onClick={() => switchTab('settings')}><span className="np-admin-nav-left"><Settings size={16}/> Settings</span></button>
+              <button type="button" className={`np-admin-nav-btn${activeTab === 'help' ? ' is-active' : ''}`} onClick={() => switchTab('help')}><span className="np-admin-nav-left"><CircleHelp size={16}/> Help & Support</span></button>
             </nav>
           </div>
         </div>
@@ -476,6 +492,14 @@ export default function AdminDashboard({
               {activeTab === 'rsvps' && 'Event RSVPs'}
               {activeTab === 'projects' && 'Projects Management'}
               {activeTab === 'operations' && 'Business Operations'}
+              {activeTab === 'websites' && 'Website Projects'}
+              {activeTab === 'software' && 'Software Projects'}
+              {activeTab === 'branding' && 'Branding Projects'}
+              {activeTab === 'automation' && 'Automation Projects'}
+              {activeTab === 'clients' && 'Client Directory'}
+              {activeTab === 'analytics' && 'Studio Analytics'}
+              {activeTab === 'settings' && 'Administrator Settings'}
+              {activeTab === 'help' && 'Help & Support'}
             </h1>
             <p>
               Server-verified NEOPAD STUDIO administrative workspace · Live Supabase records
@@ -1339,6 +1363,14 @@ export default function AdminDashboard({
         )}
 
         {activeTab === 'operations' && <AdminOperations />}
+        {activeTab === 'analytics' && <AdminOperations />}
+        {activeTab === 'websites' && <AdminProjects initialCategory="web" />}
+        {activeTab === 'software' && <AdminProjects initialCategory="software" />}
+        {activeTab === 'branding' && <AdminProjects initialCategory="brand" />}
+        {activeTab === 'automation' && <AdminProjects initialCategory="automation" />}
+        {activeTab === 'clients' && <AdminClients />}
+        {activeTab === 'settings' && <section className="np-card"><p className="np-card-kicker">Account security</p><h2>Administrator account</h2><p className="np-card-desc">This workspace uses the existing NEOPAD Supabase authentication and database-verified administrator role. Role changes remain restricted to authorized database administration.</p><div className="np-detail-grid"><div><strong>Administrator</strong><span>{adminName || 'Studio Administrator'}</span></div><div><strong>Email</strong><span>{adminEmail}</span></div><div><strong>Access level</strong><span>Verified studio administrator</span></div><div><strong>Client portal</strong><span>Separate at /account</span></div></div></section>}
+        {activeTab === 'help' && <section className="np-card"><p className="np-card-kicker">Support centre</p><h2>NEOPAD Digital Help & Support</h2><p className="np-card-desc">For website enquiries and support requests, use the existing public contact channel. Report dashboard errors with the exact message and the section where they occurred.</p><div className="np-action-links"><Link href="/contact" className="np-action-link">Open contact page <ArrowUpRight size={14}/></Link><Link href="/" className="np-action-link">Visit public website <ArrowUpRight size={14}/></Link></div></section>}
       </main>
     </div>
   );
