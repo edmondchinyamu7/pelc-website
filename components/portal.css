@@ -1313,3 +1313,23 @@
 @media(max-width:1100px) { .np-ops-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:760px) { .np-ops-grid { grid-template-columns:1fr; } }
 @media(max-width:540px) { .np-ops-kpis { grid-template-columns:1fr; } .np-ops-form-grid { grid-template-columns:1fr; } .np-ops-wide { grid-column:auto; } .np-ops-list-row { flex-wrap:wrap; } .np-ops-legend button { margin-left:0; } }
+
+
+/* Admin topbar utilities */
+.np-admin-top-actions { display:flex; align-items:center; justify-content:flex-end; gap:9px; flex-wrap:wrap; }
+.np-admin-global-search { min-width:190px; height:39px; display:flex; align-items:center; gap:8px; padding:0 11px; border:1px solid #dfd7c4; border-radius:5px; background:#fff; color:#9c7921; }
+.np-admin-global-search input { width:100%; min-width:0; border:0; outline:0; background:transparent; color:var(--ink); font:inherit; font-size:12px; }
+.np-admin-action-wrap { position:relative; }
+.np-admin-icon-btn { position:relative; width:39px; height:39px; display:inline-flex; align-items:center; justify-content:center; border:1px solid #dfd7c4; border-radius:5px; background:#fff; color:#8b6b19; cursor:pointer; }
+.np-admin-icon-btn:hover,.np-admin-profile-btn:hover { border-color:#b58d29; background:#faf7ef; }
+.np-admin-notification-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; display:flex; align-items:center; justify-content:center; border-radius:99px; background:#9c7921; color:#fff; font-size:9px; font-weight:800; }
+.np-admin-profile-btn { min-height:39px; display:flex; align-items:center; gap:8px; padding:3px 9px 3px 4px; border:1px solid #dfd7c4; border-radius:5px; background:#fff; color:var(--ink); text-align:left; cursor:pointer; }
+.np-admin-avatar { width:29px; height:29px; display:grid; place-items:center; border-radius:50%; background:#f4ecd7; color:#8b6b19; font-size:12px; font-weight:800; }
+.np-admin-profile-btn strong,.np-admin-profile-btn small { display:block; }
+.np-admin-profile-btn strong { font-size:11px; }
+.np-admin-profile-btn small { margin-top:2px; color:var(--muted); font-size:9px; }
+.np-admin-popover { position:absolute; z-index:30; top:calc(100% + 8px); right:0; width:230px; padding:12px; display:flex; flex-direction:column; gap:5px; border:1px solid #e2d8c1; border-radius:7px; background:#fff; box-shadow:0 14px 36px rgba(17,16,13,.13); }
+.np-admin-popover strong { padding:5px 7px; color:var(--ink); font-size:11px; overflow-wrap:anywhere; }
+.np-admin-popover button,.np-admin-popover a { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 7px; border:0; border-radius:4px; background:transparent; color:var(--ink); font-size:12px; text-align:left; cursor:pointer; }
+.np-admin-popover button:hover,.np-admin-popover a:hover { background:#faf7ef; color:#8b6b19; }
+@media(max-width:760px) { .np-admin-top-actions { width:100%; justify-content:flex-start; } .np-admin-global-search { flex:1 1 100%; order:2; } .np-admin-profile-btn span:nth-child(2) { display:none; } }
