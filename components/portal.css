@@ -1333,3 +1333,6 @@
 .np-admin-popover button,.np-admin-popover a { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 7px; border:0; border-radius:4px; background:transparent; color:var(--ink); font-size:12px; text-align:left; cursor:pointer; }
 .np-admin-popover button:hover,.np-admin-popover a:hover { background:#faf7ef; color:#8b6b19; }
 @media(max-width:760px) { .np-admin-top-actions { width:100%; justify-content:flex-start; } .np-admin-global-search { flex:1 1 100%; order:2; } .np-admin-profile-btn span:nth-child(2) { display:none; } }
+
+.np-ops-legend span:nth-child(3) i { background:#8b6b19; }
+.np-ops-bars span:nth-child(3) { background:#8b6b19; }
