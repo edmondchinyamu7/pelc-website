@@ -554,6 +554,7 @@ export default function AdminDashboard({
 
         {activeTab === 'overview' && (
           <>
+            <AdminBusinessSummary />
             <div className="np-stats-grid">
               <div className="np-stat-card">
                 <div className="np-stat-label">Total Inquiries</div>
