@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   CalendarClock,
   BriefcaseBusiness,
-  Users,
   Check,
   ChevronLeft,
   ChevronRight,
