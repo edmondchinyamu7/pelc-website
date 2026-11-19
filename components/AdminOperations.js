@@ -35,12 +35,12 @@ export default function AdminOperations() {
   useEffect(() => { load(); }, [load]);
 
   const month = today().slice(0, 7);
-  const financeThisMonth = data.finance.filter((r) => monthKey(r.recorded_on) === month);
+  const currency = data.finance[0]?.currency || 'MWK';
+  const financeThisMonth = data.finance.filter((r) => monthKey(r.recorded_on) === month && r.currency === currency);
   const monthlyRevenue = financeThisMonth.filter((r) => r.entry_type === 'income').reduce((s, r) => s + Number(r.amount), 0);
   const monthlyExpenses = financeThisMonth.filter((r) => r.entry_type === 'expense').reduce((s, r) => s + Number(r.amount), 0);
   const averageRating = data.feedback.length ? data.feedback.reduce((s, r) => s + Number(r.rating), 0) / data.feedback.length : null;
-  const newProjects = data.projects.filter((p) => monthKey(p.deadline) === month).length;
-  const currency = data.finance[0]?.currency || 'MWK';
+  const newProjects = data.projects.filter((p) => monthKey(p.created_at) === month).length;
 
   const chart = useMemo(() => {
     const count = period === 'year' ? 12 : 6;
@@ -49,10 +49,10 @@ export default function AdminOperations() {
       return d.toISOString().slice(0, 7);
     });
     return keys.map((key) => {
-      const rows = data.finance.filter((r) => monthKey(r.recorded_on) === key);
+      const rows = data.finance.filter((r) => monthKey(r.recorded_on) === key && r.currency === currency);
       return { key, label: new Date(key + '-01T12:00:00').toLocaleDateString('en', { month: 'short' }), income: rows.filter((r) => r.entry_type === 'income').reduce((s, r) => s + Number(r.amount), 0), expense: rows.filter((r) => r.entry_type === 'expense').reduce((s, r) => s + Number(r.amount), 0) };
     });
-  }, [data.finance, period]);
+  }, [data.finance, period, currency]);
   const maxChart = Math.max(1, ...chart.flatMap((r) => [r.income, r.expense]));
   const services = ['Website Design & Development', 'Software Development', 'Branding', 'Automation', 'Consulting'];
   const serviceCounts = services.map((label) => ({ label, count: data.projects.filter((p) => {
