@@ -15,7 +15,7 @@ function validateProject(body, partial = false) {
     fields[key] = cleanText(value[key]);
     if (fields[key].length < 2) return { error: `${key.replace('_', ' ')} must contain at least 2 characters.` };
   }
-  for (const key of ['description', 'project_url', 'start_date', 'completion_date', 'status']) {
+  for (const key of ['description', 'project_url', 'start_date', 'completion_date', 'deadline', 'progress_percent', 'status']) {
     if (partial && !(key in value)) continue;
     fields[key] = value[key] === null || value[key] === '' ? null : value[key];
   }
@@ -23,7 +23,7 @@ function validateProject(body, partial = false) {
     if (typeof fields.description !== 'string' || fields.description.length > 3000) return { error: 'Description must be 3,000 characters or fewer.' };
     fields.description = fields.description.trim();
   }
-  if ('status' in fields) {
+  if ('deadline' in fields && fields.deadline !== null && (typeof fields.deadline !== 'string' || !/^\\d{4}-\\d{2}-\\d{2}$/.test(fields.deadline))) return { error: 'Deadline must use YYYY-MM-DD format.' };\n  if ('progress_percent' in fields) {\n    const progress = Number(fields.progress_percent);\n    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };\n    fields.progress_percent = progress;\n  }\n  if ('status' in fields) {
     fields.status = fields.status || 'planning';
     if (!STATUSES.has(fields.status)) return { error: 'Choose a valid project status.' };
   }
@@ -55,7 +55,7 @@ export async function GET() {
   if (access.response) return access.response;
   const { data, error } = await access.supabase
     .from('studio_projects')
-    .select('id, name, client_name, category, description, status, start_date, completion_date, project_url, created_at, updated_at')
+    .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .order('created_at', { ascending: false });
   if (error) return NextResponse.json({ error: 'Unable to load projects. Apply the project-management migration and try again.' }, { status: 502 });
   return NextResponse.json({ items: data || [] }, { headers: { 'Cache-Control': 'no-store' } });
