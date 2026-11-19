@@ -28,7 +28,8 @@ function validateProject(body, partial = false) {
     const progress = Number(fields.progress_percent);
     if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };
     fields.progress_percent = progress;
-  }\n  if ('status' in fields) {
+  }
+  if ('status' in fields) {
     fields.status = fields.status || 'planning';
     if (!STATUSES.has(fields.status)) return { error: 'Choose a valid project status.' };
   }
