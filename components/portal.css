@@ -737,3 +737,31 @@
     padding: 20px;
   }
 }
+
+/* -------------------- PROJECT PORTFOLIO MANAGEMENT -------------------- */
+.np-projects-section { display: flex; flex-direction: column; gap: 18px; }
+.np-projects-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+.np-projects-heading h2 { margin: 0; color: var(--ink); font-size: 25px; letter-spacing: -.7px; }
+.np-project-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.np-project-summary > div { padding: 17px 19px; background: #fff; border: 1px solid #e7e1d1; border-radius: 7px; display: flex; flex-direction: column; gap: 7px; }
+.np-project-summary span { color: var(--muted); font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .6px; }
+.np-project-summary strong { color: var(--ink); font-size: 27px; }
+.np-project-form { display: flex; flex-direction: column; gap: 17px; }
+.np-project-form-head, .np-project-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.np-project-form-head h3 { margin: 0; font-size: 19px; }
+.np-project-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.np-project-form-grid label { display: flex; flex-direction: column; gap: 7px; color: var(--ink); font-size: 12px; font-weight: 700; }
+.np-project-form-grid .np-input, .np-project-form-grid .np-select { width: 100%; min-width: 0; }
+.np-project-form-grid textarea.np-input { height: auto; padding: 10px 12px; resize: vertical; }
+.np-project-form-wide { grid-column: 1 / -1; }
+.np-project-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.np-project-search { display: flex; align-items: center; gap: 8px; flex: 1 1 240px; min-height: 40px; padding: 0 12px; border: 1px solid #dfd7c4; border-radius: 5px; background: #fff; color: var(--muted); }
+.np-project-search input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 13px; }
+.np-project-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 5px; color: #8b6b19; font-size: 11px; font-weight: 700; }
+.np-project-description { max-width: 300px; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.np-project-date { display: flex; align-items: center; gap: 5px; margin: 3px 0; white-space: nowrap; color: var(--muted); font-size: 11px; }
+.np-project-actions { display: flex; gap: 6px; }
+.np-pill--planning { background: #f2ede0; color: #62532f; }
+.np-pill--in_progress { background: #e9f2fb; color: #1c5385; }
+.np-pill--on_hold { background: #f4ecec; color: #822b2b; }
+@media (max-width: 640px) { .np-project-summary { grid-template-columns: 1fr; } .np-project-form-grid { grid-template-columns: 1fr; } .np-project-form-wide { grid-column: auto; } }
