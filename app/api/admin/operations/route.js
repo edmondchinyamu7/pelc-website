@@ -66,7 +66,7 @@ export async function POST(request) {
     const date = clean(body.recorded_on, 10);
     if (!['income', 'expense'].includes(body.entry_type)) return error('Choose income or expense.');
     if (!Number.isFinite(amount) || amount <= 0 || amount > 999999999999) return error('Enter a valid positive amount.');
-    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(date)) return error('Enter a valid transaction date.');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return error('Enter a valid transaction date.');
     if (clean(body.description, 240).length < 2 || clean(body.category, 80).length < 2) return error('Description and category are required.');
     const currency = clean(body.currency || 'MWK', 3).toUpperCase();
     if (!/^[A-Z]{3}$/.test(currency)) return error('Currency must be a three-letter code.');
@@ -79,14 +79,14 @@ export async function POST(request) {
     if (ends && (Number.isNaN(ends.getTime()) || ends <= starts)) return error('Meeting end must be after its start.');
     if (!['client', 'internal'].includes(body.meeting_type || 'client')) return error('Choose a valid meeting type.');
     const url = clean(body.meeting_url, 500);
-    if (url && !/^https?:\\/\\//i.test(url)) return error('Meeting link must start with http:// or https://.');
+    if (url && !/^https?:\/\//i.test(url)) return error('Meeting link must start with http:// or https://.');
     fields = { title: clean(body.title, 180), meeting_type: body.meeting_type || 'client', attendee_name: clean(body.attendee_name, 160) || null, attendee_email: clean(body.attendee_email, 254) || null, starts_at: starts.toISOString(), ends_at: ends ? ends.toISOString() : null, location: clean(body.location, 240) || null, meeting_url: url || null, notes: clean(body.notes, 3000) || null, status: 'scheduled', created_by: user.id };
   } else {
     table = 'studio_client_feedback';
     const rating = Number(body.rating);
     const received = clean(body.received_on, 10);
     if (clean(body.client_name, 160).length < 2 || !Number.isInteger(rating) || rating < 1 || rating > 5) return error('Client name and a rating from 1 to 5 are required.');
-    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(received)) return error('Enter a valid feedback date.');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(received)) return error('Enter a valid feedback date.');
     fields = { client_name: clean(body.client_name, 160), client_email: clean(body.client_email, 254) || null, rating, feedback: clean(body.feedback, 3000) || null, project_id: UUID.test(body.project_id || '') ? body.project_id : null, received_on: received, created_by: user.id };
   }
 
