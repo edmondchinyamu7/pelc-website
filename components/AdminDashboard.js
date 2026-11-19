@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowUpRight,
   CalendarClock,
@@ -351,9 +352,19 @@ export default function AdminDashboard({
       <aside className="np-admin-sidebar" aria-label="Admin navigation">
         <div>
           <div className="np-admin-brand">
-            <div className="np-admin-brand-title">
-              <strong>NEOPAD STUDIO</strong>
-              <span>Admin Operations</span>
+            <div className="np-admin-brand-lockup">
+              <Image
+                src="/neopad-mark.svg"
+                alt="NEOPAD STUDIO"
+                width={42}
+                height={42}
+                className="np-admin-brand-mark"
+                priority
+              />
+              <div className="np-admin-brand-title">
+                <strong>NEOPAD <span>STUDIO</span></strong>
+                <small>Admin Operations</small>
+              </div>
             </div>
             <button
               type="button"
