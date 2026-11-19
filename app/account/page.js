@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { CalendarCheck, KeyRound, ShieldCheck } from 'lucide-react';
+import { CalendarCheck, KeyRound } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -22,16 +22,12 @@ export default async function AccountPage() {
 
   if (!user) redirect('/auth/login');
 
-  const [{ data: profile }, { data: isAdminRpc, error: rpcError }] = await Promise.all([
-    supabase
-      .from('profiles')
-      .select('id, email, full_name, company_name, phone, role')
-      .eq('id', user.id)
-      .maybeSingle(),
-    supabase.rpc('is_studio_admin'),
-  ]);
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id, email, full_name, company_name, phone')
+    .eq('id', user.id)
+    .maybeSingle();
 
-  const isAdmin = !rpcError && isAdminRpc === true && profile?.role === 'admin';
   const greetingName = profile?.full_name?.trim() || user.email;
 
   return (
@@ -44,25 +40,16 @@ export default async function AccountPage() {
             <div>
               <span className="pill">
                 <span className="dot" />
-                {isAdmin ? 'Studio Administrator · Client Portal' : 'Client Account Portal'}
+                Client Account Portal
               </span>
               <h1 style={{ marginTop: '14px' }}>
                 Welcome back, <em>{greetingName}</em>
               </h1>
               <p className="np-portal-sub">
                 Signed in as {user.email}. Manage your profile details, security settings, and
-                private project briefs stored exclusively for your NEOPAD STUDIO engagements.
+                private project briefs for your NEOPAD STUDIO engagements.
               </p>
             </div>
-
-            {isAdmin && (
-              <div className="np-portal-hero-actions">
-                <Link href="/admin" className="btn-lime">
-                  <ShieldCheck size={16} />
-                  Open Admin Dashboard
-                </Link>
-              </div>
-            )}
           </div>
         </div>
       </header>
@@ -80,7 +67,7 @@ export default async function AccountPage() {
                     consultations.
                   </p>
                 </div>
-                <span className="np-pill">{isAdmin ? 'Admin' : 'Client'}</span>
+                <span className="np-pill">Client</span>
               </div>
 
               <AccountProfileForm
@@ -102,12 +89,6 @@ export default async function AccountPage() {
                     <CalendarCheck size={15} />
                     Book consultation
                   </Link>
-                  {isAdmin && (
-                    <Link href="/admin" className="np-action-link">
-                      <ShieldCheck size={15} />
-                      Admin Dashboard
-                    </Link>
-                  )}
                 </div>
                 <div style={{ marginTop: '6px' }}>
                   <SignOutButton />

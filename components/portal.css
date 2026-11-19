@@ -1088,3 +1088,179 @@
     transition: none;
   }
 }
+
+
+/* ==========================================================================
+   NEOPAD DIGITAL — Premium white and metallic-gold admin workspace
+   Admin-only overrides. The public website and client portal retain their
+   existing NEOPAD brand styling.
+   ========================================================================== */
+.np-admin-layout {
+  background: #ffffff;
+  color: #252525;
+  grid-template-columns: 276px minmax(0, 1fr);
+}
+.np-admin-sidebar {
+  background: #ffffff;
+  color: #252525;
+  border-right: 1px solid #eaeaea;
+  box-shadow: 8px 0 28px rgba(37, 37, 37, 0.025);
+  padding: 28px 20px 22px;
+}
+.np-admin-brand {
+  border-bottom-color: #eaeaea;
+  padding-bottom: 22px;
+}
+.np-admin-brand-title strong {
+  color: #252525;
+  letter-spacing: 1.35px;
+}
+.np-admin-brand-title span {
+  color: #c5a04b;
+}
+.np-admin-brand-title small {
+  color: #777777;
+}
+.np-admin-nav {
+  gap: 7px;
+}
+.np-admin-nav-btn {
+  min-height: 46px;
+  color: #666666;
+  border-radius: 9px;
+  font-weight: 620;
+}
+.np-admin-nav-btn:hover {
+  color: #252525;
+  background: #faf8f3;
+}
+.np-admin-nav-btn.is-active {
+  color: #8c6b2c;
+  background: rgba(197, 160, 75, 0.12);
+  border-color: rgba(197, 160, 75, 0.32);
+}
+.np-admin-nav-badge {
+  background: #f4f0e7;
+  color: #725a2b;
+}
+.np-admin-sidebar-foot {
+  border-top-color: #eaeaea;
+}
+.np-admin-user {
+  color: #777777;
+}
+.np-admin-user strong {
+  color: #252525;
+}
+.np-admin-main {
+  background: #ffffff;
+  padding: 34px clamp(22px, 3.2vw, 48px) 60px;
+}
+.np-admin-topbar {
+  padding: 0 0 22px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 28px;
+}
+.np-admin-topbar h1 {
+  color: #252525;
+  font-weight: 680;
+}
+.np-admin-topbar p {
+  color: #777777;
+}
+.np-stats-grid {
+  gap: 16px;
+}
+.np-stat-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 13px;
+  box-shadow: 0 8px 24px rgba(37, 37, 37, 0.045);
+  padding: 20px;
+}
+.np-stat-card--accent {
+  border-color: rgba(197, 160, 75, 0.48);
+  background: #ffffff;
+}
+.np-stat-card--accent .np-stat-value,
+.np-stat-label {
+  color: #8c6b2c;
+}
+.np-stat-value {
+  color: #252525;
+}
+.np-admin-main .np-card {
+  background: #ffffff;
+  border-color: #eaeaea;
+  border-radius: 13px;
+  box-shadow: 0 8px 26px rgba(37, 37, 37, 0.04);
+}
+.np-admin-main .np-btn--gold {
+  background: #c5a04b;
+  color: #ffffff;
+}
+.np-admin-main .np-btn--gold:hover:not(:disabled) {
+  background: #ad8735;
+}
+.np-admin-main .np-btn--dark {
+  background: #252525;
+  color: #ffffff;
+}
+.np-admin-main .np-btn--outline {
+  border-color: #e3dfd5;
+  color: #333333;
+}
+.np-admin-main .np-btn--outline:hover:not(:disabled) {
+  border-color: #c5a04b;
+  background: #fbf8f0;
+}
+.np-admin-main .np-table th {
+  background: #faf8f3;
+  color: #6f6250;
+}
+.np-admin-main .np-table td {
+  border-bottom-color: #eeeeee;
+}
+.np-admin-main :focus-visible,
+.np-admin-sidebar :focus-visible {
+  outline: 2px solid #c5a04b;
+  outline-offset: 3px;
+}
+@media (max-width: 980px) {
+  .np-admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .np-admin-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #eaeaea;
+    padding: 16px 18px;
+  }
+  .np-admin-main {
+    padding: 24px 18px 42px;
+  }
+}
+@media (max-width: 640px) {
+  .np-admin-main {
+    padding: 20px 14px 36px;
+  }
+  .np-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .np-stat-card {
+    padding: 15px;
+  }
+  .np-stat-value {
+    font-size: 25px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .np-admin-layout *,
+  .np-admin-layout *::before,
+  .np-admin-layout *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
