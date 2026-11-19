@@ -134,6 +134,10 @@ export default async function AdminPage() {
     totalConsultationsRes,
     pendingConsultationsRes,
     totalRsvpsRes,
+    totalAccountsRes,
+    totalProjectsRes,
+    completedProjectsRes,
+    inProgressProjectsRes,
     inquiriesPageRes,
     consultationsPageRes,
     rsvpsPageRes,
@@ -146,6 +150,10 @@ export default async function AdminPage() {
       .select('id', { count: 'exact', head: true })
       .eq('status', 'pending'),
     supabase.from('event_rsvps').select('id', { count: 'exact', head: true }),
+    supabase.from('profiles').select('id', { count: 'exact', head: true }),
+    supabase.from('studio_projects').select('id', { count: 'exact', head: true }),
+    supabase.from('studio_projects').select('id', { count: 'exact', head: true }).eq('status', 'completed'),
+    supabase.from('studio_projects').select('id', { count: 'exact', head: true }).eq('status', 'in_progress'),
     supabase
       .from('inquiries')
       .select(
@@ -248,6 +256,10 @@ export default async function AdminPage() {
         totalConsultations: totalConsultationsRes.count ?? 0,
         pendingConsultations: pendingConsultationsRes.count ?? 0,
         totalRsvps: totalRsvpsRes.count ?? 0,
+        totalAccounts: totalAccountsRes.count ?? 0,
+        totalProjects: totalProjectsRes.count ?? 0,
+        completedProjects: completedProjectsRes.count ?? 0,
+        inProgressProjects: inProgressProjectsRes.count ?? 0,
       }}
       initialRecent={recentSubmissions}
       initialInquiries={{
