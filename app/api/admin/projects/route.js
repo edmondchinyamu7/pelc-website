@@ -70,7 +70,7 @@ export async function POST(request) {
   const { data, error } = await access.supabase
     .from('studio_projects')
     .insert({ ...parsed.fields, created_by: access.user.id })
-    .select('id, name, client_name, category, description, status, start_date, completion_date, project_url, created_at, updated_at')
+    .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .single();
   if (error) return NextResponse.json({ error: 'Unable to save this project. Check that the project-management migration has been applied.' }, { status: 502 });
   return NextResponse.json({ item: data }, { status: 201 });
