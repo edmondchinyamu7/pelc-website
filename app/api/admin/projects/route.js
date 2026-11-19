@@ -42,13 +42,25 @@ function validateProject(body, partial = false) {
   return { fields };
 }
 
+async function recordProjectActivity(access, action, projectId, details) {
+  const { error } = await access.supabase.from('studio_activity_log').insert({
+    actor_id: access.user.id,
+    actor_name: access.profile?.full_name || access.user.email || 'Administrator',
+    action,
+    entity_type: 'project',
+    entity_id: projectId || null,
+    details: details || null,
+  });
+  if (error) console.error('[project-activity-log] Unable to record activity:', error.message);
+}
+
 async function authorize() {
   const auth = await requireStudioAdmin();
   if (auth.status !== 'authorized') {
     const status = auth.status === 'unauthenticated' ? 401 : auth.status === 'forbidden' ? 403 : 503;
     return { response: NextResponse.json({ error: auth.reason || 'Administrator access required.' }, { status }) };
   }
-  return { supabase: auth.supabase, user: auth.user };
+  return { supabase: auth.supabase, user: auth.user, profile: auth.profile };
 }
 
 export async function GET() {
@@ -74,6 +86,7 @@ export async function POST(request) {
     .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .single();
   if (error) return NextResponse.json({ error: 'Unable to save this project. Check that the project-management migration has been applied.' }, { status: 502 });
+  await recordProjectActivity(access, 'Created project', data.id, data.name);
   return NextResponse.json({ item: data }, { status: 201 });
 }
 
@@ -94,6 +107,7 @@ export async function PATCH(request) {
     .maybeSingle();
   if (error) return NextResponse.json({ error: 'Unable to update this project.' }, { status: 502 });
   if (!data) return NextResponse.json({ error: 'Project not found.' }, { status: 404 });
+  await recordProjectActivity(access, 'Updated project', data.id, data.name);
   return NextResponse.json({ item: data });
 }
 
@@ -105,5 +119,6 @@ export async function DELETE(request) {
   const { error, count } = await access.supabase.from('studio_projects').delete({ count: 'exact' }).eq('id', id);
   if (error) return NextResponse.json({ error: 'Unable to delete this project.' }, { status: 502 });
   if (count === 0) return NextResponse.json({ error: 'Project not found.' }, { status: 404 });
+  await recordProjectActivity(access, 'Deleted project', id, null);
   return NextResponse.json({ success: true });
 }
