@@ -24,7 +24,11 @@ function validateProject(body, partial = false) {
     fields.description = fields.description.trim();
   }
   if ('deadline' in fields && fields.deadline !== null && (typeof fields.deadline !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(fields.deadline))) return { error: 'Deadline must use YYYY-MM-DD format.' };
-  if ('progress_percent' in fields) {\n    const progress = Number(fields.progress_percent);\n    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };\n    fields.progress_percent = progress;\n  }\n  if ('status' in fields) {
+  if ('progress_percent' in fields) {
+    const progress = Number(fields.progress_percent);
+    if (!Number.isInteger(progress) || progress < 0 || progress > 100) return { error: 'Progress must be a whole number from 0 to 100.' };
+    fields.progress_percent = progress;
+  }\n  if ('status' in fields) {
     fields.status = fields.status || 'planning';
     if (!STATUSES.has(fields.status)) return { error: 'Choose a valid project status.' };
   }
@@ -103,7 +107,7 @@ export async function PATCH(request) {
     .from('studio_projects')
     .update(parsed.fields)
     .eq('id', id)
-    .select('id, name, client_name, category, description, status, start_date, completion_date, project_url, created_at, updated_at')
+    .select('id, name, client_name, category, description, status, start_date, completion_date, deadline, progress_percent, project_url, created_at, updated_at')
     .maybeSingle();
   if (error) return NextResponse.json({ error: 'Unable to update this project.' }, { status: 502 });
   if (!data) return NextResponse.json({ error: 'Project not found.' }, { status: 404 });
