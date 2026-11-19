@@ -82,6 +82,9 @@ export default function AdminDashboard({
 }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [globalSearch, setGlobalSearch] = useState('');
 
   const [stats, setStats] = useState(initialStats);
   const [recentSubmissions] = useState(initialRecent || []);
@@ -506,10 +509,26 @@ export default function AdminDashboard({
             </p>
           </div>
 
-          <Link href="/" className="np-btn np-btn--outline">
-            View public site
-            <ArrowUpRight size={14} />
-          </Link>
+          <div className="np-admin-top-actions">
+            <form className="np-admin-global-search" onSubmit={(e) => { e.preventDefault(); switchTab('overview'); }}>
+              <Search size={15} />
+              <input type="search" aria-label="Search recent activity" placeholder="Search dashboard…" value={globalSearch} onChange={(e) => setGlobalSearch(e.target.value)} />
+            </form>
+            <div className="np-admin-action-wrap">
+              <button type="button" className="np-admin-icon-btn" aria-label="Notifications" aria-expanded={notificationsOpen} onClick={() => { setNotificationsOpen((v) => !v); setProfileMenuOpen(false); }}>
+                <Inbox size={17}/><span className="np-admin-notification-count">{(stats.newInquiries || 0) + (stats.pendingConsultations || 0)}</span>
+              </button>
+              {notificationsOpen && <div className="np-admin-popover"><strong>Notifications</strong><button type="button" onClick={() => { switchTab('inquiries'); setNotificationsOpen(false); }}>New inquiries <b>{stats.newInquiries || 0}</b></button><button type="button" onClick={() => { switchTab('consultations'); setNotificationsOpen(false); }}>Pending consultations <b>{stats.pendingConsultations || 0}</b></button><button type="button" onClick={() => { switchTab('rsvps'); setNotificationsOpen(false); }}>Event RSVPs <b>{stats.totalRsvps || 0}</b></button></div>}
+            </div>
+            <button type="button" className="np-admin-icon-btn" aria-label="Settings" onClick={() => switchTab('settings')}><Settings size={17}/></button>
+            <div className="np-admin-action-wrap">
+              <button type="button" className="np-admin-profile-btn" aria-expanded={profileMenuOpen} onClick={() => { setProfileMenuOpen((v) => !v); setNotificationsOpen(false); }}>
+                <span className="np-admin-avatar">{(adminName || adminEmail || 'A').slice(0,1).toUpperCase()}</span><span><strong>{adminName || 'Administrator'}</strong><small>Administrator</small></span>
+              </button>
+              {profileMenuOpen && <div className="np-admin-popover np-admin-profile-popover"><strong>{adminEmail}</strong><button type="button" onClick={() => { switchTab('settings'); setProfileMenuOpen(false); }}>Account settings</button><Link href="/account">Open client portal</Link></div>}
+            </div>
+            <Link href="/" className="np-btn np-btn--outline">Public site <ArrowUpRight size={14}/></Link>
+          </div>
         </div>
 
         {initialLoadError && (
@@ -597,7 +616,7 @@ export default function AdminDashboard({
                 </div>
               </div>
 
-              {recentSubmissions.length === 0 ? (
+              {recentSubmissions.filter((entry) => !globalSearch.trim() || [entry.name, entry.email, entry.summary, entry.typeLabel].some((value) => (value || '').toLowerCase().includes(globalSearch.trim().toLowerCase()))).length === 0 ? (
                 <div className="np-empty-state">No submissions recorded yet.</div>
               ) : (
                 <div className="np-table-wrap">
@@ -612,7 +631,7 @@ export default function AdminDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {recentSubmissions.map((entry) => (
+                      {recentSubmissions.filter((entry) => !globalSearch.trim() || [entry.name, entry.email, entry.summary, entry.typeLabel].some((value) => (value || '').toLowerCase().includes(globalSearch.trim().toLowerCase()))).map((entry) => (
                         <tr key={`${entry.type}-${entry.id}`}>
                           <td style={{ fontWeight: 700 }}>{entry.typeLabel}</td>
                           <td>
