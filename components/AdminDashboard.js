@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   CalendarClock,
   BriefcaseBusiness,
+  ChartNoAxesCombined,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -21,6 +22,7 @@ import {
 } from 'lucide-react';
 import SignOutButton from '@/components/SignOutButton';
 import AdminProjects from '@/components/AdminProjects';
+import AdminOperations from '@/components/AdminOperations';
 
 const INQUIRY_DEPARTMENTS = ['general', 'wdd', 'sdd', 'ud', 'ad', 'md', 'cpd'];
 const INQUIRY_STATUSES = ['new', 'in_review', 'replied', 'archived'];
@@ -437,6 +439,17 @@ export default function AdminDashboard({
                 </span>
                 <span className="np-admin-nav-badge">{stats.totalProjects ?? 0}</span>
               </button>
+
+              <button
+                type="button"
+                className={`np-admin-nav-btn${activeTab === 'operations' ? ' is-active' : ''}`}
+                onClick={() => switchTab('operations')}
+              >
+                <span className="np-admin-nav-left">
+                  <ChartNoAxesCombined size={16} />
+                  Business Operations
+                </span>
+              </button>
             </nav>
           </div>
         </div>
@@ -462,6 +475,7 @@ export default function AdminDashboard({
               {activeTab === 'consultations' && 'Consultations Pipeline'}
               {activeTab === 'rsvps' && 'Event RSVPs'}
               {activeTab === 'projects' && 'Projects Management'}
+              {activeTab === 'operations' && 'Business Operations'}
             </h1>
             <p>
               Server-verified NEOPAD STUDIO administrative workspace · Live Supabase records
@@ -1323,6 +1337,8 @@ export default function AdminDashboard({
             </div>
           </div>
         )}
+
+        {activeTab === 'operations' && <AdminOperations />}
       </main>
     </div>
   );
