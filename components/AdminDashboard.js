@@ -61,6 +61,7 @@ function StatusPill({ status }) {
 export default function AdminDashboard({
   adminEmail,
   adminName,
+  initialLoadError = null,
   initialStats,
   initialRecent,
   initialInquiries,
@@ -459,6 +460,16 @@ export default function AdminDashboard({
             <ArrowUpRight size={14} />
           </Link>
         </div>
+
+        {initialLoadError && (
+          <div
+            className="np-banner np-banner--error"
+            role="alert"
+            style={{ marginBottom: '20px', marginTop: 0 }}
+          >
+            {initialLoadError}
+          </div>
+        )}
 
         {feedbackBanner && (
           <div

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { ShieldAlert, User } from 'lucide-react';
+import { AlertTriangle, ShieldAlert, User } from 'lucide-react';
 import { requireStudioAdmin } from '@/lib/supabase/admin';
+import { logSafeAuthDiagnostic } from '@/lib/supabase/diagnostics';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdminDashboard from '@/components/AdminDashboard';
@@ -17,6 +18,60 @@ export default async function AdminPage() {
     redirect('/auth/login?next=/admin');
   }
 
+  if (auth.status === 'error') {
+    return (
+      <div className="pelc-page">
+        <Navbar />
+        <header className="np-portal-hero">
+          <div className="container">
+            <span className="pill">
+              <span className="dot" />
+              Verification Error
+            </span>
+            <h1 style={{ marginTop: '14px' }}>
+              Administrator <em>Verification Unavailable</em>
+            </h1>
+            <p className="np-portal-sub">
+              We signed in your session ({auth.user?.email}), but could not verify administrator
+              permissions with the Supabase database.
+            </p>
+          </div>
+        </header>
+
+        <main className="np-portal-section">
+          <div className="container">
+            <div className="np-card" style={{ maxWidth: '640px' }}>
+              <div className="np-card-head">
+                <div>
+                  <p className="np-card-kicker">503 · Verification Failed Closed</p>
+                  <h2 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <AlertTriangle size={22} color="#9c7921" />
+                    Administrator permissions could not be verified
+                  </h2>
+                  <p className="np-card-desc">
+                    {auth.reason ||
+                      'Check that the connected Supabase database has the NEOPAD STUDIO schema and is_studio_admin() function deployed.'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="np-action-links">
+                <Link href="/admin" className="np-action-link">
+                  Try Again
+                </Link>
+                <Link href="/account" className="np-action-link">
+                  <User size={15} />
+                  Return to Your Account
+                </Link>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   if (auth.status === 'forbidden') {
     return (
       <div className="pelc-page">
@@ -28,11 +83,11 @@ export default async function AdminPage() {
               Restricted Area
             </span>
             <h1 style={{ marginTop: '14px' }}>
-              Administrator <em>Access Required</em>
+              Administrator <em>Permissions Missing</em>
             </h1>
             <p className="np-portal-sub">
-              Your account ({auth.user?.email}) is signed in as a standard client profile and does
-              not hold administrator permissions.
+              Your account ({auth.user?.email}) is signed in, but does not hold studio
+              administrator privileges.
             </p>
           </div>
         </header>
@@ -45,11 +100,11 @@ export default async function AdminPage() {
                   <p className="np-card-kicker">403 · Access Denied</p>
                   <h2 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <ShieldAlert size={22} color="#9e2222" />
-                    You do not have permission to view this page
+                    Administrator permissions are missing
                   </h2>
                   <p className="np-card-desc">
-                    Only NEOPAD STUDIO accounts explicitly assigned the administrator role in the
-                    database can access studio inquiries, consultations, and event RSVPs.
+                    {auth.reason ||
+                      'Only NEOPAD STUDIO accounts explicitly assigned the administrator role in the database can access studio inquiries, consultations, and event RSVPs.'}
                   </p>
                 </div>
               </div>
@@ -116,6 +171,26 @@ export default async function AdminPage() {
       .range(0, 14),
   ]);
 
+  const queryErrors = [
+    totalInquiriesRes.error,
+    newInquiriesRes.error,
+    totalConsultationsRes.error,
+    pendingConsultationsRes.error,
+    totalRsvpsRes.error,
+    inquiriesPageRes.error,
+    consultationsPageRes.error,
+    rsvpsPageRes.error,
+  ].filter(Boolean);
+
+  if (queryErrors.length > 0) {
+    logSafeAuthDiagnostic({
+      location: 'app/admin/page.js',
+      operation: 'loadDashboardData',
+      error: queryErrors[0],
+      extra: { failedQueriesCount: queryErrors.length },
+    });
+  }
+
   const inquiriesItems = inquiriesPageRes.data || [];
   const consultationsItems = consultationsPageRes.data || [];
   const rsvpsItems = rsvpsPageRes.data || [];
@@ -162,6 +237,11 @@ export default async function AdminPage() {
     <AdminDashboard
       adminEmail={auth.user.email}
       adminName={auth.profile?.full_name || ''}
+      initialLoadError={
+        queryErrors.length > 0
+          ? 'Dashboard data could not be completely loaded from the database. Please refresh or check database logs.'
+          : null
+      }
       initialStats={{
         totalInquiries: totalInquiriesRes.count ?? 0,
         newInquiries: newInquiriesRes.count ?? 0,

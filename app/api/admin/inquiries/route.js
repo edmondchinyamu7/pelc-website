@@ -9,6 +9,9 @@ export async function GET(request) {
   if (auth.status === 'unauthenticated') {
     return NextResponse.json({ error: 'Authentication required.' }, { status: 401 });
   }
+  if (auth.status === 'unconfigured' || auth.status === 'error') {
+    return NextResponse.json({ error: auth.reason || 'Unable to verify administrator permissions.' }, { status: 503 });
+  }
   if (auth.status !== 'authorized') {
     return NextResponse.json({ error: 'Administrator access required.' }, { status: 403 });
   }

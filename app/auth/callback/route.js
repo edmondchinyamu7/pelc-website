@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { logSafeAuthDiagnostic } from '@/lib/supabase/diagnostics';
 
 function getRequestOrigin(request) {
   const forwardedHost = request.headers.get('x-forwarded-host');
@@ -20,23 +21,47 @@ export async function GET(request) {
   const safeNext = next && next.startsWith('/') && !next.startsWith('//') ? next : '/account';
 
   const supabase = await createClient();
-  if (supabase) {
-    if (code) {
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
-      if (!error) {
-        return NextResponse.redirect(`${origin}${safeNext}`);
-      }
-    } else if (tokenHash && type) {
-      const { error } = await supabase.auth.verifyOtp({
-        token_hash: tokenHash,
-        type,
-      });
-      if (!error) {
-        const redirectTarget =
-          type === 'recovery' && safeNext === '/account' ? '/auth/update-password' : safeNext;
-        return NextResponse.redirect(`${origin}${redirectTarget}`);
-      }
+  if (!supabase) {
+    logSafeAuthDiagnostic({
+      location: 'app/auth/callback/route.js',
+      operation: 'createClient',
+      reason: 'missing_supabase_public_env',
+    });
+    return NextResponse.redirect(`${origin}/auth/error`);
+  }
+
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (!error) {
+      return NextResponse.redirect(`${origin}${safeNext}`);
     }
+    logSafeAuthDiagnostic({
+      location: 'app/auth/callback/route.js',
+      operation: 'auth.exchangeCodeForSession',
+      error,
+    });
+  } else if (tokenHash && type) {
+    const { error } = await supabase.auth.verifyOtp({
+      token_hash: tokenHash,
+      type,
+    });
+    if (!error) {
+      const redirectTarget =
+        type === 'recovery' && safeNext === '/account' ? '/auth/update-password' : safeNext;
+      return NextResponse.redirect(`${origin}${redirectTarget}`);
+    }
+    logSafeAuthDiagnostic({
+      location: 'app/auth/callback/route.js',
+      operation: 'auth.verifyOtp',
+      error,
+      extra: { type },
+    });
+  } else {
+    logSafeAuthDiagnostic({
+      location: 'app/auth/callback/route.js',
+      operation: 'GET',
+      reason: 'missing_code_or_token_hash',
+    });
   }
 
   return NextResponse.redirect(`${origin}/auth/error`);

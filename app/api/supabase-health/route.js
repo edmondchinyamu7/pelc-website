@@ -3,9 +3,11 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function GET() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  if (!supabaseUrl || !supabaseKey) {
     return NextResponse.json(
       {
         configured: false,
@@ -16,17 +18,23 @@ export async function GET() {
     );
   }
 
+  let projectRef = null;
+  try {
+    projectRef = new URL(supabaseUrl).hostname.split('.')[0];
+  } catch {
+    projectRef = null;
+  }
+
   try {
     const supabase = await createClient();
     const { error: sessionError } = await supabase.auth.getSession();
 
     const healthRes = await fetch(`${supabaseUrl.replace(/\/$/, '')}/auth/v1/health`, {
-      headers: { apikey: supabaseAnonKey },
+      headers: { apikey: supabaseKey },
       cache: 'no-store',
     });
 
     const connected = !sessionError && healthRes.ok;
-    const projectRef = new URL(supabaseUrl).hostname.split('.')[0];
 
     return NextResponse.json(
       {
@@ -42,6 +50,7 @@ export async function GET() {
       {
         configured: true,
         connected: false,
+        projectRef,
         message: err instanceof Error ? err.message : 'Unable to reach Supabase.',
       },
       { status: 502 },
